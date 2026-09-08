@@ -1,0 +1,5 @@
+{%- comment -%} Usage: {% render 'stars', count: 5, size: 'lg' %} {%- endcomment -%}
+{%- assign star_count = count | default: 5 -%}
+<span class="stars {% if size == 'lg' %}stars--lg{% endif %}" role="img" aria-label="{{ star_count }} out of 5 stars">
+  {%- for i in (1..star_count) -%}{% render 'icon', name: 'star' %}{%- endfor -%}
+</span>

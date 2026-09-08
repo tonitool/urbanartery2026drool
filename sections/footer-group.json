@@ -1,0 +1,28 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "trust-badges": {
+      "type": "trust-badges",
+      "blocks": {
+        "b1": { "type": "badge", "settings": { "icon": "truck", "title": "Ship globally", "text": "Delivered worldwide with a 14-day return period." } },
+        "b2": { "type": "badge", "settings": { "icon": "badge", "title": "High quality", "text": "Museum-grade heavyweight paper and handmade frames." } },
+        "b3": { "type": "badge", "settings": { "icon": "palette", "title": "Unique art", "text": "Curated work from emerging artists, sold only here." } }
+      },
+      "block_order": ["b1", "b2", "b3"],
+      "settings": {}
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "f1": { "type": "brand", "settings": { "text": "<p>Contemporary art prints by emerging artists.</p>" } },
+        "f2": { "type": "links", "settings": { "title": "What we do" } },
+        "f3": { "type": "links", "settings": { "title": "Inspiration" } },
+        "f4": { "type": "links", "settings": { "title": "Help" } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4"],
+      "settings": {}
+    }
+  },
+  "order": ["trust-badges", "footer"]
+}

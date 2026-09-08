@@ -1,0 +1,132 @@
+{%- liquid
+  assign current = product.selected_or_first_available_variant
+  assign on_sale = false
+  if current.compare_at_price > current.price
+    assign on_sale = true
+  endif
+-%}
+
+<div class="container product">
+  <div class="product__gallery">
+    <div class="product__main-image">
+      {%- if product.featured_media -%}
+        <img id="ProductMainImage"
+             src="{{ product.featured_media | image_url: width: 1200 }}"
+             srcset="{{ product.featured_media | image_url: width: 600 }} 600w,
+                     {{ product.featured_media | image_url: width: 1200 }} 1200w"
+             sizes="(min-width: 900px) 55vw, 100vw"
+             width="{{ product.featured_media.width }}" height="{{ product.featured_media.height }}"
+             alt="{{ product.featured_media.alt | escape }}"
+             fetchpriority="high">
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </div>
+
+    {%- if product.media.size > 1 -%}
+      <div class="product__thumbs">
+        {%- for media in product.media -%}
+          <button class="product__thumb" type="button"
+                  onclick="document.getElementById('ProductMainImage').src='{{ media | image_url: width: 1200 }}';document.getElementById('ProductMainImage').srcset='';"
+                  aria-label="{{ media.alt | escape | default: product.title | escape }}">
+            <img src="{{ media | image_url: width: 160 }}" width="160" height="160" alt="" loading="lazy">
+          </button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="product__details">
+    <h1 class="product__title">{{ product.title }}</h1>
+
+    {%- if product.vendor != blank -%}
+      <p class="product__vendor">{{ 'products.product.vendor' | t: vendor: product.vendor }}</p>
+    {%- endif -%}
+
+    <p class="product__price" data-product-price>
+      <span {% if on_sale %}class="on-sale"{% endif %}>{{ current.price | money }}</span>
+      {%- if on_sale %}<s>{{ current.compare_at_price | money }}</s>{% endif -%}
+    </p>
+
+    {%- form 'product', product, class: 'product-form', data-product-form: 'true' -%}
+      <input type="hidden" name="id" value="{{ current.id }}" data-variant-id>
+
+      {%- unless product.has_only_default_variant -%}
+        {%- for option in product.options_with_values -%}
+          <div class="option" data-option-index="{{ forloop.index0 }}">
+            <span class="option__label">{{ option.name }}</span>
+            <div class="option__values">
+              {%- for value in option.values -%}
+                <label class="option__value">
+                  <input type="radio"
+                         name="option-{{ section.id }}-{{ option.position }}"
+                         value="{{ value | escape }}"
+                         {% if option.selected_value == value %}checked{% endif %}>
+                  <span>{{ value }}</span>
+                </label>
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endunless -%}
+
+      <div class="option">
+        <label class="option__label" for="Quantity-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
+        <input class="field" style="max-width:110px;" id="Quantity-{{ section.id }}" type="number" name="quantity" value="1" min="1">
+      </div>
+
+      <button class="btn btn--full" type="submit" name="add"
+              data-add-to-cart
+              data-add="{{ 'products.product.add_to_cart' | t | escape }}"
+              data-sold-out="{{ 'products.product.sold_out' | t | escape }}"
+              data-unavailable="{{ 'products.product.unavailable' | t | escape }}"
+              {% unless current.available %}disabled{% endunless %}>
+        {%- if current.available -%}{{ 'products.product.add_to_cart' | t }}{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
+      </button>
+
+      {{ form | payment_button }}
+
+      <script type="application/json" data-variants>
+        [
+          {%- for variant in product.variants -%}
+            {
+              "id": {{ variant.id }},
+              "available": {{ variant.available | json }},
+              "options": {{ variant.options | json }},
+              "price_html": {{ variant.price | money | json }}
+            }{% unless forloop.last %},{% endunless %}
+          {%- endfor -%}
+        ]
+      </script>
+    {%- endform -%}
+
+    {%- if product.description != blank -%}
+      <div class="product__description rte">{{ product.description }}</div>
+    {%- endif -%}
+
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'accordion' -%}
+        <details class="accordion" {{ block.shopify_attributes }}>
+          <summary>{{ block.settings.title }} {% render 'icon', name: 'caret' %}</summary>
+          <div class="accordion__body rte">{{ block.settings.content }}</div>
+        </details>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product",
+  "blocks": [
+    {
+      "type": "accordion",
+      "name": "Accordion row",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Shipping & returns" },
+        { "type": "richtext", "id": "content", "label": "Content", "default": "<p>Add your shipping and returns information here.</p>" }
+      ]
+    }
+  ]
+}
+{% endschema %}

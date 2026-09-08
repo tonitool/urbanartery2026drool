@@ -1,0 +1,117 @@
+<header class="header">
+  <div class="container container--wide header__inner">
+
+    <button class="header__toggle" type="button" data-drawer-open aria-controls="MenuDrawer" aria-label="{{ 'accessibility.menu' | t }}">
+      {% render 'icon', name: 'menu' %}
+    </button>
+
+    <nav class="nav" aria-label="{{ 'accessibility.menu' | t }}">
+      <ul class="nav__list">
+        {%- for link in section.settings.menu.links -%}
+          <li class="nav__item">
+            <a class="nav__link" href="{{ link.url }}" {% if link.current %}aria-current="page"{% endif %}>
+              {{ link.title }}
+              {%- if link.links.size > 0 %}{% render 'icon', name: 'caret' %}{% endif -%}
+            </a>
+
+            {%- if link.links.size > 0 -%}
+              {%- assign has_grandchildren = false -%}
+              {%- for child in link.links -%}
+                {%- if child.links.size > 0 -%}{%- assign has_grandchildren = true -%}{%- endif -%}
+              {%- endfor -%}
+
+              <div class="nav__dropdown {% if has_grandchildren %}nav__dropdown--mega{% endif %}">
+                {%- if has_grandchildren -%}
+                  {%- for child in link.links -%}
+                    <div>
+                      <p class="nav__col-title"><a href="{{ child.url }}">{{ child.title }}</a></p>
+                      {%- if child.links.size > 0 -%}
+                        <ul class="nav__sublist">
+                          {%- for grandchild in child.links -%}
+                            <li><a class="nav__sublink" href="{{ grandchild.url }}">{{ grandchild.title }}</a></li>
+                          {%- endfor -%}
+                        </ul>
+                      {%- endif -%}
+                    </div>
+                  {%- endfor -%}
+                {%- else -%}
+                  <ul class="nav__sublist">
+                    {%- for child in link.links -%}
+                      <li><a class="nav__sublink" href="{{ child.url }}">{{ child.title }}</a></li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <a class="header__logo" href="{{ routes.root_url }}">
+      {%- if section.settings.logo != blank -%}
+        <img src="{{ section.settings.logo | image_url: width: 400 }}"
+             width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}"
+             alt="{{ shop.name | escape }}">
+      {%- else -%}
+        {{ shop.name }}
+      {%- endif -%}
+    </a>
+
+    <div class="header__actions">
+      <a class="header__action" href="{{ routes.search_url }}" aria-label="{{ 'accessibility.search' | t }}">
+        {% render 'icon', name: 'search' %}
+      </a>
+
+      {%- if shop.customer_accounts_enabled -%}
+        <a class="header__action" href="{{ routes.account_url }}" aria-label="{{ 'accessibility.account' | t }}">
+          {% render 'icon', name: 'account' %}
+        </a>
+      {%- endif -%}
+
+      <a class="header__action" href="{{ routes.cart_url }}" aria-label="{{ 'accessibility.cart' | t }}">
+        {% render 'icon', name: 'cart' %}
+        <span class="cart-count" {% if cart.item_count == 0 %}hidden{% endif %}>{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+{%- comment -%} Mobile drawer {%- endcomment -%}
+<div class="drawer" id="MenuDrawer" role="dialog" aria-modal="true" aria-label="{{ 'accessibility.menu' | t }}">
+  <div class="drawer__head">
+    <span class="header__logo">{{ shop.name }}</span>
+    <button class="header__action" type="button" data-drawer-close aria-label="{{ 'accessibility.close' | t }}">
+      {% render 'icon', name: 'close' %}
+    </button>
+  </div>
+
+  {%- for link in section.settings.menu.links -%}
+    {%- if link.links.size > 0 -%}
+      <details>
+        <summary>{{ link.title }} {% render 'icon', name: 'caret' %}</summary>
+        <ul class="drawer__sublist">
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- for child in link.links -%}
+            <li><a href="{{ child.url }}">{{ child.title }}</a></li>
+            {%- for grandchild in child.links -%}
+              <li><a href="{{ grandchild.url }}">&nbsp;&nbsp;{{ grandchild.title }}</a></li>
+            {%- endfor -%}
+          {%- endfor -%}
+        </ul>
+      </details>
+    {%- else -%}
+      <a class="drawer__link" href="{{ link.url }}">{{ link.title }}</a>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo", "info": "Falls back to the store name as a wordmark." },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu", "info": "Two levels of nesting render as a mega menu." }
+  ]
+}
+{% endschema %}

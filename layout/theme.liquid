@@ -1,0 +1,93 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_bg }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | join: ', ' }}{% endif -%}
+      {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    {% render 'meta-tags' %}
+
+    {{ content_for_header }}
+
+    {%- liquid
+      assign body_font = settings.font_body
+      assign heading_font = settings.font_heading
+      assign body_font_bold = body_font | font_modify: 'weight', 'bold'
+      assign body_font_italic = body_font | font_modify: 'style', 'italic'
+    -%}
+
+    {{ body_font | font_face: font_display: 'swap' }}
+    {{ body_font_bold | font_face: font_display: 'swap' }}
+    {{ body_font_italic | font_face: font_display: 'swap' }}
+    {{ heading_font | font_face: font_display: 'swap' }}
+
+    <style>
+      :root {
+        --font-body: {{ body_font.family }}, {{ body_font.fallback_families }};
+        --font-body-weight: {{ body_font.weight }};
+        --font-heading: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+        --font-heading-weight: {{ heading_font.weight }};
+        --font-size-base: {{ settings.font_size_base }}px;
+        --heading-scale: {{ settings.heading_scale | divided_by: 100.0 }};
+        --heading-transform: {% if settings.uppercase_headings %}uppercase{% else %}none{% endif %};
+
+        --color-bg: {{ settings.color_bg }};
+        --color-fg: {{ settings.color_fg }};
+        --color-muted: {{ settings.color_muted }};
+        --color-border: {{ settings.color_border }};
+        --color-subtle: {{ settings.color_subtle }};
+        --color-dark: {{ settings.color_dark }};
+        --color-dark-fg: {{ settings.color_dark_fg }};
+        --color-accent: {{ settings.color_accent }};
+        --color-accent-fg: {{ settings.color_accent_fg }};
+        --color-btn-bg: {{ settings.color_btn_bg }};
+        --color-btn-fg: {{ settings.color_btn_fg }};
+        --color-sale: {{ settings.color_sale }};
+
+        --page-width: {{ settings.page_width }}px;
+        --gap: {{ settings.grid_gap }}px;
+        --btn-radius: {% case settings.button_style %}{% when 'pill' %}999px{% when 'soft' %}4px{% else %}0px{% endcase %};
+
+        --card-ratio: {% case settings.card_image_ratio %}{% when 'square' %}1 / 1{% when 'tall' %}2 / 3{% else %}3 / 4{% endcase %};
+      }
+    </style>
+
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+  </head>
+
+  <body class="template-{{ template.name | handle }}">
+    <a class="skip-link btn" href="#MainContent">{{ 'accessibility.skip_to_text' | t }}</a>
+
+    {% sections 'header-group' %}
+
+    <main id="MainContent" class="main" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+
+    <div id="Overlay" class="overlay" hidden></div>
+  </body>
+</html>

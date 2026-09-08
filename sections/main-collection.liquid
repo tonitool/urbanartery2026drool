@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="collection-hero">
+    <h1 class="collection-hero__title">{{ collection.title }}</h1>
+    {%- if collection.description != blank and section.settings.show_description -%}
+      <div class="collection-hero__desc rte">{{ collection.description }}</div>
+    {%- endif -%}
+  </div>
+
+  <div class="collection-toolbar">
+    <span>{{ 'collections.general.items_with_count' | t: count: collection.products_count }}</span>
+
+    {%- if section.settings.show_sort -%}
+      <label>
+        <span class="visually-hidden">{{ 'collections.general.sort_by' | t }}</span>
+        <select class="field" data-sort style="min-height:38px;padding-block:7px;">
+          {%- assign current_sort = collection.sort_by | default: collection.default_sort_by -%}
+          {%- for option in collection.sort_options -%}
+            <option value="{{ option.value }}" {% if option.value == current_sort %}selected{% endif %}>{{ option.name }}</option>
+          {%- endfor -%}
+        </select>
+      </label>
+    {%- endif -%}
+  </div>
+
+  {%- paginate collection.products by section.settings.per_page -%}
+    {%- if collection.products.size > 0 -%}
+      <ul class="product-grid">
+        {%- for product in collection.products -%}
+          <li>{% render 'product-card', product: product %}</li>
+        {%- endfor -%}
+      </ul>
+
+      {%- if paginate.pages > 1 -%}
+        <nav class="pagination" aria-label="{{ 'general.pagination.label' | t }}">
+          {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}">{{ 'general.pagination.previous' | t }}</a>{%- endif -%}
+          {%- for part in paginate.parts -%}
+            {%- if part.is_link -%}
+              <a href="{{ part.url }}">{{ part.title }}</a>
+            {%- else -%}
+              <span class="{% if part.title == paginate.current_page %}is-current{% endif %}">{{ part.title }}</span>
+            {%- endif -%}
+          {%- endfor -%}
+          {%- if paginate.next -%}<a href="{{ paginate.next.url }}">{{ 'general.pagination.next' | t }}</a>{%- endif -%}
+        </nav>
+      {%- endif -%}
+    {%- else -%}
+      <div class="empty-state">
+        <p>{{ 'collections.general.no_matches' | t }}</p>
+        <a class="btn" href="{{ routes.all_products_collection_url }}">{{ 'general.continue_shopping' | t }}</a>
+      </div>
+    {%- endif -%}
+  {%- endpaginate -%}
+</div>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    { "type": "checkbox", "id": "show_description", "label": "Show collection description", "default": true },
+    { "type": "checkbox", "id": "show_sort", "label": "Show sort dropdown", "default": true },
+    { "type": "range", "id": "per_page", "label": "Products per page", "min": 8, "max": 48, "step": 4, "default": 24 }
+  ]
+}
+{% endschema %}

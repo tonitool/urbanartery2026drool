@@ -1,0 +1,28 @@
+<div class="container" style="padding-block:20px 60px;">
+  <div class="page-hero">
+    <h1 class="page-hero__title">{{ page_title }}</h1>
+  </div>
+
+  <ul class="product-grid">
+    {%- for collection in collections -%}
+      <li>
+        <a class="edit-card" href="{{ collection.url }}">
+          <div class="edit-card__media">
+            {%- if collection.featured_image -%}
+              <img src="{{ collection.featured_image | image_url: width: 800 }}"
+                   width="{{ collection.featured_image.width }}" height="{{ collection.featured_image.height }}"
+                   alt="{{ collection.title | escape }}" loading="lazy">
+            {%- else -%}
+              {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+          <p class="edit-card__title">{{ collection.title }}</p>
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+</div>
+
+{% schema %}
+{ "name": "Collections list" }
+{% endschema %}

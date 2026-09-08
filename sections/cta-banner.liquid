@@ -1,0 +1,31 @@
+<section class="cta-band {% if section.settings.color_scheme == 'dark' %}section--dark{% elsif section.settings.color_scheme == 'subtle' %}section--subtle{% endif %}">
+  <div class="container container--narrow">
+    <h2 class="cta-band__title">{{ section.settings.heading }}</h2>
+    {%- if section.settings.text != blank -%}
+      <p class="cta-band__text">{{ section.settings.text }}</p>
+    {%- endif -%}
+    {%- if section.settings.button_label != blank -%}
+      <a class="btn {% if section.settings.color_scheme == 'dark' %}btn--light{% endif %}" href="{{ section.settings.button_link }}">
+        {{ section.settings.button_label }}
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CTA banner",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Unsure where to start?" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Take the quiz and we will match you with prints that suit your space." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Start quiz" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "select", "id": "color_scheme", "label": "Colour scheme", "default": "dark", "options": [
+      { "value": "default", "label": "Default" },
+      { "value": "subtle", "label": "Subtle" },
+      { "value": "dark", "label": "Dark" }
+    ]}
+  ],
+  "presets": [ { "name": "CTA banner" } ]
+}
+{% endschema %}

@@ -1,0 +1,43 @@
+<section class="press">
+  <div class="container container--wide">
+    {%- if section.settings.label != blank -%}
+      <p class="press__label">{{ section.settings.label }}</p>
+    {%- endif -%}
+
+    <div class="press__list">
+      {%- for block in section.blocks -%}
+        <div class="press__item" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            <img src="{{ block.settings.image | image_url: width: 300 }}"
+                 width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}"
+                 alt="{{ block.settings.name | escape }}" loading="lazy">
+          {%- else -%}
+            {{ block.settings.name }}
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Press logos",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "As seen in" }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Logo image", "info": "Upload only logos you are licensed to display." },
+        { "type": "text", "id": "name", "label": "Name", "default": "Publication", "info": "Used as the alt text, and shown as a wordmark when no image is set." }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Press logos", "blocks": [ { "type": "logo" }, { "type": "logo" }, { "type": "logo" }, { "type": "logo" }, { "type": "logo" } ] }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,64 @@
+<div class="container cart">
+  <h1 class="cart__title">{{ 'cart.general.title' | t }}</h1>
+
+  {%- if cart.item_count == 0 -%}
+    <div class="empty-state">
+      <p>{{ 'cart.general.empty' | t }}</p>
+      <a class="btn" href="{{ routes.all_products_collection_url }}">{{ 'general.continue_shopping' | t }}</a>
+    </div>
+  {%- else -%}
+    <form action="{{ routes.cart_url }}" method="post" novalidate>
+      <table class="cart__table">
+        <thead>
+          <tr>
+            <th scope="col">{{ 'cart.general.product' | t }}</th>
+            <th scope="col">{{ 'cart.general.price' | t }}</th>
+            <th scope="col">{{ 'cart.general.quantity' | t }}</th>
+            <th scope="col">{{ 'cart.general.total' | t }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- for item in cart.items -%}
+            <tr>
+              <td>
+                <div class="cart__item">
+                  {%- if item.image -%}
+                    <img src="{{ item.image | image_url: width: 200 }}" width="84" height="112" alt="{{ item.image.alt | escape }}" loading="lazy">
+                  {%- endif -%}
+                  <div>
+                    <a class="cart__item-title" href="{{ item.url }}">{{ item.product.title }}</a>
+                    {%- unless item.product.has_only_default_variant -%}
+                      <div class="cart__item-meta">{{ item.variant.title }}</div>
+                    {%- endunless -%}
+                    <div class="cart__item-meta">
+                      <a class="link-underline" href="{{ item.url_to_remove }}">{{ 'cart.general.remove' | t }}</a>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>{{ item.original_price | money }}</td>
+              <td>
+                <label class="visually-hidden" for="Qty-{{ item.index | plus: 1 }}">{{ 'cart.general.quantity' | t }}</label>
+                <input class="field" style="max-width:88px;" id="Qty-{{ item.index | plus: 1 }}" type="number" name="updates[]" value="{{ item.quantity }}" min="0">
+              </td>
+              <td>{{ item.original_line_price | money }}</td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+
+      <div class="cart__footer">
+        <p class="cart__subtotal">{{ 'cart.general.subtotal' | t }}: {{ cart.total_price | money }}</p>
+        <p class="cart__note">{{ 'cart.general.taxes_and_shipping' | t }}</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn--outline" type="submit" name="update">{{ 'cart.general.update' | t }}</button>
+          <button class="btn" type="submit" name="checkout">{{ 'cart.general.checkout' | t }}</button>
+        </div>
+      </div>
+    </form>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{ "name": "Cart" }
+{% endschema %}

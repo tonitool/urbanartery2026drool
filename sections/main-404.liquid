@@ -1,0 +1,9 @@
+<div class="container empty-state">
+  <h1 class="page-hero__title">{{ '404.title' | t }}</h1>
+  <p style="color:var(--color-muted);">{{ '404.subtext' | t }}</p>
+  <a class="btn" href="{{ routes.root_url }}">{{ 'general.continue_shopping' | t }}</a>
+</div>
+
+{% schema %}
+{ "name": "404" }
+{% endschema %}

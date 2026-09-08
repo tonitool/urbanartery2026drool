@@ -1,0 +1,160 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-split",
+      "settings": {
+        "show_rating": true,
+        "rating_text": "4.7/5 | Rated Excellent",
+        "heading": "Unique contemporary art prints",
+        "text": "Transform your home with original work by emerging artists from around the world.",
+        "button_label": "Shop all prints",
+        "button_label_2": ""
+      }
+    },
+    "press": {
+      "type": "press-bar",
+      "blocks": {
+        "p1": { "type": "logo", "settings": { "name": "Publication one" } },
+        "p2": { "type": "logo", "settings": { "name": "Publication two" } },
+        "p3": { "type": "logo", "settings": { "name": "Publication three" } },
+        "p4": { "type": "logo", "settings": { "name": "Publication four" } },
+        "p5": { "type": "logo", "settings": { "name": "Publication five" } }
+      },
+      "block_order": ["p1", "p2", "p3", "p4", "p5"],
+      "settings": { "label": "As seen in" }
+    },
+    "best-sellers": {
+      "type": "product-carousel",
+      "settings": {
+        "heading": "Best sellers",
+        "subheading": "",
+        "products_to_show": 12,
+        "slide_width": 260,
+        "button_label": "View more",
+        "color_scheme": "default"
+      }
+    },
+    "edits": {
+      "type": "collection-carousel",
+      "blocks": {
+        "e1": { "type": "edit", "settings": {} },
+        "e2": { "type": "edit", "settings": {} },
+        "e3": { "type": "edit", "settings": {} },
+        "e4": { "type": "edit", "settings": {} },
+        "e5": { "type": "edit", "settings": {} }
+      },
+      "block_order": ["e1", "e2", "e3", "e4", "e5"],
+      "settings": {
+        "heading": "Explore edits",
+        "subheading": "Curated art print walls, hand-picked by our team",
+        "slide_width": 320,
+        "color_scheme": "subtle"
+      }
+    },
+    "trending": {
+      "type": "product-carousel",
+      "settings": {
+        "heading": "Trending today",
+        "products_to_show": 12,
+        "slide_width": 260,
+        "button_label": "View more",
+        "color_scheme": "default"
+      }
+    },
+    "categories": {
+      "type": "category-tiles",
+      "blocks": {
+        "t1": { "type": "tile", "settings": { "label": "Shop all" } },
+        "t2": { "type": "tile", "settings": { "label": "Fine art prints" } },
+        "t3": { "type": "tile", "settings": { "label": "Canvas prints" } },
+        "t4": { "type": "tile", "settings": { "label": "Wooden frames" } }
+      },
+      "block_order": ["t1", "t2", "t3", "t4"],
+      "settings": {}
+    },
+    "canvas": {
+      "type": "product-carousel",
+      "settings": {
+        "heading": "Canvas prints",
+        "subheading": "New premium cotton canvas prints",
+        "products_to_show": 12,
+        "slide_width": 260,
+        "button_label": "View more",
+        "color_scheme": "default"
+      }
+    },
+    "quiz": {
+      "type": "cta-banner",
+      "settings": {
+        "heading": "Unsure where to start?",
+        "text": "Take the quiz and we will match you with prints that suit your space.",
+        "button_label": "Start quiz",
+        "color_scheme": "dark"
+      }
+    },
+    "new-drops": {
+      "type": "product-carousel",
+      "settings": {
+        "heading": "New drops",
+        "subheading": "The latest additions to the shop",
+        "products_to_show": 12,
+        "slide_width": 260,
+        "button_label": "View more",
+        "color_scheme": "default"
+      }
+    },
+    "reviews": {
+      "type": "reviews",
+      "blocks": {
+        "r1": { "type": "review", "settings": { "rating": 5, "title": "Review headline", "text": "Placeholder review text. Replace this with a real customer quote before launch.", "author": "Customer name" } },
+        "r2": { "type": "review", "settings": { "rating": 5, "title": "Review headline", "text": "Placeholder review text. Replace this with a real customer quote before launch.", "author": "Customer name" } },
+        "r3": { "type": "review", "settings": { "rating": 5, "title": "Review headline", "text": "Placeholder review text. Replace this with a real customer quote before launch.", "author": "Customer name" } }
+      },
+      "block_order": ["r1", "r2", "r3"],
+      "settings": {
+        "heading": "200,000+ homes saved from boring walls",
+        "color_scheme": "subtle"
+      }
+    },
+    "community": {
+      "type": "community",
+      "blocks": {
+        "c1": { "type": "photo", "settings": {} },
+        "c2": { "type": "photo", "settings": {} },
+        "c3": { "type": "photo", "settings": {} },
+        "c4": { "type": "photo", "settings": {} },
+        "c5": { "type": "photo", "settings": {} }
+      },
+      "block_order": ["c1", "c2", "c3", "c4", "c5"],
+      "settings": {
+        "eyebrow": "Community love",
+        "heading": "Join our Instagram community",
+        "text": "Tag us to see your walls featured here.",
+        "color_scheme": "default"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Sign up to our newsletter",
+        "text": "Early access to new drops and subscriber-only offers.",
+        "button_label": "Sign me up",
+        "color_scheme": "default"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "press",
+    "best-sellers",
+    "edits",
+    "trending",
+    "categories",
+    "canvas",
+    "quiz",
+    "new-drops",
+    "reviews",
+    "community",
+    "newsletter"
+  ]
+}

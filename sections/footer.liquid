@@ -1,0 +1,96 @@
+<footer class="footer">
+  <div class="container container--wide">
+    <div class="footer__grid">
+      {%- for block in section.blocks -%}
+        <div {{ block.shopify_attributes }}>
+          {%- case block.type -%}
+
+            {%- when 'brand' -%}
+              <p class="footer__title">{{ block.settings.title | default: shop.name }}</p>
+              {%- if block.settings.text != blank -%}
+                <div class="rte" style="font-size:0.8rem;color:var(--color-muted);">{{ block.settings.text }}</div>
+              {%- endif -%}
+              <div class="footer__social">
+                {%- if settings.social_instagram != blank -%}<a href="{{ settings.social_instagram }}" aria-label="Instagram">{% render 'icon', name: 'instagram' %}</a>{%- endif -%}
+                {%- if settings.social_tiktok != blank -%}<a href="{{ settings.social_tiktok }}" aria-label="TikTok">{% render 'icon', name: 'tiktok' %}</a>{%- endif -%}
+                {%- if settings.social_pinterest != blank -%}<a href="{{ settings.social_pinterest }}" aria-label="Pinterest">{% render 'icon', name: 'pinterest' %}</a>{%- endif -%}
+                {%- if settings.social_facebook != blank -%}<a href="{{ settings.social_facebook }}" aria-label="Facebook">{% render 'icon', name: 'facebook' %}</a>{%- endif -%}
+              </div>
+
+            {%- when 'links' -%}
+              <p class="footer__title">{{ block.settings.title }}</p>
+              {%- if block.settings.menu != blank -%}
+                <ul class="footer__list">
+                  {%- for link in block.settings.menu.links -%}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+
+            {%- when 'text' -%}
+              <p class="footer__title">{{ block.settings.title }}</p>
+              <div class="rte" style="font-size:0.8rem;color:var(--color-muted);">{{ block.settings.text }}</div>
+
+          {%- endcase -%}
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div class="footer__bottom">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
+      {%- if section.settings.policy_menu != blank -%}
+        <span>
+          {%- for link in section.settings.policy_menu.links -%}
+            <a href="{{ link.url }}">{{ link.title }}</a>{% unless forloop.last %} · {% endunless %}
+          {%- endfor -%}
+        </span>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "link_list", "id": "policy_menu", "label": "Policy links" }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Contemporary art prints by emerging artists.</p>" }
+      ]
+    },
+    {
+      "type": "links",
+      "name": "Link column",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Help" },
+        { "type": "link_list", "id": "menu", "label": "Menu" }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text column",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Contact" },
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>hello@example.com</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer",
+      "blocks": [
+        { "type": "brand" },
+        { "type": "links", "settings": { "title": "What we do" } },
+        { "type": "links", "settings": { "title": "Inspiration" } },
+        { "type": "links", "settings": { "title": "Help" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
