@@ -86,6 +86,14 @@ launch, replace:
 The theme ships no product artwork; empty carousels render Shopify's built-in
 placeholder graphics.
 
+## Rebuilding another site into this structure
+
+`.claude/skills/site-to-sections/SKILL.md` is the playbook for pointing this
+theme's section vocabulary at a different reference site: how to inventory a page
+into bands, classify each band into a section type, pull design tokens out into
+theme settings, assemble `templates/index.json`, and verify the result. It works
+as plain documentation, and in Claude Code it is invocable as `/site-to-sections`.
+
 ## Browser support
 
 Modern evergreen browsers. Carousels use CSS scroll-snap with JS controls and
