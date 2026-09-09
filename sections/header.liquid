@@ -5,6 +5,16 @@
       {% render 'icon', name: 'menu' %}
     </button>
 
+    <a class="header__logo" href="{{ routes.root_url }}">
+      {%- if section.settings.logo != blank -%}
+        <img src="{{ section.settings.logo | image_url: width: 400 }}"
+             width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}"
+             alt="{{ shop.name | escape }}">
+      {%- else -%}
+        {{ shop.name }}
+      {%- endif -%}
+    </a>
+
     <nav class="nav" aria-label="{{ 'accessibility.menu' | t }}">
       <ul class="nav__list">
         {%- for link in section.settings.menu.links -%}
@@ -47,16 +57,6 @@
         {%- endfor -%}
       </ul>
     </nav>
-
-    <a class="header__logo" href="{{ routes.root_url }}">
-      {%- if section.settings.logo != blank -%}
-        <img src="{{ section.settings.logo | image_url: width: 400 }}"
-             width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}"
-             alt="{{ shop.name | escape }}">
-      {%- else -%}
-        {{ shop.name }}
-      {%- endif -%}
-    </a>
 
     <div class="header__actions">
       <a class="header__action" href="{{ routes.search_url }}" aria-label="{{ 'accessibility.search' | t }}">

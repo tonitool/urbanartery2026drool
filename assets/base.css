@@ -156,14 +156,14 @@ h1, h2, h3, h4, h5 {
   text-transform: uppercase;
 }
 .announcement__inner {
-  position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: center;
   min-height: 34px;
   gap: 16px;
 }
 .announcement__messages {
+  grid-column: 2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -172,8 +172,8 @@ h1, h2, h3, h4, h5 {
 .announcement__message { display: none; }
 .announcement__message.is-active { display: block; }
 .announcement__links {
-  position: absolute;
-  right: 0;
+  grid-column: 3;
+  justify-self: end;
   display: flex;
   gap: 16px;
 }
@@ -316,7 +316,7 @@ h1, h2, h3, h4, h5 {
     width: 38px; height: 38px;
   }
   .header__inner { grid-template-columns: auto 1fr auto; }
-  .header__logo { justify-content: center; grid-column: 2; }
+  .header__logo { justify-content: center; }
 }
 
 /* Mobile drawer */
