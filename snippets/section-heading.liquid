@@ -1,0 +1,17 @@
+{%- comment -%}
+  Shared section header: optional eyebrow, title and subtitle.
+  Usage: {% render 'section-heading', eyebrow: section.settings.eyebrow, heading: section.settings.heading, subheading: section.settings.subheading %}
+{%- endcomment -%}
+{%- if eyebrow != blank or heading != blank or subheading != blank -%}
+  <div class="container section-header">
+    {%- if eyebrow != blank -%}
+      <p class="section-header__eyebrow">{{ eyebrow }}</p>
+    {%- endif -%}
+    {%- if heading != blank -%}
+      <h2 class="section-header__title">{{ heading }}</h2>
+    {%- endif -%}
+    {%- if subheading != blank -%}
+      <p class="section-header__subtitle">{{ subheading }}</p>
+    {%- endif -%}
+  </div>
+{%- endif -%}

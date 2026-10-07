@@ -1,13 +1,13 @@
-<header class="header">
+<header class="header{% if section.settings.color_scheme == 'dark' %} header--dark{% endif %}">
   <div class="container container--wide header__inner">
 
-    <button class="header__toggle" type="button" data-drawer-open aria-controls="MenuDrawer" aria-label="{{ 'accessibility.menu' | t }}">
+    <button class="header__toggle" type="button" data-drawer-open aria-controls="MenuDrawer" aria-expanded="false" aria-label="{{ 'accessibility.menu' | t }}">
       {% render 'icon', name: 'menu' %}
     </button>
 
     <a class="header__logo" href="{{ routes.root_url }}">
       {%- if section.settings.logo != blank -%}
-        <img src="{{ section.settings.logo | image_url: width: 400 }}"
+        <img src="{{ section.settings.logo | image_url: width: 400 }}" style="max-height: {{ section.settings.logo_height }}px;"
              width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}"
              alt="{{ shop.name | escape }}">
       {%- else -%}
@@ -111,7 +111,12 @@
   "name": "Header",
   "settings": [
     { "type": "image_picker", "id": "logo", "label": "Logo", "info": "Falls back to the store name as a wordmark." },
-    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu", "info": "Two levels of nesting render as a mega menu." }
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu", "info": "Two levels of nesting render as a mega menu." },
+    { "type": "range", "id": "logo_height", "label": "Logo height", "min": 24, "max": 72, "step": 2, "unit": "px", "default": 34 },
+    { "type": "select", "id": "color_scheme", "label": "Colour scheme", "default": "light", "options": [
+      { "value": "light", "label": "Light" },
+      { "value": "dark", "label": "Dark" }
+    ]}
   ]
 }
 {% endschema %}

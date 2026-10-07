@@ -1,0 +1,62 @@
+<section class="section {% if section.settings.color_scheme == 'subtle' %}section--subtle{% elsif section.settings.color_scheme == 'dark' %}section--dark{% endif %}">
+  {% render 'section-heading', eyebrow: section.settings.eyebrow, heading: section.settings.heading, subheading: section.settings.subheading %}
+
+  <div class="container container--narrow faq">
+    {%- for block in section.blocks -%}
+      <details class="accordion" {{ block.shopify_attributes }}>
+        <summary>{{ block.settings.question }} {% render 'icon', name: 'caret' %}</summary>
+        <div class="accordion__body rte">{{ block.settings.answer }}</div>
+      </details>
+    {%- endfor -%}
+  </div>
+</section>
+
+{%- if section.settings.structured_data -%}
+  {%- capture faq_entities -%}
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign answer_text = block.settings.answer | strip_html | replace: '&nbsp;', ' ' | replace: '&amp;', '&' | replace: '&quot;', '"' | replace: '&#39;', "'" | replace: '&lt;', '<' | replace: '&gt;', '>' | strip
+        if block.settings.question == blank or answer_text == blank
+          continue
+        endif
+      -%}
+      ,{"@type":"Question","name":{{ block.settings.question | json }},"acceptedAnswer":{"@type":"Answer","text":{{ answer_text | json }}}}
+    {%- endfor -%}
+  {%- endcapture -%}
+  {%- assign faq_entities = faq_entities | strip | remove_first: ',' -%}
+  {%- if faq_entities != blank -%}
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{{ faq_entities }}]}
+    </script>
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "FAQs" },
+    { "type": "text", "id": "subheading", "label": "Subheading" },
+    { "type": "checkbox", "id": "structured_data", "label": "Output FAQ structured data for search engines", "default": false, "info": "Turn on for one FAQ section per page only — duplicate FAQPage markup is invalid." },
+    { "type": "select", "id": "color_scheme", "label": "Colour scheme", "default": "default", "options": [
+      { "value": "default", "label": "Default" },
+      { "value": "subtle", "label": "Subtle" },
+      { "value": "dark", "label": "Dark" }
+    ]}
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Answer.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "FAQ", "blocks": [ { "type": "question" }, { "type": "question" }, { "type": "question" } ] }
+  ]
+}
+{% endschema %}

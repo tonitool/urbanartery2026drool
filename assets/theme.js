@@ -62,8 +62,13 @@
     var closers = document.querySelectorAll('[data-drawer-close]');
     if (!drawer) return;
 
+    function setExpanded(value) {
+      openers.forEach(function (el) { el.setAttribute('aria-expanded', value ? 'true' : 'false'); });
+    }
+
     function open() {
       drawer.classList.add('is-open');
+      setExpanded(true);
       if (overlay) overlay.hidden = false;
       document.body.style.overflow = 'hidden';
       var first = drawer.querySelector('a, button');
@@ -71,8 +76,10 @@
     }
     function close() {
       drawer.classList.remove('is-open');
+      setExpanded(false);
       if (overlay) overlay.hidden = true;
       document.body.style.overflow = '';
+      if (openers[0]) openers[0].focus();
     }
 
     openers.forEach(function (el) { el.addEventListener('click', open); });
@@ -139,6 +146,20 @@
   }
 
   /* ---------------------------------------------------------------------
+     Before / after slider: a transparent range input drives --ba-pos.
+     --------------------------------------------------------------------- */
+  function initBeforeAfter(frame) {
+    var range = frame.querySelector('[data-before-after-range]');
+    if (!range) return;
+    function sync() {
+      frame.style.setProperty('--ba-pos', range.value + '%');
+      range.setAttribute('aria-valuetext', range.value + ' % ' + (range.dataset.beforeLabel || ''));
+    }
+    range.addEventListener('input', sync);
+    sync();
+  }
+
+  /* ---------------------------------------------------------------------
      Collection sort.
      --------------------------------------------------------------------- */
   function initSort(select) {
@@ -150,11 +171,23 @@
     });
   }
 
+  /* ---------------------------------------------------------------------
+     Background videos: respect reduced-motion preferences.
+     --------------------------------------------------------------------- */
+  function initAutoplay(video) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      video.removeAttribute('autoplay');
+      video.pause();
+    }
+  }
+
   function boot(scope) {
     (scope || document).querySelectorAll('[data-carousel]').forEach(initCarousel);
     (scope || document).querySelectorAll('[data-announcement]').forEach(initAnnouncement);
     (scope || document).querySelectorAll('[data-product-form]').forEach(initProductForm);
     (scope || document).querySelectorAll('[data-sort]').forEach(initSort);
+    (scope || document).querySelectorAll('[data-before-after]').forEach(initBeforeAfter);
+    (scope || document).querySelectorAll('video[data-autoplay]').forEach(initAutoplay);
   }
 
   document.addEventListener('DOMContentLoaded', function () {

@@ -3,157 +3,416 @@
     "hero": {
       "type": "hero-split",
       "settings": {
-        "show_rating": true,
-        "rating_text": "4.7/5 | Rated Excellent",
-        "heading": "Unique contemporary art prints",
-        "text": "Transform your home with original work by emerging artists from around the world.",
-        "button_label": "Shop all prints",
-        "button_label_2": ""
+        "show_rating": false,
+        "rating_text": "",
+        "heading": "Dein Street-Art-Unikat.",
+        "text": "Aus deinem Lieblingsfoto wird ein handgefertigtes Kunstwerk für deine Wand.",
+        "button_label": "Jetzt gestalten",
+        "button_label_2": "Inspiration",
+        "button_link_2": "/collections/inspiration",
+        "image": "shopify://shop_images/ua-foto-kunst-nachher.jpg",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/f6553138823543e7a732c900a191f151.mov"
       }
     },
     "press": {
       "type": "press-bar",
+      "disabled": true,
       "blocks": {
-        "p1": { "type": "logo", "settings": { "name": "Publication one" } },
-        "p2": { "type": "logo", "settings": { "name": "Publication two" } },
-        "p3": { "type": "logo", "settings": { "name": "Publication three" } },
-        "p4": { "type": "logo", "settings": { "name": "Publication four" } },
-        "p5": { "type": "logo", "settings": { "name": "Publication five" } }
+        "p1": {
+          "type": "logo",
+          "settings": {
+            "name": "Publikation 1"
+          }
+        },
+        "p2": {
+          "type": "logo",
+          "settings": {
+            "name": "Publikation 2"
+          }
+        },
+        "p3": {
+          "type": "logo",
+          "settings": {
+            "name": "Publikation 3"
+          }
+        },
+        "p4": {
+          "type": "logo",
+          "settings": {
+            "name": "Publikation 4"
+          }
+        },
+        "p5": {
+          "type": "logo",
+          "settings": {
+            "name": "Publikation 5"
+          }
+        }
       },
-      "block_order": ["p1", "p2", "p3", "p4", "p5"],
-      "settings": { "label": "As seen in" }
-    },
-    "best-sellers": {
-      "type": "product-carousel",
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5"
+      ],
       "settings": {
-        "heading": "Best sellers",
-        "subheading": "",
-        "products_to_show": 12,
-        "slide_width": 260,
-        "button_label": "View more",
+        "label": "Bekannt aus"
+      }
+    },
+    "intro": {
+      "type": "cta-banner",
+      "settings": {
+        "heading": "Echte Street-Art für dein Zuhause.",
+        "text": "Gestaltet von dir. Handgefertigt von unseren Künstlern.",
+        "button_label": "",
         "color_scheme": "default"
       }
     },
-    "edits": {
-      "type": "collection-carousel",
-      "blocks": {
-        "e1": { "type": "edit", "settings": {} },
-        "e2": { "type": "edit", "settings": {} },
-        "e3": { "type": "edit", "settings": {} },
-        "e4": { "type": "edit", "settings": {} },
-        "e5": { "type": "edit", "settings": {} }
-      },
-      "block_order": ["e1", "e2", "e3", "e4", "e5"],
+    "popular": {
+      "type": "product-carousel",
       "settings": {
-        "heading": "Explore edits",
-        "subheading": "Curated art print walls, hand-picked by our team",
-        "slide_width": 320,
+        "eyebrow": "Künstler-Editionen",
+        "heading": "Beliebte Werke",
+        "subheading": "",
+        "products_to_show": 12,
+        "slide_width": 280,
+        "button_label": "Alle Werke",
+        "color_scheme": "default"
+      }
+    },
+    "before-after": {
+      "type": "before-after",
+      "blocks": {
+        "b1": {
+          "type": "comparison",
+          "settings": {
+            "title": "Aus Foto wird Kunst",
+            "image_before": "shopify://shop_images/ua-foto-kunst-vorher.jpg",
+            "image_after": "shopify://shop_images/ua-foto-kunst-nachher.jpg",
+            "text": "Lade dein Lieblingsfoto hoch und unsere Künstler verwandeln es in ein einzigartiges Street-Art-Werk."
+          }
+        },
+        "b2": {
+          "type": "comparison",
+          "settings": {
+            "title": "Aus quer wird hoch",
+            "image_before": "shopify://shop_images/ua-quer-hoch-vorher.jpg",
+            "image_after": "shopify://shop_images/ua-quer-hoch-nachher.jpg",
+            "text": "Wir erweitern dein Foto für das perfekte Format – ohne dabei Details zu verlieren."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2"
+      ],
+      "settings": {
+        "eyebrow": "Individualisierungen",
+        "heading": "Vorher & Nachher",
+        "before_label": "Vorher",
+        "after_label": "Nachher",
+        "button_label": "Jetzt gestalten",
         "color_scheme": "subtle"
       }
     },
-    "trending": {
+    "customer-works": {
       "type": "product-carousel",
       "settings": {
-        "heading": "Trending today",
+        "eyebrow": "Lass dich inspirieren",
+        "heading": "Werke anderer Kunden",
+        "subheading": "",
         "products_to_show": 12,
-        "slide_width": 260,
-        "button_label": "View more",
+        "slide_width": 280,
+        "button_label": "Zur Inspiration",
+        "button_link": "/collections/inspiration",
         "color_scheme": "default"
       }
     },
-    "categories": {
+    "tiles": {
       "type": "category-tiles",
       "blocks": {
-        "t1": { "type": "tile", "settings": { "label": "Shop all" } },
-        "t2": { "type": "tile", "settings": { "label": "Fine art prints" } },
-        "t3": { "type": "tile", "settings": { "label": "Canvas prints" } },
-        "t4": { "type": "tile", "settings": { "label": "Wooden frames" } }
+        "t1": {
+          "type": "tile",
+          "settings": {
+            "label": "Selbst gestalten",
+            "image": "shopify://shop_images/ua-motiv-por-favor.jpg",
+            "link": "/products/masterprodukt-individuelle-streetart"
+          }
+        },
+        "t2": {
+          "type": "tile",
+          "settings": {
+            "label": "Künstler-Editionen",
+            "image": "shopify://shop_images/ua-motiv-trane.jpg"
+          }
+        },
+        "t3": {
+          "type": "tile",
+          "settings": {
+            "label": "Inspiration",
+            "image": "shopify://shop_images/ua-motiv-whoa.jpg",
+            "link": "/collections/inspiration"
+          }
+        },
+        "t4": {
+          "type": "tile",
+          "settings": {
+            "label": "Auftragsarbeiten",
+            "image": "shopify://shop_images/ua-auftragsarbeiten.jpg",
+            "link": "/pages/auftragsarbeiten"
+          }
+        }
       },
-      "block_order": ["t1", "t2", "t3", "t4"],
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
       "settings": {}
     },
-    "canvas": {
+    "new": {
       "type": "product-carousel",
       "settings": {
-        "heading": "Canvas prints",
-        "subheading": "New premium cotton canvas prints",
+        "eyebrow": "Frisch aus dem Atelier",
+        "heading": "Neue Motive",
+        "subheading": "",
         "products_to_show": 12,
-        "slide_width": 260,
-        "button_label": "View more",
+        "slide_width": 280,
+        "button_label": "Alle Motive",
         "color_scheme": "default"
       }
     },
-    "quiz": {
+    "design-service": {
       "type": "cta-banner",
       "settings": {
-        "heading": "Unsure where to start?",
-        "text": "Take the quiz and we will match you with prints that suit your space.",
-        "button_label": "Start quiz",
+        "heading": "Urban Artery Design Service",
+        "text": "Du hast eine Vision? Wir machen sie zur Realität. Lass uns gemeinsam dein individuelles Street-Art-Kunstwerk erschaffen.",
+        "button_label": "Kontaktiere uns",
+        "button_link": "/pages/kontakt",
         "color_scheme": "dark"
       }
     },
-    "new-drops": {
-      "type": "product-carousel",
+    "how-it-works": {
+      "type": "trust-badges",
+      "blocks": {
+        "s1": {
+          "type": "badge",
+          "settings": {
+            "icon": "upload",
+            "title": "Foto hochladen",
+            "text": "Wähle ein Bild aus deiner Galerie oder mach ein neues Foto. Porträts, Landschaften, Haustiere – alles ist möglich."
+          }
+        },
+        "s2": {
+          "type": "badge",
+          "settings": {
+            "icon": "palette",
+            "title": "Motiv gestalten",
+            "text": "Kombiniere dein Foto mit Elementen aus unserer Motiv-Datenbank und gestalte dein Werk im Konfigurator."
+          }
+        },
+        "s3": {
+          "type": "badge",
+          "settings": {
+            "icon": "frame",
+            "title": "Format bestimmen",
+            "text": "Wähle Größe, Hoch- oder Querformat und Trägermaterial passend zu deinem Raum."
+          }
+        },
+        "s4": {
+          "type": "badge",
+          "settings": {
+            "icon": "hand",
+            "title": "Handgefertigt & geliefert",
+            "text": "Unsere Künstler fertigen dein Unikat in 10–14 Werktagen. Sicher verpackt kommt es zu dir nach Hause."
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
       "settings": {
-        "heading": "New drops",
-        "subheading": "The latest additions to the shop",
-        "products_to_show": 12,
-        "slide_width": 260,
-        "button_label": "View more",
-        "color_scheme": "default"
+        "eyebrow": "So funktioniert's",
+        "heading": "In vier Schritten zum Unikat",
+        "numbered": true,
+        "button_label": "Zum Konfigurator",
+        "color_scheme": "subtle"
       }
     },
     "reviews": {
       "type": "reviews",
+      "disabled": true,
       "blocks": {
-        "r1": { "type": "review", "settings": { "rating": 5, "title": "Review headline", "text": "Placeholder review text. Replace this with a real customer quote before launch.", "author": "Customer name" } },
-        "r2": { "type": "review", "settings": { "rating": 5, "title": "Review headline", "text": "Placeholder review text. Replace this with a real customer quote before launch.", "author": "Customer name" } },
-        "r3": { "type": "review", "settings": { "rating": 5, "title": "Review headline", "text": "Placeholder review text. Replace this with a real customer quote before launch.", "author": "Customer name" } }
+        "r1": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Überschrift der Bewertung",
+            "text": "Platzhalter. Vor dem Livegang durch eine echte Kundenbewertung ersetzen.",
+            "author": "Name"
+          }
+        },
+        "r2": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Überschrift der Bewertung",
+            "text": "Platzhalter. Vor dem Livegang durch eine echte Kundenbewertung ersetzen.",
+            "author": "Name"
+          }
+        },
+        "r3": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Überschrift der Bewertung",
+            "text": "Platzhalter. Vor dem Livegang durch eine echte Kundenbewertung ersetzen.",
+            "author": "Name"
+          }
+        }
       },
-      "block_order": ["r1", "r2", "r3"],
+      "block_order": [
+        "r1",
+        "r2",
+        "r3"
+      ],
       "settings": {
-        "heading": "200,000+ homes saved from boring walls",
-        "color_scheme": "subtle"
+        "heading": "Das sagen unsere Kunden",
+        "color_scheme": "default"
+      }
+    },
+    "more": {
+      "type": "collection-carousel",
+      "blocks": {
+        "m1": {
+          "type": "edit",
+          "settings": {
+            "title": "Auftragsarbeiten",
+            "text": "Individueller geht es nicht!",
+            "link_label": "Mehr erfahren",
+            "image": "shopify://shop_images/ua-auftragsarbeiten.jpg",
+            "link": "/pages/auftragsarbeiten"
+          }
+        },
+        "m2": {
+          "type": "edit",
+          "settings": {
+            "title": "Unsere Story",
+            "text": "Die Leidenschaft für Urban Art. Erfahrt mehr über die Idee und das Team.",
+            "link_label": "Mehr erfahren",
+            "image": "shopify://shop_images/ua-unsere-story.jpg",
+            "link": "/pages/ueber-uns"
+          }
+        },
+        "m3": {
+          "type": "edit",
+          "settings": {
+            "title": "So startest du mit Blanks",
+            "text": "Von deinem Foto zum Street-Art-Unikat. So einfach geht's.",
+            "link_label": "Mehr erfahren",
+            "image": "shopify://shop_images/ua-blanks.jpg",
+            "link": "/pages/so-startest-du"
+          }
+        }
+      },
+      "block_order": [
+        "m1",
+        "m2",
+        "m3"
+      ],
+      "settings": {
+        "eyebrow": "Entdecken",
+        "heading": "Mehr von Urban Artery",
+        "subheading": "",
+        "slide_width": 420,
+        "card_style": "overlay",
+        "button_label": "",
+        "color_scheme": "default"
+      }
+    },
+    "behind-the-scenes": {
+      "type": "video",
+      "settings": {
+        "eyebrow": "Behind the scenes",
+        "heading": "Urban Artery",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/f6553138823543e7a732c900a191f151.mov",
+        "color_scheme": "dark"
       }
     },
     "community": {
       "type": "community",
+      "disabled": true,
       "blocks": {
-        "c1": { "type": "photo", "settings": {} },
-        "c2": { "type": "photo", "settings": {} },
-        "c3": { "type": "photo", "settings": {} },
-        "c4": { "type": "photo", "settings": {} },
-        "c5": { "type": "photo", "settings": {} }
+        "c1": {
+          "type": "photo",
+          "settings": {}
+        },
+        "c2": {
+          "type": "photo",
+          "settings": {}
+        },
+        "c3": {
+          "type": "photo",
+          "settings": {}
+        },
+        "c4": {
+          "type": "photo",
+          "settings": {}
+        },
+        "c5": {
+          "type": "photo",
+          "settings": {}
+        },
+        "c6": {
+          "type": "photo",
+          "settings": {}
+        }
       },
-      "block_order": ["c1", "c2", "c3", "c4", "c5"],
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6"
+      ],
       "settings": {
-        "eyebrow": "Community love",
-        "heading": "Join our Instagram community",
-        "text": "Tag us to see your walls featured here.",
+        "eyebrow": "Community",
+        "heading": "Folge uns auf Instagram",
+        "text": "Markiere uns mit deinem Unikat – die schönsten Wände zeigen wir hier.",
         "color_scheme": "default"
       }
     },
     "newsletter": {
       "type": "newsletter",
       "settings": {
-        "heading": "Sign up to our newsletter",
-        "text": "Early access to new drops and subscriber-only offers.",
-        "button_label": "Sign me up",
-        "color_scheme": "default"
+        "heading": "Join the Movement",
+        "text": "Melde dich für unseren Newsletter an und erhalte 10 % Rabatt auf deine erste Bestellung.",
+        "button_label": "Anmelden",
+        "fine_print": "<p>Mit der Anmeldung willigst du ein, unseren Newsletter zu erhalten. Abmeldung jederzeit über den Link in jeder E-Mail. Details in unserer <a href=\"/policies/privacy-policy\">Datenschutzerklärung</a>.</p>",
+        "color_scheme": "dark"
       }
     }
   },
   "order": [
     "hero",
     "press",
-    "best-sellers",
-    "edits",
-    "trending",
-    "categories",
-    "canvas",
-    "quiz",
-    "new-drops",
+    "intro",
+    "popular",
+    "before-after",
+    "customer-works",
+    "tiles",
+    "new",
+    "design-service",
+    "how-it-works",
     "reviews",
+    "behind-the-scenes",
+    "more",
     "community",
     "newsletter"
   ]

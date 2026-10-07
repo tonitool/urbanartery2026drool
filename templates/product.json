@@ -3,13 +3,236 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "shipping": { "type": "accordion", "settings": { "title": "Shipping & returns", "content": "<p>Add your shipping and returns information here.</p>" } },
-        "materials": { "type": "accordion", "settings": { "title": "Materials", "content": "<p>Add paper stock, ink and framing details here.</p>" } }
+        "trust-1": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "hand",
+            "text": "Handgefertigt in 10–14 Werktagen"
+          }
+        },
+        "trust-2": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "truck",
+            "text": "Versandkostenfrei ab 150 € (DE)"
+          }
+        },
+        "trust-3": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "shield",
+            "text": "Sicher bezahlen"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "title": "Über dieses Werk",
+            "open": true
+          }
+        },
+        "materials": {
+          "type": "accordion",
+          "settings": {
+            "title": "Größen & Trägermaterialien",
+            "content": "<p><strong>Größen:</strong> S (20 × 30 cm), M (40 × 60 cm), L (80 × 120 cm), XL (120 × 180 cm) – jeweils im Hoch- oder Querformat.</p><p><strong>Trägermaterialien:</strong> LightBeton®, Premium-Aquarellpapier oder Leinwand auf Keilrahmen.</p>"
+          }
+        },
+        "shipping": {
+          "type": "accordion",
+          "settings": {
+            "title": "Verpackung & Versand",
+            "content": "<p><strong>Deutschland:</strong> ab 150 € Bestellwert versandkostenfrei, darunter 9,90 € Versandpauschale. Internationale Versandkosten werden im Checkout berechnet.</p><p><strong>Lieferzeit:</strong> ca. 10–14 Werktage Anfertigung, dazu Versand (Deutschland 2–3, EU 5–7, international 7–14 Werktage).</p><p>Jedes Werk wird einzeln in säurefreies Papier eingeschlagen, in einem maßgefertigten Karton versendet und ist gegen Verlust und Beschädigung versichert.</p>"
+          }
+        },
+        "returns": {
+          "type": "accordion",
+          "settings": {
+            "title": "Rückgabe",
+            "content": "<p>Da jedes Kunstwerk individuell für dich angefertigt wird, ist ein Umtausch oder eine Rückgabe grundsätzlich ausgeschlossen. Bei Transportschäden oder Fertigungsmängeln finden wir selbstverständlich eine Lösung – bitte kontaktiere uns innerhalb von 14 Tagen nach Erhalt.</p>"
+          }
+        }
       },
-      "block_order": ["shipping", "materials"],
-      "settings": {}
+      "block_order": [
+        "trust-1",
+        "trust-2",
+        "trust-3",
+        "description",
+        "materials",
+        "shipping",
+        "returns"
+      ],
+      "settings": {
+        "show_tax_note": true
+      }
     },
-    "related": { "type": "related-products", "settings": { "heading": "You may also like" } }
+    "before-after": {
+      "type": "before-after",
+      "blocks": {
+        "b1": {
+          "type": "comparison",
+          "settings": {
+            "title": "Aus Foto wird Kunst",
+            "image_before": "shopify://shop_images/ua-foto-kunst-vorher.jpg",
+            "image_after": "shopify://shop_images/ua-foto-kunst-nachher.jpg",
+            "text": "Lade dein Lieblingsfoto hoch und unsere Künstler verwandeln es in ein einzigartiges Street-Art-Werk."
+          }
+        },
+        "b2": {
+          "type": "comparison",
+          "settings": {
+            "title": "Aus quer wird hoch",
+            "image_before": "shopify://shop_images/ua-quer-hoch-vorher.jpg",
+            "image_after": "shopify://shop_images/ua-quer-hoch-nachher.jpg",
+            "text": "Wir erweitern dein Foto für das perfekte Format – ohne dabei Details zu verlieren."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2"
+      ],
+      "settings": {
+        "eyebrow": "Individualisierungen",
+        "heading": "Vorher & Nachher",
+        "before_label": "Vorher",
+        "after_label": "Nachher",
+        "color_scheme": "subtle"
+      }
+    },
+    "how-it-works": {
+      "type": "trust-badges",
+      "blocks": {
+        "s1": {
+          "type": "badge",
+          "settings": {
+            "icon": "upload",
+            "title": "Foto hochladen",
+            "text": "Wähle ein Bild aus deiner Galerie oder mach ein neues Foto. Porträts, Landschaften, Haustiere – alles ist möglich."
+          }
+        },
+        "s2": {
+          "type": "badge",
+          "settings": {
+            "icon": "palette",
+            "title": "Motiv gestalten",
+            "text": "Kombiniere dein Foto mit Elementen aus unserer Motiv-Datenbank und gestalte dein Werk im Konfigurator."
+          }
+        },
+        "s3": {
+          "type": "badge",
+          "settings": {
+            "icon": "frame",
+            "title": "Format bestimmen",
+            "text": "Wähle Größe, Hoch- oder Querformat und Trägermaterial passend zu deinem Raum."
+          }
+        },
+        "s4": {
+          "type": "badge",
+          "settings": {
+            "icon": "hand",
+            "title": "Handgefertigt & geliefert",
+            "text": "Unsere Künstler fertigen dein Unikat in 10–14 Werktagen. Sicher verpackt kommt es zu dir nach Hause."
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "settings": {
+        "eyebrow": "So funktioniert's",
+        "heading": "In vier Schritten zum Unikat",
+        "numbered": true,
+        "color_scheme": "default"
+      }
+    },
+    "design-service": {
+      "type": "cta-banner",
+      "settings": {
+        "heading": "Urban Artery Design Service",
+        "text": "Du findest im Konfigurator nicht die passende Größe oder das passende Material? Wir setzen individuelle Auftragsarbeiten nach deinen Wünschen um.",
+        "button_label": "Auftragsarbeit anfragen",
+        "button_link": "/pages/auftragsarbeiten",
+        "color_scheme": "dark"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Wie lange dauert die Anfertigung meines Kunstwerks?",
+            "answer": "<p>In der Regel 10–14 Werktage. Da jedes Werk von Hand gefertigt wird, kann es je nach Komplexität und Auslastung etwas länger dauern. Du erhältst eine Versandbestätigung, sobald dein Werk auf dem Weg zu dir ist.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Kann ich auch eigene Fotos verwenden?",
+            "answer": "<p>Ja, absolut! Lade im Konfigurator deine eigenen Fotos hoch und lass sie von unseren Künstlern in Street-Art verwandeln. Achte auf eine möglichst hohe Auflösung für das beste Ergebnis.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Welche Trägermaterialien gibt es?",
+            "answer": "<p>Im Konfigurator wählst du zwischen LightBeton®, Premium-Aquarellpapier und Leinwand auf Keilrahmen. Für andere Materialien sprich uns gerne auf eine Auftragsarbeit an.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Welche Zahlungsmethoden werden akzeptiert?",
+            "answer": "<p>Kreditkarte (Visa, Mastercard, American Express), PayPal, Klarna (Rechnungskauf & Ratenzahlung) sowie Banküberweisung.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "In welche Länder liefert ihr?",
+            "answer": "<p>Wir liefern weltweit. Versandkosten und Lieferzeiten variieren je nach Zielland. Innerhalb Deutschlands ist der Versand ab einem Bestellwert von 150 € kostenlos.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "Kann ich mein bestelltes Werk zurückgeben?",
+            "answer": "<p>Da jedes Kunstwerk individuell für dich angefertigt wird, ist ein Umtausch oder eine Rückgabe grundsätzlich ausgeschlossen. Bei Transportschäden oder Fertigungsmängeln kontaktiere uns bitte innerhalb von 14 Tagen nach Erhalt.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6"
+      ],
+      "settings": {
+        "eyebrow": "Ihr fragt, wir antworten",
+        "heading": "FAQ",
+        "structured_data": true,
+        "color_scheme": "default"
+      }
+    },
+    "related": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Das könnte dir auch gefallen"
+      }
+    }
   },
-  "order": ["main", "related"]
+  "order": [
+    "main",
+    "before-after",
+    "how-it-works",
+    "design-service",
+    "faq",
+    "related"
+  ]
 }

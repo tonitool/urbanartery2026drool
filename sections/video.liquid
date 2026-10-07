@@ -1,0 +1,53 @@
+<section class="section {% if section.settings.color_scheme == 'subtle' %}section--subtle{% elsif section.settings.color_scheme == 'dark' %}section--dark{% endif %}">
+  {% render 'section-heading', eyebrow: section.settings.eyebrow, heading: section.settings.heading, subheading: section.settings.subheading %}
+
+  <div class="container">
+    <div class="video-band">
+      {%- if section.settings.video_url != blank -%}
+        <video class="video-band__media" controls playsinline preload="none"
+               {% if section.settings.poster != blank %}poster="{{ section.settings.poster | image_url: width: 1600 }}"{% endif %}>
+          <source src="{{ section.settings.video_url }}" type="video/mp4">
+        </video>
+      {%- elsif section.settings.video != blank -%}
+        {{ section.settings.video | video_tag: controls: true, preload: 'none', playsinline: true, image_size: '1600x', class: 'video-band__media' }}
+      {%- elsif section.settings.poster != blank -%}
+        <img class="video-band__media"
+             src="{{ section.settings.poster | image_url: width: 1600 }}"
+             srcset="{{ section.settings.poster | image_url: width: 800 }} 800w, {{ section.settings.poster | image_url: width: 1600 }} 1600w"
+             sizes="(min-width: 1100px) 1000px, 100vw"
+             width="{{ section.settings.poster.width }}" height="{{ section.settings.poster.height }}"
+             alt="{{ section.settings.poster.alt | escape }}" loading="lazy">
+      {%- else -%}
+        <div class="video-band__placeholder">
+          {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+          <span class="video-band__play">{% render 'icon', name: 'play' %}</span>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.text != blank -%}
+      <div class="video-band__text rte">{{ section.settings.text }}</div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Video",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Behind the scenes" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Watch us work" },
+    { "type": "text", "id": "subheading", "label": "Subheading" },
+    { "type": "video", "id": "video", "label": "Video", "info": "Upload to Shopify. Self-hosted video sets no third-party cookies." },
+    { "type": "text", "id": "video_url", "label": "Video URL", "info": "Alternative to the picker: a cdn.shopify.com video link from Content → Files." },
+    { "type": "image_picker", "id": "poster", "label": "Poster / fallback image" },
+    { "type": "richtext", "id": "text", "label": "Text below video" },
+    { "type": "select", "id": "color_scheme", "label": "Colour scheme", "default": "dark", "options": [
+      { "value": "default", "label": "Default" },
+      { "value": "subtle", "label": "Subtle" },
+      { "value": "dark", "label": "Dark" }
+    ]}
+  ],
+  "presets": [ { "name": "Video" } ]
+}
+{% endschema %}

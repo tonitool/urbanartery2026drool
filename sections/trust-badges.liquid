@@ -1,20 +1,57 @@
-<section class="trust">
+{%- liquid
+  assign has_heading = false
+  if section.settings.heading != blank or section.settings.eyebrow != blank
+    assign has_heading = true
+  endif
+-%}
+
+<section class="trust{% if has_heading %} trust--section section{% endif %}{% if section.settings.numbered %} trust--numbered{% endif %} {% if section.settings.color_scheme == 'subtle' %}section--subtle{% elsif section.settings.color_scheme == 'dark' %}section--dark{% endif %}">
+  {%- if has_heading -%}
+    {% render 'section-heading', eyebrow: section.settings.eyebrow, heading: section.settings.heading, subheading: section.settings.subheading %}
+  {%- endif -%}
+
   <div class="container container--wide">
-    <div class="trust__grid">
+    <ol class="trust__grid" role="list">
       {%- for block in section.blocks -%}
-        <div class="trust__item" {{ block.shopify_attributes }}>
+        <li class="trust__item" {{ block.shopify_attributes }}>
+          {%- if section.settings.numbered -%}
+            <span class="trust__step" aria-hidden="true">{{ forloop.index }}</span>
+          {%- endif -%}
           {% render 'icon', name: block.settings.icon %}
           <p class="trust__title">{{ block.settings.title }}</p>
           <p class="trust__text">{{ block.settings.text }}</p>
-        </div>
+        </li>
       {%- endfor -%}
-    </div>
+    </ol>
+
+    {%- if section.settings.button_label != blank -%}
+      <div class="section-footer">
+        {%- capture configurator_url -%}{% render 'configurator-url' %}{%- endcapture -%}
+        <a class="btn {% if section.settings.color_scheme == 'dark' %}btn--light{% endif %}" href="{{ section.settings.button_link | default: configurator_url }}">
+          {{ section.settings.button_label }}
+        </a>
+      </div>
+    {%- endif -%}
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Trust badges",
+  "name": "Trust badges / steps",
+  "settings": [
+    { "type": "paragraph", "content": "Leave the heading empty for a compact badge row (footer). Add a heading and tick \"Numbered\" for a how-it-works band." },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "text", "id": "subheading", "label": "Subheading" },
+    { "type": "checkbox", "id": "numbered", "label": "Numbered steps", "default": false },
+    { "type": "text", "id": "button_label", "label": "Button label" },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Empty: links to the configurator product." },
+    { "type": "select", "id": "color_scheme", "label": "Colour scheme", "default": "default", "options": [
+      { "value": "default", "label": "Default" },
+      { "value": "subtle", "label": "Subtle" },
+      { "value": "dark", "label": "Dark" }
+    ]}
+  ],
   "blocks": [
     {
       "type": "badge",
@@ -23,7 +60,16 @@
         { "type": "select", "id": "icon", "label": "Icon", "default": "truck", "options": [
           { "value": "truck", "label": "Shipping" },
           { "value": "badge", "label": "Quality" },
-          { "value": "palette", "label": "Art" }
+          { "value": "palette", "label": "Art" },
+          { "value": "upload", "label": "Upload" },
+          { "value": "spray", "label": "Spray can" },
+          { "value": "hand", "label": "Handmade" },
+          { "value": "frame", "label": "Frame" },
+          { "value": "gift", "label": "Gift" },
+          { "value": "shield", "label": "Secure payment" },
+          { "value": "package", "label": "Package" },
+          { "value": "clock", "label": "Clock" },
+          { "value": "mail", "label": "Email" }
         ]},
         { "type": "text", "id": "title", "label": "Title", "default": "Ship globally" },
         { "type": "textarea", "id": "text", "label": "Text", "default": "Delivered worldwide with a 14-day return period." }
@@ -37,6 +83,16 @@
         { "type": "badge", "settings": { "icon": "truck", "title": "Ship globally", "text": "Delivered worldwide with a 14-day return period." } },
         { "type": "badge", "settings": { "icon": "badge", "title": "High quality", "text": "Museum-grade heavyweight paper and handmade frames." } },
         { "type": "badge", "settings": { "icon": "palette", "title": "Unique art", "text": "Curated work from emerging artists, sold only here." } }
+      ]
+    },
+    {
+      "name": "How it works",
+      "settings": { "heading": "How it works", "numbered": true },
+      "blocks": [
+        { "type": "badge", "settings": { "icon": "upload", "title": "Upload a photo", "text": "Choose the picture you want turned into art." } },
+        { "type": "badge", "settings": { "icon": "frame", "title": "Pick size and material", "text": "Select format and surface in the configurator." } },
+        { "type": "badge", "settings": { "icon": "spray", "title": "We make it by hand", "text": "Our artists cut the stencils and spray your piece." } },
+        { "type": "badge", "settings": { "icon": "truck", "title": "Delivered to your door", "text": "Packed safely and shipped to you." } }
       ]
     }
   ]

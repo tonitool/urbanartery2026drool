@@ -48,6 +48,17 @@
       {%- if on_sale %}<s>{{ current.compare_at_price | money }}</s>{% endif -%}
     </p>
 
+    {%- if section.settings.show_tax_note -%}
+      <p class="product__tax-note">
+        {%- if shop.taxes_included -%}{{ 'products.product.taxes_included' | t }}{%- else -%}{{ 'products.product.taxes_excluded' | t }}{%- endif -%}
+        {%- if shop.shipping_policy.body != blank -%}
+          , <a class="link-underline" href="{{ shop.shipping_policy.url }}">{{ 'products.product.shipping_excluded' | t }}</a>
+        {%- else -%}
+          , {{ 'products.product.shipping_excluded' | t }}
+        {%- endif -%}
+      </p>
+    {%- endif -%}
+
     {%- form 'product', product, class: 'product-form', data-product-form: 'true' -%}
       <input type="hidden" name="id" value="{{ current.id }}" data-variant-id>
 
@@ -100,17 +111,51 @@
       </script>
     {%- endform -%}
 
-    {%- if product.description != blank -%}
+    {%- comment -%} App blocks (e.g. a product configurator) sit directly under the buy button. {%- endcomment -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == '@app' -%}{% render block %}{%- endif -%}
+    {%- endfor -%}
+
+    {%- assign trust_blocks = section.blocks | where: 'type', 'trust_item' -%}
+    {%- if trust_blocks.size > 0 -%}
+      <ul class="product-trust" role="list">
+        {%- for block in trust_blocks -%}
+          <li class="product-trust__item" {{ block.shopify_attributes }}>
+            {% render 'icon', name: block.settings.icon %}
+            <span>{{ block.settings.text }}</span>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- assign description_blocks = section.blocks | where: 'type', 'description' -%}
+    {%- if description_blocks.size == 0 and product.description != blank -%}
       <div class="product__description rte">{{ product.description }}</div>
     {%- endif -%}
 
     {%- for block in section.blocks -%}
-      {%- if block.type == 'accordion' -%}
-        <details class="accordion" {{ block.shopify_attributes }}>
-          <summary>{{ block.settings.title }} {% render 'icon', name: 'caret' %}</summary>
-          <div class="accordion__body rte">{{ block.settings.content }}</div>
-        </details>
-      {%- endif -%}
+      {%- case block.type -%}
+        {%- when 'description' -%}
+          {%- if product.description != blank -%}
+            {%- if block.settings.title != blank -%}
+              <details class="accordion" {% if block.settings.open %}open{% endif %} {{ block.shopify_attributes }}>
+                <summary>{{ block.settings.title }} {% render 'icon', name: 'caret' %}</summary>
+                <div class="accordion__body rte">{{ product.description }}</div>
+              </details>
+            {%- else -%}
+              <div class="product__description rte" {{ block.shopify_attributes }}>{{ product.description }}</div>
+            {%- endif -%}
+          {%- endif -%}
+
+        {%- when 'text' -%}
+          <div class="product__text rte" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+
+        {%- when 'accordion' -%}
+          <details class="accordion" {{ block.shopify_attributes }}>
+            <summary>{{ block.settings.title }} {% render 'icon', name: 'caret' %}</summary>
+            <div class="accordion__body rte">{{ block.settings.content }}</div>
+          </details>
+      {%- endcase -%}
     {%- endfor -%}
   </div>
 </div>
@@ -118,7 +163,45 @@
 {% schema %}
 {
   "name": "Product",
+  "settings": [
+    { "type": "checkbox", "id": "show_tax_note", "label": "Show tax and shipping note under price", "default": true, "info": "Required for consumer sales in Germany (PAngV)." }
+  ],
   "blocks": [
+    { "type": "@app" },
+    {
+      "type": "trust_item",
+      "name": "Trust icon",
+      "limit": 4,
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "default": "hand", "options": [
+          { "value": "hand", "label": "Handmade" },
+          { "value": "spray", "label": "Spray can" },
+          { "value": "badge", "label": "Quality" },
+          { "value": "palette", "label": "Art" },
+          { "value": "truck", "label": "Shipping" },
+          { "value": "frame", "label": "Frame" },
+          { "value": "gift", "label": "Gift" },
+          { "value": "shield", "label": "Secure payment" }
+        ]},
+        { "type": "text", "id": "text", "label": "Text", "default": "Handmade" }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Accordion title", "info": "Leave empty to show the description as plain text." },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Short note shown on every product.</p>" }
+      ]
+    },
     {
       "type": "accordion",
       "name": "Accordion row",

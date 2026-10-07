@@ -4,16 +4,7 @@
 -%}
 
 <section class="section {% if section.settings.color_scheme == 'subtle' %}section--subtle{% elsif section.settings.color_scheme == 'dark' %}section--dark{% endif %}">
-  {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
-    <div class="container section-header">
-      {%- if section.settings.heading != blank -%}
-        <h2 class="section-header__title">{{ section.settings.heading }}</h2>
-      {%- endif -%}
-      {%- if section.settings.subheading != blank -%}
-        <p class="section-header__subtitle">{{ section.settings.subheading }}</p>
-      {%- endif -%}
-    </div>
-  {%- endif -%}
+  {% render 'section-heading', eyebrow: section.settings.eyebrow, heading: section.settings.heading, subheading: section.settings.subheading %}
 
   <div class="carousel" data-carousel style="--slide-width: {{ section.settings.slide_width }}px;">
     <button class="carousel__btn carousel__btn--prev" type="button" data-carousel-prev aria-label="{{ 'accessibility.previous_slide' | t }}">
@@ -51,6 +42,7 @@
 {
   "name": "Product carousel",
   "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "info": "Small accent-coloured line above the heading." },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Best sellers" },
     { "type": "text", "id": "subheading", "label": "Subheading" },
     { "type": "collection", "id": "collection", "label": "Collection" },

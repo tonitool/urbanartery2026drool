@@ -52,7 +52,10 @@
       "quantity": "Quantity",
       "vendor": "By {{ vendor }}",
       "description": "Description",
-      "share": "Share"
+      "share": "Share",
+      "taxes_included": "Including VAT",
+      "taxes_excluded": "Excluding VAT",
+      "shipping_excluded": "plus shipping"
     }
   },
   "collections": {
@@ -90,6 +93,10 @@
   "sections": {
     "header": {
       "announcement": "Announcement"
+    },
+    "before_after": {
+      "slider_label": "Drag to compare before and after: {{ title }}",
+      "slider_label_untitled": "Drag to compare before and after"
     }
   },
   "onboarding": {
@@ -100,5 +107,17 @@
   "404": {
     "title": "Page not found",
     "subtext": "The page you were looking for does not exist."
+  },
+  "contact": {
+    "form": {
+      "first_name": "First name",
+      "last_name": "Last name",
+      "email": "Email address",
+      "order_number": "Order number (optional)",
+      "subject": "Subject",
+      "message": "Your message",
+      "send": "Send message",
+      "success": "Thanks for your message. We'll get back to you soon."
+    }
   }
 }

@@ -1,16 +1,7 @@
 <section class="section {% if section.settings.color_scheme == 'subtle' %}section--subtle{% elsif section.settings.color_scheme == 'dark' %}section--dark{% endif %}">
-  {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
-    <div class="container section-header">
-      {%- if section.settings.heading != blank -%}
-        <h2 class="section-header__title">{{ section.settings.heading }}</h2>
-      {%- endif -%}
-      {%- if section.settings.subheading != blank -%}
-        <p class="section-header__subtitle">{{ section.settings.subheading }}</p>
-      {%- endif -%}
-    </div>
-  {%- endif -%}
+  {% render 'section-heading', eyebrow: section.settings.eyebrow, heading: section.settings.heading, subheading: section.settings.subheading %}
 
-  <div class="carousel" data-carousel style="--slide-width: {{ section.settings.slide_width }}px;">
+  <div class="carousel{% if section.settings.card_style == 'overlay' %} carousel--overlay{% endif %}" data-carousel style="--slide-width: {{ section.settings.slide_width }}px;">
     <button class="carousel__btn carousel__btn--prev" type="button" data-carousel-prev aria-label="{{ 'accessibility.previous_slide' | t }}">
       {% render 'icon', name: 'arrow-left' %}
     </button>
@@ -37,7 +28,15 @@
               {%- endif -%}
             </div>
             {%- assign placeholder_title = 'onboarding.collection_title' | t -%}
-            <p class="edit-card__title">{{ title | default: placeholder_title }}</p>
+            <div class="edit-card__body">
+              <p class="edit-card__title">{{ title | default: placeholder_title }}</p>
+              {%- if block.settings.text != blank -%}
+                <p class="edit-card__text">{{ block.settings.text }}</p>
+              {%- endif -%}
+              {%- if block.settings.link_label != blank -%}
+                <span class="edit-card__cta">{{ block.settings.link_label }} {% render 'icon', name: 'arrow-right' %}</span>
+              {%- endif -%}
+            </div>
           </a>
         </li>
       {%- endfor -%}
@@ -47,15 +46,30 @@
       {% render 'icon', name: 'arrow-right' %}
     </button>
   </div>
+
+  {%- if section.settings.button_label != blank -%}
+    <div class="section-footer">
+      <a class="btn {% if section.settings.color_scheme == 'dark' %}btn--light{% endif %}" href="{{ section.settings.button_link | default: '#' }}">
+        {{ section.settings.button_label }} {% render 'icon', name: 'arrow-right' %}
+      </a>
+    </div>
+  {%- endif -%}
 </section>
 
 {% schema %}
 {
   "name": "Collection carousel",
   "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "info": "Small accent-coloured line above the heading." },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Explore edits" },
     { "type": "text", "id": "subheading", "label": "Subheading", "default": "Curated art print walls, hand-picked by our team" },
     { "type": "range", "id": "slide_width", "label": "Card width", "min": 200, "max": 520, "step": 10, "unit": "px", "default": 320 },
+    { "type": "select", "id": "card_style", "label": "Card style", "default": "caption", "options": [
+      { "value": "caption", "label": "Title below image" },
+      { "value": "overlay", "label": "Text over image" }
+    ]},
+    { "type": "text", "id": "button_label", "label": "Button label" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
     { "type": "select", "id": "color_scheme", "label": "Colour scheme", "default": "subtle", "options": [
       { "value": "default", "label": "Default" },
       { "value": "subtle", "label": "Subtle" },
@@ -70,7 +84,9 @@
         { "type": "collection", "id": "collection", "label": "Collection" },
         { "type": "text", "id": "title", "label": "Title override" },
         { "type": "image_picker", "id": "image", "label": "Image override" },
-        { "type": "url", "id": "link", "label": "Link override" }
+        { "type": "url", "id": "link", "label": "Link override" },
+        { "type": "textarea", "id": "text", "label": "Text" },
+        { "type": "text", "id": "link_label", "label": "Link label", "info": "For example \"Mehr erfahren\"." }
       ]
     }
   ],

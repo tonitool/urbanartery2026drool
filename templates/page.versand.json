@@ -1,0 +1,110 @@
+{
+  "sections": {
+    "header": {
+      "type": "page-header",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Verpackung & Versand",
+        "text": "Sicher verpackt und zu dir geliefert",
+        "color_scheme": "dark"
+      }
+    },
+    "features": {
+      "type": "trust-badges",
+      "blocks": {
+        "s1": {
+          "type": "badge",
+          "settings": {
+            "icon": "package",
+            "title": "Sichere Verpackung",
+            "text": "Jedes Kunstwerk wird sorgfältig verpackt, um Transportschäden zu vermeiden."
+          }
+        },
+        "s2": {
+          "type": "badge",
+          "settings": {
+            "icon": "truck",
+            "title": "Weltweiter Versand",
+            "text": "Wir liefern in alle Länder. Versandkosten variieren je nach Ziel."
+          }
+        },
+        "s3": {
+          "type": "badge",
+          "settings": {
+            "icon": "clock",
+            "title": "10–14 Tage Anfertigung",
+            "text": "Jedes Werk wird individuell für dich handgefertigt."
+          }
+        },
+        "s4": {
+          "type": "badge",
+          "settings": {
+            "icon": "shield",
+            "title": "Versicherter Versand",
+            "text": "Alle Sendungen sind gegen Verlust und Beschädigung versichert."
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "settings": {
+        "numbered": false,
+        "color_scheme": "subtle",
+        "eyebrow": "Versand",
+        "heading": "Gut verpackt, sicher geliefert"
+      }
+    },
+    "details": {
+      "type": "text-columns",
+      "blocks": {
+        "c1": {
+          "type": "column",
+          "settings": {
+            "title": "Versandkosten Deutschland",
+            "text": "<ul><li><strong>Ab 150 € Bestellwert:</strong> kostenloser Versand</li><li><strong>Unter 150 €:</strong> 9,90 € Versandpauschale</li></ul>"
+          }
+        },
+        "c2": {
+          "type": "column",
+          "settings": {
+            "title": "Internationaler Versand",
+            "text": "<p>Wir versenden weltweit. Die Versandkosten werden im Checkout basierend auf deinem Standort berechnet. Bei Fragen zum internationalen Versand kontaktiere uns gerne.</p>"
+          }
+        },
+        "c3": {
+          "type": "column",
+          "settings": {
+            "title": "Lieferzeit",
+            "text": "<p>Da jedes Kunstwerk individuell angefertigt wird, beträgt die Produktionszeit ca. 10–14 Werktage. Hinzu kommt die Versandzeit: Deutschland 2–3 Werktage, EU 5–7 Werktage, international 7–14 Werktage.</p>"
+          }
+        },
+        "c4": {
+          "type": "column",
+          "settings": {
+            "title": "Verpackung",
+            "text": "<p>Wir verwenden hochwertige, stabile Verpackungsmaterialien, um dein Kunstwerk optimal zu schützen. Jedes Werk wird einzeln in säurefreies Papier eingeschlagen und in einem maßgefertigten Karton versendet.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ],
+      "settings": {
+        "style": "plain",
+        "color_scheme": "default"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "features",
+    "details"
+  ]
+}

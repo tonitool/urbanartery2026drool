@@ -1,0 +1,125 @@
+{
+  "sections": {
+    "header": {
+      "type": "page-header",
+      "settings": {
+        "eyebrow": "",
+        "heading": "So startest du mit Blanks",
+        "text": "Von deinem Foto zum handgefertigten Street-Art-Unikat. In nur wenigen Schritten zu deinem persönlichen Kunstwerk.",
+        "color_scheme": "dark"
+      }
+    },
+    "steps": {
+      "type": "trust-badges",
+      "blocks": {
+        "s1": {
+          "type": "badge",
+          "settings": {
+            "icon": "upload",
+            "title": "Foto hochladen",
+            "text": "Wähle ein Bild aus deiner Galerie oder mach ein neues Foto. Porträts, Landschaften, Haustiere – alles ist möglich."
+          }
+        },
+        "s2": {
+          "type": "badge",
+          "settings": {
+            "icon": "palette",
+            "title": "Stil wählen",
+            "text": "Entscheide dich für deinen Street-Art-Stil. Von klassischem Graffiti bis zu modernem Stencil-Art – unsere Künstler setzen deine Vision um."
+          }
+        },
+        "s3": {
+          "type": "badge",
+          "settings": {
+            "icon": "frame",
+            "title": "Format bestimmen",
+            "text": "Wähle die perfekte Größe für dein Kunstwerk. Von kompakt bis XXL – wir haben das richtige Format für jeden Raum."
+          }
+        },
+        "s4": {
+          "type": "badge",
+          "settings": {
+            "icon": "hand",
+            "title": "Handgefertigt & geliefert",
+            "text": "Unsere Künstler fertigen dein Unikat in 10–14 Tagen. Sicher verpackt kommt es direkt zu dir nach Hause."
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "settings": {
+        "numbered": true,
+        "color_scheme": "default",
+        "eyebrow": "Schritt für Schritt",
+        "heading": "So einfach geht's"
+      }
+    },
+    "before-after": {
+      "type": "before-after",
+      "blocks": {
+        "b1": {
+          "type": "comparison",
+          "settings": {
+            "title": "Aus Foto wird Kunst",
+            "image_before": "shopify://shop_images/ua-foto-kunst-vorher.jpg",
+            "image_after": "shopify://shop_images/ua-foto-kunst-nachher.jpg",
+            "text": "Lade dein Lieblingsfoto hoch und unsere Künstler verwandeln es in ein einzigartiges Street-Art-Werk."
+          }
+        },
+        "b2": {
+          "type": "comparison",
+          "settings": {
+            "title": "Aus quer wird hoch",
+            "image_before": "shopify://shop_images/ua-quer-hoch-vorher.jpg",
+            "image_after": "shopify://shop_images/ua-quer-hoch-nachher.jpg",
+            "text": "Wir erweitern dein Foto für das perfekte Format – ohne dabei Details zu verlieren."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2"
+      ],
+      "settings": {
+        "eyebrow": "Individualisierungen",
+        "heading": "Vorher & Nachher",
+        "before_label": "Vorher",
+        "after_label": "Nachher",
+        "color_scheme": "subtle"
+      }
+    },
+    "cta": {
+      "type": "cta-banner",
+      "settings": {
+        "heading": "Bereit loszulegen?",
+        "text": "Starte jetzt mit dem Konfigurator und gestalte dein persönliches Street-Art-Kunstwerk.",
+        "button_label": "Zum Konfigurator",
+        "button_link": "",
+        "color_scheme": "dark"
+      }
+    },
+    "faq-teaser": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Noch Fragen?",
+        "text": "<p>In unseren FAQs findest du Antworten auf die häufigsten Fragen rund um Bestellung, Versand und mehr.</p>",
+        "alignment": "center",
+        "color_scheme": "default",
+        "button_style": "outline",
+        "button_label": "Zu den FAQs",
+        "button_link": "/pages/faq"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "steps",
+    "before-after",
+    "cta",
+    "faq-teaser"
+  ]
+}

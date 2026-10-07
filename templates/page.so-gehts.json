@@ -1,0 +1,90 @@
+{
+  "sections": {
+    "header": {
+      "type": "page-header",
+      "settings": {
+        "eyebrow": "",
+        "heading": "So funktioniert's",
+        "text": "Dein Weg zum maßgeschneiderten Kunstwerk",
+        "color_scheme": "dark"
+      }
+    },
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Es ist ganz einfach",
+        "text": "<p>Du nutzt unseren Konfigurator, um dein eigenes Werk zu erstellen. Hier legst du zunächst Größe, Format und Untergrund fest und bedienst dich dann aus unserer Datenbank an Motiven. Natürlich kannst du auch dein eigenes Foto hochladen und für deine Gestaltung nutzen.</p><p>Wenn du dein Werk im Konfigurator fertig gestaltet hast, kannst du im letzten Schritt noch Sonderwünsche für deine Bestellung angeben. Danach drückst du auf „Bestellen“ und unser Kreativteam legt los.</p>",
+        "alignment": "left",
+        "color_scheme": "default",
+        "button_style": "solid",
+        "image": "shopify://shop_images/ua-blanks.jpg"
+      }
+    },
+    "steps": {
+      "type": "trust-badges",
+      "blocks": {
+        "s1": {
+          "type": "badge",
+          "settings": {
+            "icon": "frame",
+            "title": "Größe & Format wählen",
+            "text": "Bestimme die Maße und das Format deines Kunstwerks passend zu deinem Raum."
+          }
+        },
+        "s2": {
+          "type": "badge",
+          "settings": {
+            "icon": "upload",
+            "title": "Motiv auswählen oder hochladen",
+            "text": "Wähle aus unserer Galerie oder lade dein eigenes Foto hoch."
+          }
+        },
+        "s3": {
+          "type": "badge",
+          "settings": {
+            "icon": "palette",
+            "title": "Design gestalten",
+            "text": "Kombiniere Elemente und passe dein Werk im Konfigurator an."
+          }
+        },
+        "s4": {
+          "type": "badge",
+          "settings": {
+            "icon": "package",
+            "title": "Bestellen & Anfertigung",
+            "text": "Nach deiner Bestellung wird dein Kunstwerk von Hand gefertigt und sicher verpackt zu dir geliefert."
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "settings": {
+        "numbered": true,
+        "color_scheme": "subtle",
+        "eyebrow": "In vier Schritten",
+        "heading": "Vom Konfigurator an deine Wand",
+        "button_label": "Zum Konfigurator"
+      }
+    },
+    "questions": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Noch Fragen?",
+        "text": "<p>Schau in unsere <a href=\"/pages/faq\">FAQ</a> oder <a href=\"/pages/kontakt\">kontaktiere uns</a> direkt.</p>",
+        "alignment": "center",
+        "color_scheme": "default",
+        "button_style": "solid"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "intro",
+    "steps",
+    "questions"
+  ]
+}

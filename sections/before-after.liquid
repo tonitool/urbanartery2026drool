@@ -1,0 +1,108 @@
+<section class="section {% if section.settings.color_scheme == 'subtle' %}section--subtle{% elsif section.settings.color_scheme == 'dark' %}section--dark{% endif %}">
+  {% render 'section-heading', eyebrow: section.settings.eyebrow, heading: section.settings.heading, subheading: section.settings.subheading %}
+
+  <div class="container">
+    <div class="ba-grid">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign before_label = block.settings.before_label | default: section.settings.before_label
+          assign after_label = block.settings.after_label | default: section.settings.after_label
+          if block.settings.title != blank
+            assign slider_label = 'sections.before_after.slider_label' | t: title: block.settings.title
+          else
+            assign slider_label = 'sections.before_after.slider_label_untitled' | t
+          endif
+        -%}
+        <figure class="ba" {{ block.shopify_attributes }}>
+          {%- if block.settings.title != blank -%}
+            <figcaption class="ba__title">{{ block.settings.title }}</figcaption>
+          {%- endif -%}
+
+          <div class="ba__frame" data-before-after style="--ba-pos: 50%;">
+            <div class="ba__layer ba__layer--after">
+              {%- if block.settings.image_after != blank -%}
+                <img src="{{ block.settings.image_after | image_url: width: 1200 }}"
+                     srcset="{{ block.settings.image_after | image_url: width: 600 }} 600w, {{ block.settings.image_after | image_url: width: 1200 }} 1200w"
+                     sizes="(min-width: 900px) 50vw, 100vw"
+                     width="{{ block.settings.image_after.width }}" height="{{ block.settings.image_after.height }}"
+                     alt="{{ block.settings.image_after.alt | escape }}" loading="lazy">
+              {%- else -%}
+                {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+
+            <div class="ba__layer ba__layer--before">
+              {%- if block.settings.image_before != blank -%}
+                <img src="{{ block.settings.image_before | image_url: width: 1200 }}"
+                     srcset="{{ block.settings.image_before | image_url: width: 600 }} 600w, {{ block.settings.image_before | image_url: width: 1200 }} 1200w"
+                     sizes="(min-width: 900px) 50vw, 100vw"
+                     width="{{ block.settings.image_before.width }}" height="{{ block.settings.image_before.height }}"
+                     alt="{{ block.settings.image_before.alt | escape }}" loading="lazy">
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+
+            <span class="ba__tag ba__tag--before">{{ before_label }}</span>
+            <span class="ba__tag ba__tag--after">{{ after_label }}</span>
+            <span class="ba__handle" aria-hidden="true">
+              {% render 'icon', name: 'arrow-left' %}{% render 'icon', name: 'arrow-right' %}
+            </span>
+
+            <input class="ba__range" type="range" min="0" max="100" value="50" step="1"
+                   aria-label="{{ slider_label | escape }}" aria-valuetext="50 % {{ before_label | escape }}"
+                   data-before-after-range data-before-label="{{ before_label | escape }}">
+          </div>
+          {%- if block.settings.text != blank -%}
+            <p class="ba__text">{{ block.settings.text }}</p>
+          {%- endif -%}
+        </figure>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.button_label != blank -%}
+      <div class="section-footer">
+        {%- capture configurator_url -%}{% render 'configurator-url' %}{%- endcapture -%}
+        <a class="btn" href="{{ section.settings.button_link | default: configurator_url }}">{{ section.settings.button_label }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Before / after",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Customisation" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Before & after" },
+    { "type": "text", "id": "subheading", "label": "Subheading" },
+    { "type": "text", "id": "before_label", "label": "Default \"before\" label", "default": "Before" },
+    { "type": "text", "id": "after_label", "label": "Default \"after\" label", "default": "After" },
+    { "type": "text", "id": "button_label", "label": "Button label" },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Empty: links to the configurator product." },
+    { "type": "select", "id": "color_scheme", "label": "Colour scheme", "default": "subtle", "options": [
+      { "value": "default", "label": "Default" },
+      { "value": "subtle", "label": "Subtle" },
+      { "value": "dark", "label": "Dark" }
+    ]}
+  ],
+  "blocks": [
+    {
+      "type": "comparison",
+      "name": "Comparison",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "From photo to art" },
+        { "type": "image_picker", "id": "image_before", "label": "Before image" },
+        { "type": "image_picker", "id": "image_after", "label": "After image", "info": "Use the same size and crop as the before image." },
+        { "type": "textarea", "id": "text", "label": "Text below" },
+        { "type": "text", "id": "before_label", "label": "\"Before\" label override" },
+        { "type": "text", "id": "after_label", "label": "\"After\" label override" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    { "name": "Before / after", "blocks": [ { "type": "comparison" }, { "type": "comparison" } ] }
+  ]
+}
+{% endschema %}

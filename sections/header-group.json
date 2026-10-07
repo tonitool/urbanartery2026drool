@@ -5,16 +5,39 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
-        "m1": { "type": "message", "settings": { "text": "Free worldwide shipping on orders over $150" } },
-        "m2": { "type": "message", "settings": { "text": "Museum-grade paper · Handmade frames · 14-day returns" } }
+        "m1": {
+          "type": "message",
+          "settings": {
+            "text": "Versandkostenfrei ab 150 € innerhalb Deutschlands"
+          }
+        },
+        "m2": {
+          "type": "message",
+          "settings": {
+            "text": "Gestaltet von dir. Handgefertigt von unseren Künstlern."
+          }
+        }
       },
-      "block_order": ["m1", "m2"],
-      "settings": { "interval": 5 }
+      "block_order": [
+        "m1",
+        "m2"
+      ],
+      "settings": {
+        "interval": 5
+      }
     },
     "header": {
       "type": "header",
-      "settings": { "menu": "main-menu" }
+      "settings": {
+        "menu": "main-menu",
+        "color_scheme": "dark",
+        "logo_height": 48,
+        "logo": "shopify://shop_images/ua-logo-weiss.png"
+      }
     }
   },
-  "order": ["announcement-bar", "header"]
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
 }

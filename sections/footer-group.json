@@ -5,24 +5,84 @@
     "trust-badges": {
       "type": "trust-badges",
       "blocks": {
-        "b1": { "type": "badge", "settings": { "icon": "truck", "title": "Ship globally", "text": "Delivered worldwide with a 14-day return period." } },
-        "b2": { "type": "badge", "settings": { "icon": "badge", "title": "High quality", "text": "Museum-grade heavyweight paper and handmade frames." } },
-        "b3": { "type": "badge", "settings": { "icon": "palette", "title": "Unique art", "text": "Curated work from emerging artists, sold only here." } }
+        "b1": {
+          "type": "badge",
+          "settings": {
+            "icon": "shield",
+            "title": "Sichere Bezahlmethoden",
+            "text": "SSL-verschlüsselt & geschützt. Zahle sicher mit Kreditkarte, PayPal oder Klarna."
+          }
+        },
+        "b2": {
+          "type": "badge",
+          "settings": {
+            "icon": "badge",
+            "title": "Zufriedenheitsgarantie",
+            "text": "Wir fertigen dein Unikat mit höchster Sorgfalt. Gibt es dennoch einen Qualitätsmangel, sind wir für dich da."
+          }
+        },
+        "b3": {
+          "type": "badge",
+          "settings": {
+            "icon": "truck",
+            "title": "Weltweite Lieferung",
+            "text": "Sicher verpackt mit unseren Versandpartnern DHL, UPS und Deutsche Post."
+          }
+        }
       },
-      "block_order": ["b1", "b2", "b3"],
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ],
       "settings": {}
     },
     "footer": {
       "type": "footer",
       "blocks": {
-        "f1": { "type": "brand", "settings": { "text": "<p>Contemporary art prints by emerging artists.</p>" } },
-        "f2": { "type": "links", "settings": { "title": "What we do" } },
-        "f3": { "type": "links", "settings": { "title": "Inspiration" } },
-        "f4": { "type": "links", "settings": { "title": "Help" } }
+        "f1": {
+          "type": "links",
+          "settings": {
+            "title": "Hilfe"
+          }
+        },
+        "f2": {
+          "type": "links",
+          "settings": {
+            "title": "Urban Artery"
+          }
+        },
+        "f3": {
+          "type": "links",
+          "settings": {
+            "title": "Rechtliches"
+          }
+        },
+        "f4": {
+          "type": "brand",
+          "settings": {
+            "title": "Kontakt",
+            "text": "<p><a href=\"mailto:info@urban-artery.de\">info@urban-artery.de</a><br>Künstler? <a href=\"mailto:artist@urban-artery.de\">artist@urban-artery.de</a></p>"
+          }
+        }
       },
-      "block_order": ["f1", "f2", "f3", "f4"],
-      "settings": {}
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
+      "settings": {
+        "show_payment_icons": true,
+        "background": "#333333",
+        "text_color": "#ffffff",
+        "logo": "shopify://shop_images/ua-logo-weiss.png",
+        "background_image": "shopify://shop_images/ua-footer-spray.jpg"
+      }
     }
   },
-  "order": ["trust-badges", "footer"]
+  "order": [
+    "trust-badges",
+    "footer"
+  ]
 }

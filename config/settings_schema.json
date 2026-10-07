@@ -12,31 +12,33 @@
     "settings": [
       { "type": "header", "content": "Page" },
       { "type": "color", "id": "color_bg", "label": "Background", "default": "#ffffff" },
-      { "type": "color", "id": "color_fg", "label": "Text", "default": "#111111" },
-      { "type": "color", "id": "color_muted", "label": "Muted text", "default": "#6b6b6b" },
-      { "type": "color", "id": "color_border", "label": "Borders", "default": "#e4e4e4" },
-      { "type": "color", "id": "color_subtle", "label": "Subtle band background", "default": "#f2f2f2" },
+      { "type": "color", "id": "color_fg", "label": "Text", "default": "#000000" },
+      { "type": "color", "id": "color_muted", "label": "Muted text", "default": "#5c5c5c" },
+      { "type": "color", "id": "color_border", "label": "Borders", "default": "#e2e2e2" },
+      { "type": "color", "id": "color_subtle", "label": "Subtle band background", "default": "#f1f1f1" },
       { "type": "header", "content": "Dark sections" },
       { "type": "color", "id": "color_dark", "label": "Dark background", "default": "#000000" },
       { "type": "color", "id": "color_dark_fg", "label": "Dark section text", "default": "#ffffff" },
       { "type": "header", "content": "Accent" },
-      { "type": "color", "id": "color_accent", "label": "Accent (announcement bar)", "default": "#eaff00" },
-      { "type": "color", "id": "color_accent_fg", "label": "Accent text", "default": "#111111" },
+      { "type": "color", "id": "color_accent", "label": "Accent (announcement bar, eyebrows, heading bar)", "info": "Keep white text readable: #e60073 is the lightest Urban Artery pink with 4.5:1 contrast.", "default": "#e60073" },
+      { "type": "color", "id": "color_accent_fg", "label": "Accent text", "default": "#ffffff" },
       { "type": "header", "content": "Buttons" },
-      { "type": "color", "id": "color_btn_bg", "label": "Button background", "default": "#111111" },
+      { "type": "color", "id": "color_btn_bg", "label": "Button background", "default": "#e60073" },
       { "type": "color", "id": "color_btn_fg", "label": "Button text", "default": "#ffffff" },
       { "type": "header", "content": "Sale" },
-      { "type": "color", "id": "color_sale", "label": "Sale price", "default": "#c0202a" }
+      { "type": "color", "id": "color_sale", "label": "Sale price", "default": "#e60073" }
     ]
   },
   {
     "name": "Typography",
     "settings": [
-      { "type": "font_picker", "id": "font_body", "label": "Body font", "default": "helvetica_n4" },
-      { "type": "font_picker", "id": "font_heading", "label": "Heading font", "default": "helvetica_n7" },
+      { "type": "checkbox", "id": "use_brand_fonts", "label": "Use bundled brand fonts", "default": true, "info": "Allerta Stencil (headings) and Inconsolata (body), served from the theme's own assets. Untick to use the font pickers below." },
+      { "type": "font_picker", "id": "font_body", "label": "Body font", "default": "inconsolata_n4" },
+      { "type": "font_picker", "id": "font_heading", "label": "Heading font", "default": "archivo_n7" },
       { "type": "range", "id": "font_size_base", "label": "Base font size", "min": 13, "max": 18, "step": 1, "unit": "px", "default": 15 },
       { "type": "range", "id": "heading_scale", "label": "Heading scale", "min": 90, "max": 130, "step": 5, "unit": "%", "default": 100 },
-      { "type": "checkbox", "id": "uppercase_headings", "label": "Uppercase section titles", "default": false }
+      { "type": "checkbox", "id": "uppercase_headings", "label": "Uppercase section titles", "default": true },
+      { "type": "checkbox", "id": "heading_bar", "label": "Accent bar under section titles", "default": true }
     ]
   },
   {
@@ -49,6 +51,12 @@
         { "value": "soft", "label": "Slightly rounded" },
         { "value": "pill", "label": "Pill" }
       ]}
+    ]
+  },
+  {
+    "name": "Konfigurator",
+    "settings": [
+      { "type": "product", "id": "configurator_product", "label": "Configurator product", "info": "The product that carries the configurator app. Buttons marked \"Link to configurator\" and empty primary buttons point here." }
     ]
   },
   {

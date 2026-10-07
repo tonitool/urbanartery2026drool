@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer class="footer{% if section.settings.background_image != blank %} footer--image{% endif %}" style="{% if section.settings.background_image != blank %}--footer-image: url('{{ section.settings.background_image | image_url: width: 1920 }}');{% endif %}{% if section.settings.background != blank %}--footer-bg: {{ section.settings.background }};{% endif %}{% if section.settings.text_color != blank %} --footer-fg: {{ section.settings.text_color }};{% endif %}">
   <div class="container container--wide">
     <div class="footer__grid">
       {%- for block in section.blocks -%}
@@ -36,6 +36,21 @@
       {%- endfor -%}
     </div>
 
+    {%- if section.settings.logo != blank -%}
+      <a class="footer__logo" href="{{ routes.root_url }}">
+        <img src="{{ section.settings.logo | image_url: width: 300 }}" width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}"
+             alt="{{ shop.name | escape }}" loading="lazy">
+      </a>
+    {%- endif -%}
+
+    {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+      <ul class="footer__payment" role="list">
+        {%- for type in shop.enabled_payment_types -%}
+          <li>{{ type | payment_type_svg_tag: class: 'payment-icon' }}</li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
     <div class="footer__bottom">
       <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
       {%- if section.settings.policy_menu != blank -%}
@@ -53,7 +68,12 @@
 {
   "name": "Footer",
   "settings": [
-    { "type": "link_list", "id": "policy_menu", "label": "Policy links" }
+    { "type": "link_list", "id": "policy_menu", "label": "Policy links" },
+    { "type": "checkbox", "id": "show_payment_icons", "label": "Show payment icons", "default": true },
+    { "type": "image_picker", "id": "logo", "label": "Logo", "info": "Shown centred above the payment icons." },
+    { "type": "image_picker", "id": "background_image", "label": "Background image", "info": "Anchored to the bottom, for example a spray-paint texture." },
+    { "type": "color", "id": "background", "label": "Background", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#111111" }
   ],
   "blocks": [
     {

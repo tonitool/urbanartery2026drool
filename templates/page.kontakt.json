@@ -1,0 +1,62 @@
+{
+  "sections": {
+    "header": {
+      "type": "page-header",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Kontakt",
+        "text": "Du hast Fragen zu Urban Artery? Du suchst spezielle Motive? Du hast generelles Feedback an uns? Nimm gerne Kontakt auf!",
+        "color_scheme": "dark"
+      }
+    },
+    "form": {
+      "type": "contact-form",
+      "blocks": {
+        "k1": {
+          "type": "channel",
+          "settings": {
+            "icon": "phone",
+            "title": "Telefon",
+            "link": "tel:+494029851124",
+            "link_label": "+49 40 298 511-24",
+            "text": "Hinterlasse eine Nachricht – wir rufen zurück!"
+          }
+        },
+        "k2": {
+          "type": "channel",
+          "settings": {
+            "icon": "mail",
+            "title": "E-Mail",
+            "link": "mailto:info@urban-artery.de",
+            "link_label": "info@urban-artery.de"
+          }
+        },
+        "k3": {
+          "type": "channel",
+          "settings": {
+            "icon": "instagram",
+            "title": "Instagram",
+            "link": "https://instagram.com/urbanartery",
+            "link_label": "PM bei Instagram"
+          }
+        }
+      },
+      "block_order": [
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "settings": {
+        "info_heading": "Unsere Kontaktmöglichkeiten",
+        "note": "Bitte rechne mit 3–5 Werktagen Bearbeitungszeit für Anfragen.",
+        "form_heading": "Kontaktformular",
+        "privacy_note": "<p>Wir verwenden deine Angaben nur zur Bearbeitung deiner Anfrage. Mehr dazu in unserer <a href=\"/policies/privacy-policy\">Datenschutzerklärung</a>.</p>",
+        "color_scheme": "default"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "form"
+  ]
+}

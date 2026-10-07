@@ -1,0 +1,100 @@
+{
+  "sections": {
+    "header": {
+      "type": "page-header",
+      "settings": {
+        "eyebrow": "",
+        "heading": "FAQ",
+        "text": "Ihr fragt, wir antworten",
+        "color_scheme": "dark"
+      }
+    },
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "",
+        "text": "<p>Auf dieser Seite beantworten wir die häufigsten Fragen unserer Kunden und erweitern die Liste stetig. Falls deine Frage hiermit noch nicht beantwortet ist, <a href=\"/pages/kontakt\">kontaktiere uns gerne</a> – zum Beispiel über unser Kontaktformular, das Telefon oder unsere Social-Media-Kanäle.</p>",
+        "alignment": "center",
+        "color_scheme": "default",
+        "button_style": "solid"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Wie lange dauert die Anfertigung meines Kunstwerks?",
+            "answer": "<p>In der Regel 10–14 Werktage. Da jedes Werk von Hand gefertigt wird, kann es je nach Komplexität und Auslastung etwas länger dauern. Du erhältst eine Versandbestätigung, sobald dein Werk auf dem Weg zu dir ist.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Kann ich auch eigene Fotos verwenden?",
+            "answer": "<p>Ja, absolut! Lade im Konfigurator deine eigenen Fotos hoch und lass sie von unseren Künstlern in Street-Art verwandeln. Achte auf eine möglichst hohe Auflösung für das beste Ergebnis.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Welche Trägermaterialien gibt es?",
+            "answer": "<p>Im Konfigurator wählst du zwischen LightBeton®, Premium-Aquarellpapier und Leinwand auf Keilrahmen. Für andere Materialien sprich uns gerne auf eine Auftragsarbeit an.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Welche Zahlungsmethoden werden akzeptiert?",
+            "answer": "<p>Kreditkarte (Visa, Mastercard, American Express), PayPal, Klarna (Rechnungskauf & Ratenzahlung) sowie Banküberweisung.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "In welche Länder liefert ihr?",
+            "answer": "<p>Wir liefern weltweit. Versandkosten und Lieferzeiten variieren je nach Zielland. Innerhalb Deutschlands ist der Versand ab einem Bestellwert von 150 € kostenlos.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "Kann ich mein bestelltes Werk zurückgeben?",
+            "answer": "<p>Da jedes Kunstwerk individuell für dich angefertigt wird, ist ein Umtausch oder eine Rückgabe grundsätzlich ausgeschlossen. Bei Transportschäden oder Fertigungsmängeln kontaktiere uns bitte innerhalb von 14 Tagen nach Erhalt.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "",
+        "structured_data": true,
+        "color_scheme": "default"
+      }
+    },
+    "cta": {
+      "type": "cta-banner",
+      "settings": {
+        "heading": "Deine Frage war nicht dabei?",
+        "text": "Wir helfen dir gerne persönlich weiter.",
+        "button_label": "Kontaktiere uns",
+        "button_link": "/pages/kontakt",
+        "color_scheme": "subtle"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "intro",
+    "faq",
+    "cta"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "sections": {
+    "header": {
+      "type": "page-header",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Auftragsarbeiten",
+        "text": "Geht nicht gibt's nicht.",
+        "color_scheme": "dark"
+      }
+    },
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Individueller geht es nicht",
+        "text": "<p>Du findest im Konfigurator nicht die passenden Designelemente, die von dir gewünschte Größe oder Trägermaterialien werden nicht angeboten? Du willst es richtig custom made und hast ganz viele Sonderwünsche? Du möchtest von uns oder einem unserer Künstler persönlich beraten werden? Dann ist eine Auftragsarbeit genau das Richtige für dich!</p>",
+        "alignment": "left",
+        "color_scheme": "default",
+        "button_style": "solid",
+        "image": "shopify://shop_images/ua-auftragsarbeiten.jpg",
+        "eyebrow": "Design Service"
+      }
+    },
+    "process": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Wie funktionieren Auftragsarbeiten bei Urban Artery?",
+        "text": "<p>In einem Beratungsgespräch per Telefon oder Videokonferenz erzählst du uns von deinen Vorstellungen und Wünschen. Der passende Künstler legt daraufhin einen digitalen Gestaltungsvorschlag an. Mithilfe dieses Vorschlags stimmen wir uns weiter ab – bis das perfekte Werk skizziert ist.</p><p>Deiner Fantasie sind dabei so gut wie keine Grenzen gesetzt. Wenn alles stimmt, kalkulieren wir dir die Kosten und das Werk wird für dich handgefertigt.</p><p><strong>Pssst:</strong> Ein so individuell gefertigtes Werk erzählt eine ganz besondere Geschichte und ist auch ein tolles Geschenk zu einem besonderen Anlass wie einem runden Geburtstag, einer Hochzeit oder einem Firmenjubiläum.</p>",
+        "alignment": "left",
+        "color_scheme": "subtle",
+        "button_style": "solid"
+      }
+    },
+    "cta": {
+      "type": "cta-banner",
+      "settings": {
+        "heading": "Lass uns über deine Idee sprechen",
+        "text": "Über das Kontaktformular, unsere Hotline oder per E-Mail an info@urban-artery.de.",
+        "button_label": "Jetzt Kontakt aufnehmen",
+        "button_link": "/pages/kontakt",
+        "color_scheme": "dark"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "intro",
+    "process",
+    "cta"
+  ]
+}

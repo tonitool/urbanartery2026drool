@@ -1,0 +1,123 @@
+{
+  "accessibility": {
+    "skip_to_text": "Zum Inhalt springen",
+    "close": "Schließen",
+    "next_slide": "Weiter",
+    "previous_slide": "Zurück",
+    "menu": "Menü",
+    "search": "Suche",
+    "cart": "Warenkorb",
+    "account": "Konto"
+  },
+  "general": {
+    "meta": {
+      "tags": "Getaggt mit „{{ tags }}“",
+      "page": "Seite {{ page }}"
+    },
+    "pagination": {
+      "label": "Seitennummerierung",
+      "previous": "Zurück",
+      "next": "Weiter"
+    },
+    "search": {
+      "heading": "Suche",
+      "placeholder": "Werke, Künstler, Kollektionen suchen",
+      "submit": "Suchen",
+      "results_with_count": {
+        "one": "{{ count }} Ergebnis",
+        "other": "{{ count }} Ergebnisse"
+      },
+      "no_results": "Keine Ergebnisse für „{{ terms }}“. Versuche es mit einem anderen Begriff."
+    },
+    "newsletter": {
+      "email": "E-Mail-Adresse",
+      "submit": "Anmelden",
+      "success": "Danke für deine Anmeldung."
+    },
+    "breadcrumbs": {
+      "home": "Start"
+    },
+    "continue_shopping": "Weiter einkaufen",
+    "view_more": "Mehr ansehen"
+  },
+  "products": {
+    "product": {
+      "from_price": "Ab {{ price }}",
+      "regular_price": "Normaler Preis",
+      "sale_price": "Angebotspreis",
+      "sold_out": "Ausverkauft",
+      "unavailable": "Nicht verfügbar",
+      "on_sale": "Angebot",
+      "add_to_cart": "In den Warenkorb",
+      "quantity": "Anzahl",
+      "vendor": "Von {{ vendor }}",
+      "description": "Beschreibung",
+      "share": "Teilen",
+      "taxes_included": "inkl. MwSt.",
+      "taxes_excluded": "zzgl. MwSt.",
+      "shipping_excluded": "zzgl. Versandkosten"
+    }
+  },
+  "collections": {
+    "general": {
+      "no_matches": "Keine Produkte gefunden.",
+      "items_with_count": {
+        "one": "{{ count }} Werk",
+        "other": "{{ count }} Werke"
+      },
+      "sort_by": "Sortieren nach",
+      "filter": "Filtern",
+      "clear_all": "Alle entfernen"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Dein Warenkorb",
+      "empty": "Dein Warenkorb ist leer.",
+      "subtotal": "Zwischensumme",
+      "checkout": "Zur Kasse",
+      "update": "Aktualisieren",
+      "remove": "Entfernen",
+      "note": "Anmerkung zur Bestellung",
+      "taxes_and_shipping": "Steuern und Versandkosten werden an der Kasse berechnet.",
+      "product": "Produkt",
+      "price": "Preis",
+      "total": "Gesamt",
+      "item_count": {
+        "one": "{{ count }} Artikel",
+        "other": "{{ count }} Artikel"
+      },
+      "quantity": "Anzahl"
+    }
+  },
+  "sections": {
+    "header": {
+      "announcement": "Ankündigung"
+    },
+    "before_after": {
+      "slider_label": "Ziehen zum Vergleichen von Vorher und Nachher: {{ title }}",
+      "slider_label_untitled": "Ziehen zum Vergleichen von Vorher und Nachher"
+    }
+  },
+  "onboarding": {
+    "product_title": "Beispielwerk",
+    "vendor": "Name des Künstlers",
+    "collection_title": "Beispielkollektion"
+  },
+  "404": {
+    "title": "Seite nicht gefunden",
+    "subtext": "Die gesuchte Seite existiert nicht."
+  },
+  "contact": {
+    "form": {
+      "first_name": "Vorname",
+      "last_name": "Nachname",
+      "email": "E-Mail-Adresse",
+      "order_number": "Bestellnummer (optional)",
+      "subject": "Betreff",
+      "message": "Deine Nachricht",
+      "send": "Nachricht senden",
+      "success": "Danke für deine Nachricht! Wir melden uns in Kürze bei dir."
+    }
+  }
+}
