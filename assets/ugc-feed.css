@@ -1,0 +1,197 @@
+/* UGC feed: a black street-poster wall. Two photo strips pasted on a slight
+   diagonal drift in opposite directions; a pink tape strip runs between them. */
+.ugc-feed {
+  --ugc-bg: #0c0c0c;
+  --ugc-ink: #f2f0ec;
+  --ugc-dim: rgb(242 240 236 / 0.55);
+  --ugc-pink: var(--color-accent, #e60073);
+  --ugc-gap: 12px;
+  --ugc-tilt: -2.5deg;
+  --ugc-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(56px, 7vw, 104px) clamp(40px, 5vw, 72px);
+  background-color: var(--ugc-bg);
+  /* fine grain so the black reads as a wall, not a screen */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  color: var(--ugc-ink);
+}
+
+/* ---------- header ---------- */
+.ugc-feed__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px 40px;
+  margin-bottom: clamp(36px, 4.5vw, 64px);
+}
+.ugc-feed__eyebrow {
+  margin: 0 0 14px;
+  color: var(--ugc-pink);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+.ugc-feed__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 1.2rem + 5vw, 5.6rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.ugc-feed__title-outline {
+  display: block;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--ugc-ink);
+}
+.ugc-feed__aside {
+  display: grid;
+  justify-items: end;
+  gap: 14px;
+  text-align: right;
+}
+.ugc-feed__count { margin: 0; color: var(--ugc-dim); font-size: 0.78rem; letter-spacing: 0.06em; }
+.ugc-feed__count strong {
+  display: block;
+  color: var(--ugc-ink);
+  font-family: var(--font-heading);
+  font-size: 2.6rem;
+  font-weight: 400;
+  line-height: 1;
+}
+.ugc-feed__invite {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background: var(--ugc-pink);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 200ms ease;
+}
+.ugc-feed__invite svg { width: 12px; height: 12px; transition: transform 200ms var(--ugc-ease); }
+.ugc-feed__invite:hover { background: #ff1a8c; }
+.ugc-feed__invite:hover svg { transform: translateX(4px); }
+.ugc-feed__invite:focus-visible { outline: 2px solid var(--ugc-ink); outline-offset: 3px; }
+
+/* ---------- the pasted wall ---------- */
+.ugc-feed__stage {
+  display: grid;
+  gap: var(--ugc-gap);
+  margin-inline: -6vw;
+  transform: rotate(var(--ugc-tilt));
+}
+
+.ugc-row { overflow: hidden; }
+.ugc-row__track {
+  display: flex;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation: ugc-drift var(--ugc-duration, 50s) linear infinite;
+}
+.ugc-row--reverse .ugc-row__track { animation-direction: reverse; animation-duration: calc(var(--ugc-duration, 50s) * 1.15); }
+.ugc-feed__stage:hover .ugc-row__track,
+.ugc-feed__stage:focus-within .ugc-row__track { animation-play-state: paused; }
+
+/* Each row repeats its photos --ugc-copies times; moving by one copy loops
+   seamlessly. Tiles carry their own right margin so every copy is equally wide. */
+@keyframes ugc-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% / var(--ugc-copies, 4))); }
+}
+
+.ugc-tile { flex: none; margin-right: var(--ugc-gap); }
+.ugc-tile__link {
+  position: relative;
+  display: block;
+  height: var(--ugc-height, 220px);
+  overflow: hidden;
+  background: #1c1c1c;
+  color: #fff;
+  text-decoration: none;
+}
+.ugc-tile__link img {
+  display: block;
+  width: auto;
+  height: 100%;
+  filter: saturate(0.92);
+  transition: transform 600ms var(--ugc-ease), filter 300ms ease;
+}
+.ugc-tile__link:hover img { transform: scale(1.05); filter: saturate(1.05); }
+.ugc-tile__link:focus-visible { outline: 2px solid var(--ugc-pink); outline-offset: -2px; }
+
+/* caption: a pink label stuck on the corner, like a sticker */
+.ugc-tile__caption {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  display: grid;
+  gap: 1px;
+  padding: 6px 9px 7px;
+  background: var(--ugc-pink);
+  transform: translateY(8px) rotate(-2deg);
+  opacity: 0;
+  transition: opacity 220ms ease, transform 300ms var(--ugc-ease);
+}
+.ugc-tile__link:hover .ugc-tile__caption,
+.ugc-tile__link:focus-visible .ugc-tile__caption { opacity: 1; transform: rotate(-2deg); }
+.ugc-tile__title { font-family: var(--font-heading); font-size: 0.86rem; line-height: 1.1; text-transform: uppercase; }
+.ugc-tile__place { font-size: 0.62rem; letter-spacing: 0.04em; opacity: 0.9; }
+
+/* ---------- tape strip ---------- */
+.ugc-tape {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  margin-block: 2px;
+  padding-block: 9px;
+  background: var(--ugc-pink);
+  color: #0c0c0c;
+  transform: rotate(1.2deg);
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.45);
+}
+.ugc-tape__track {
+  display: flex;
+  width: max-content;
+  animation: ugc-tape 30s linear infinite;
+}
+.ugc-tape__track span {
+  padding-right: 1.4em;
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 0.8rem + 0.8vw, 1.5rem);
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+@keyframes ugc-tape { to { transform: translateX(-50%); } }
+
+.ugc-feed__note {
+  margin: clamp(32px, 4vw, 52px) auto 0;
+  color: var(--ugc-dim);
+  font-size: 0.64rem;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- small screens ---------- */
+@media (max-width: 749px) {
+  .ugc-feed { --ugc-gap: 8px; --ugc-tilt: -3deg; }
+  .ugc-tile__link { height: calc(var(--ugc-height, 220px) * 0.72); }
+  .ugc-feed__aside { justify-items: start; text-align: left; }
+  .ugc-tile__caption { opacity: 1; transform: rotate(-2deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugc-row { overflow-x: auto; scrollbar-width: none; }
+  .ugc-row__track, .ugc-tape__track { animation: none; }
+  .ugc-tile[aria-hidden="true"] { display: none; }
+}

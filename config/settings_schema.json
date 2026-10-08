@@ -68,8 +68,15 @@
         { "value": "tall", "label": "Tall (2:3)" }
       ]},
       { "type": "checkbox", "id": "card_show_vendor", "label": "Show artist (vendor)", "default": true },
-      { "type": "checkbox", "id": "card_price_from", "label": "Show \"From\" before price", "default": true },
-      { "type": "checkbox", "id": "card_hover_image", "label": "Swap to second image on hover", "default": true }
+      { "type": "checkbox", "id": "card_price_from", "label": "Show price range when variants differ", "default": true },
+      { "type": "checkbox", "id": "card_hover_image", "label": "Swap to second image on hover", "default": true },
+      { "type": "checkbox", "id": "card_quick_add", "label": "Quick add to cart on single-variant products", "default": true }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      { "type": "range", "id": "free_shipping_threshold", "label": "Free-shipping threshold", "min": 0, "max": 500, "step": 10, "unit": "€", "default": 150, "info": "Shows a progress bar in the cart. 0 hides it. Keep it in sync with your shipping rates." }
     ]
   },
   {

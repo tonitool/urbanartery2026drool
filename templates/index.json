@@ -9,9 +9,10 @@
         "text": "Aus deinem Lieblingsfoto wird ein handgefertigtes Kunstwerk für deine Wand.",
         "button_label": "Jetzt gestalten",
         "button_label_2": "Inspiration",
-        "button_link_2": "/collections/inspiration",
+        "button_link_2": "/collections/kunstlermotive",
         "image": "shopify://shop_images/ua-foto-kunst-nachher.jpg",
-        "video_url": "https://cdn.shopify.com/videos/c/o/v/f6553138823543e7a732c900a191f151.mov"
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/f6553138823543e7a732c900a191f151.mov",
+        "layout": "full"
       }
     },
     "press": {
@@ -67,18 +68,20 @@
         "text": "Gestaltet von dir. Handgefertigt von unseren Künstlern.",
         "button_label": "",
         "color_scheme": "default"
-      }
+      },
+      "disabled": true
     },
     "popular": {
       "type": "product-carousel",
       "settings": {
-        "eyebrow": "Künstler-Editionen",
-        "heading": "Beliebte Werke",
+        "eyebrow": "Inspiration",
+        "heading": "October Picks",
         "subheading": "",
         "products_to_show": 12,
         "slide_width": 280,
         "button_label": "Alle Werke",
-        "color_scheme": "default"
+        "color_scheme": "default",
+        "collection": "kunstlermotive"
       }
     },
     "before-after": {
@@ -88,8 +91,8 @@
           "type": "comparison",
           "settings": {
             "title": "Aus Foto wird Kunst",
-            "image_before": "shopify://shop_images/ua-foto-kunst-vorher.jpg",
-            "image_after": "shopify://shop_images/ua-foto-kunst-nachher.jpg",
+            "image_before": "shopify://shop_images/ua-ba-eppendorf-vorher.jpg",
+            "image_after": "shopify://shop_images/ua-ba-eppendorf-nachher.jpg",
             "text": "Lade dein Lieblingsfoto hoch und unsere Künstler verwandeln es in ein einzigartiges Street-Art-Werk."
           }
         },
@@ -97,8 +100,8 @@
           "type": "comparison",
           "settings": {
             "title": "Aus quer wird hoch",
-            "image_before": "shopify://shop_images/ua-quer-hoch-vorher.jpg",
-            "image_after": "shopify://shop_images/ua-quer-hoch-nachher.jpg",
+            "image_before": "shopify://shop_images/ua-ba-pier-vorher.jpg",
+            "image_after": "shopify://shop_images/ua-ba-pier-nachher-blau.jpg",
             "text": "Wir erweitern dein Foto für das perfekte Format – ohne dabei Details zu verlieren."
           }
         }
@@ -117,16 +120,163 @@
       }
     },
     "customer-works": {
-      "type": "product-carousel",
+      "type": "ugc-feed",
+      "blocks": {
+        "p1": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ua-ugc-paper-tiger.jpg",
+            "title": "Tigerherz",
+            "place": "Wohnzimmer, Hamburg",
+            "link": "/products/dein-street-art-unikat-copy"
+          }
+        },
+        "p2": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ua-ugc-office-bulldog.jpg",
+            "title": "König Bulli",
+            "place": "Start-up, Berlin",
+            "link": "/products/dein-street-art-unikat-copy"
+          }
+        },
+        "p3": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ua-ugc-birds.jpg",
+            "title": "Zugvogel",
+            "place": "Altbau, Berlin",
+            "link": "/products/dein-street-art-unikat-copy"
+          }
+        },
+        "p4": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ua-ugc-office-phoenix.jpg",
+            "title": "Phönix",
+            "place": "Agentur, Hamburg",
+            "link": "/products/dein-street-art-unikat-copy"
+          }
+        },
+        "p5": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ua-ugc-wolf.jpg",
+            "title": "Rudelchef",
+            "place": "Flur bei München",
+            "link": "/products/dein-street-art-unikat-copy"
+          }
+        },
+        "p6": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ua-ugc-office-hummingbird.jpg",
+            "title": "Kolibri",
+            "place": "Kanzlei, Frankfurt",
+            "link": "/products/dein-street-art-unikat-copy"
+          }
+        },
+        "p7": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ua-ugc-afro.jpg",
+            "title": "Lockenkopf",
+            "place": "Schlafzimmer, Düsseldorf",
+            "link": "/products/dein-street-art-unikat-copy"
+          }
+        },
+        "p8": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ua-ugc-office-balloon.jpg",
+            "title": "Luftnummer",
+            "place": "Chefbüro, Düsseldorf",
+            "link": "/products/dein-street-art-unikat-copy"
+          }
+        },
+        "p9": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ua-ugc-astronaut.jpg",
+            "title": "Ab ins All",
+            "place": "Familienküche bei Köln",
+            "link": "/products/dein-street-art-unikat-copy"
+          }
+        },
+        "p10": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ua-ugc-office-elephant.jpg",
+            "title": "Gelber Riese",
+            "place": "Büroküche, München",
+            "link": "/products/dein-street-art-unikat-copy"
+          }
+        },
+        "p11": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ua-ugc-koi.jpg",
+            "title": "Koi Pink",
+            "place": "Homeoffice, Frankfurt",
+            "link": "/products/dein-street-art-unikat-copy"
+          }
+        },
+        "p12": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ua-ugc-crow.jpg",
+            "title": "Krähe auf Draht",
+            "place": "Treppenhaus bei Stuttgart",
+            "link": "/products/dein-street-art-unikat-copy"
+          }
+        },
+        "p13": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ua-ugc-bubblegum.jpg",
+            "title": "Kaugummiblase",
+            "place": "Loft, Leipzig",
+            "link": "/products/dein-street-art-unikat-copy"
+          }
+        },
+        "p14": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ua-ugc-paper-skull.jpg",
+            "title": "Rosenschädel",
+            "place": "Esszimmer, Eppendorf",
+            "link": "/products/dein-street-art-unikat-copy"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p3",
+        "p2",
+        "p4",
+        "p5",
+        "p7",
+        "p6",
+        "p8",
+        "p9",
+        "p11",
+        "p10",
+        "p12",
+        "p13",
+        "p14"
+      ],
       "settings": {
-        "eyebrow": "Lass dich inspirieren",
-        "heading": "Werke anderer Kunden",
-        "subheading": "",
-        "products_to_show": 12,
-        "slide_width": 280,
-        "button_label": "Zur Inspiration",
-        "button_link": "/collections/inspiration",
-        "color_scheme": "default"
+        "eyebrow": "Inspiration für deine Wand",
+        "heading": "So wohnt",
+        "heading_outline": "Street-Art",
+        "count_label": "Wände, ein Gefühl",
+        "tape_text": "Aus deinem Foto wird Street-Art · Handgefertigt · Nur für dich ·",
+        "image_height": 220,
+        "duration": 50,
+        "copies": 4,
+        "invite_label": "Dein Foto hier?",
+        "invite_link": "",
+        "note": "Beispielbilder. Dein Werk hängt schon? Schick uns ein Foto – wir zeigen es hier."
       }
     },
     "tiles": {
@@ -137,14 +287,15 @@
           "settings": {
             "label": "Selbst gestalten",
             "image": "shopify://shop_images/ua-motiv-por-favor.jpg",
-            "link": "/products/masterprodukt-individuelle-streetart"
+            "link": "/products/dein-street-art-unikat-copy"
           }
         },
         "t2": {
           "type": "tile",
           "settings": {
-            "label": "Künstler-Editionen",
-            "image": "shopify://shop_images/ua-motiv-trane.jpg"
+            "label": "Fertige Werke",
+            "image": "shopify://shop_images/ua-motiv-trane.jpg",
+            "link": "/collections/all"
           }
         },
         "t3": {
@@ -152,7 +303,7 @@
           "settings": {
             "label": "Inspiration",
             "image": "shopify://shop_images/ua-motiv-whoa.jpg",
-            "link": "/collections/inspiration"
+            "link": "/collections/kunstlermotive"
           }
         },
         "t4": {
@@ -170,7 +321,8 @@
         "t3",
         "t4"
       ],
-      "settings": {}
+      "settings": {},
+      "disabled": true
     },
     "new": {
       "type": "product-carousel",
@@ -181,7 +333,9 @@
         "products_to_show": 12,
         "slide_width": 280,
         "button_label": "Alle Motive",
-        "color_scheme": "default"
+        "color_scheme": "default",
+        "collection": "neue-motive",
+        "button_link": "/collections/neue-motive"
       }
     },
     "design-service": {
@@ -192,7 +346,8 @@
         "button_label": "Kontaktiere uns",
         "button_link": "/pages/kontakt",
         "color_scheme": "dark"
-      }
+      },
+      "disabled": true
     },
     "how-it-works": {
       "type": "trust-badges",
@@ -341,7 +496,8 @@
         "eyebrow": "Behind the scenes",
         "heading": "Urban Artery",
         "video_url": "https://cdn.shopify.com/videos/c/o/v/f6553138823543e7a732c900a191f151.mov",
-        "color_scheme": "dark"
+        "color_scheme": "dark",
+        "poster": "shopify://shop_images/ua-mockup-wohnen-sofa.jpg"
       }
     },
     "community": {
@@ -397,23 +553,124 @@
         "fine_print": "<p>Mit der Anmeldung willigst du ein, unseren Newsletter zu erhalten. Abmeldung jederzeit über den Link in jeder E-Mail. Details in unserer <a href=\"/policies/privacy-policy\">Datenschutzerklärung</a>.</p>",
         "color_scheme": "dark"
       }
+    },
+    "shop-the-wall": {
+      "type": "explore-scene",
+      "blocks": {
+        "a": {
+          "type": "point",
+          "settings": {
+            "label": "M · 60 × 40 cm",
+            "x": 30,
+            "y": 51
+          }
+        },
+        "b": {
+          "type": "point",
+          "settings": {
+            "label": "L · 120 × 80 cm",
+            "x": 58,
+            "y": 46
+          }
+        },
+        "c": {
+          "type": "point",
+          "settings": {
+            "label": "M · LightBeton®",
+            "x": 81,
+            "y": 59
+          }
+        }
+      },
+      "block_order": [
+        "a",
+        "b",
+        "c"
+      ],
+      "settings": {
+        "heading": "So wirken die Größen",
+        "image": "shopify://shop_images/ua-shop-the-wall.jpg",
+        "image_alt": "Altbau-Wohnzimmer mit drei Urban-Artery-Werken in den Größen M und L über Sideboard, Sofa und Bank",
+        "height": "large",
+        "point_color": "#FFFFFF"
+      }
+    },
+    "editions-lineup": {
+      "type": "lineup",
+      "blocks": {
+        "f1": {
+          "type": "figure",
+          "settings": {
+            "image": "shopify://shop_images/ua-packshot-trane.webp"
+          }
+        },
+        "f2": {
+          "type": "figure",
+          "settings": {
+            "image": "shopify://shop_images/ua-packshot-por-favor.webp"
+          }
+        },
+        "f3": {
+          "type": "figure",
+          "settings": {
+            "image": "shopify://shop_images/ua-packshot-whoa.webp"
+          }
+        },
+        "f4": {
+          "type": "figure",
+          "settings": {
+            "image": "shopify://shop_images/ua-packshot-robot.webp"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
+      "settings": {
+        "heading": "Bereit zum Aufhängen",
+        "figure_height": 45,
+        "autoplay": 4,
+        "hover_effect": "grayscale"
+      }
+    },
+    "design-statement": {
+      "type": "statement",
+      "settings": {
+        "image": "shopify://shop_images/ua-auftragsarbeiten.jpg",
+        "overlay": 45,
+        "eyebrow": "Urban Artery Design Service",
+        "text": "Du hast eine Vision? Wir machen sie zur Realität.",
+        "effect": "typewriter",
+        "alignment": "center",
+        "text_size": "m",
+        "text_color": "#FFFFFF",
+        "marquee_speed": 30,
+        "button_label": "Kontaktiere uns",
+        "button_link": "/pages/kontakt"
+      }
     }
   },
   "order": [
     "hero",
     "press",
-    "intro",
     "popular",
     "before-after",
+    "shop-the-wall",
     "customer-works",
-    "tiles",
+    "editions-lineup",
     "new",
-    "design-service",
+    "design-statement",
     "how-it-works",
     "reviews",
     "behind-the-scenes",
     "more",
     "community",
-    "newsletter"
+    "newsletter",
+    "intro",
+    "tiles",
+    "design-service"
   ]
 }

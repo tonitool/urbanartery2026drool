@@ -44,7 +44,7 @@ TOKENS = {
     "--card-ratio": "3 / 4",
 }
 
-NAV = [("Konfigurator", "#"), ("Inspiration", "#"), ("Über uns", "page.ueber-uns.html"),
+NAV = [("Konfigurator", "product.html"), ("Inspiration", "collection.html"), ("Über uns", "page.ueber-uns.html"),
        ("Auftragsarbeiten", "page.auftragsarbeiten.html"), ("Kontakt", "page.kontakt.html")]
 PAGE_LINKS = {"So funktioniert's": "page.so-gehts.html", "FAQs": "page.faq.html",
               "Verpackung & Versand": "page.versand.html", "Über Urban Artery": "page.ueber-uns.html",
@@ -59,7 +59,23 @@ PAYMENT = ["VISA", "MC", "AMEX", "PayPal", "Klarna", "G Pay", "Pay"]
 # Preview-only product cards. Neutral names: real products come from the store.
 DEMO_IMAGES = ["ua-motiv-por-favor.jpg", "ua-foto-kunst-nachher.jpg", "ua-motiv-whoa.jpg",
                "ua-quer-hoch-nachher.jpg", "ua-motiv-trane.jpg", "ua-auftragsarbeiten.jpg"]
-DEMO_PRODUCTS = [("Beispielwerk %02d" % i, "Ab 200,00 €") for i in range(1, 9)]
+# Sample piece names for the preview (the real store shows its own product titles).
+DEMO_NAMES = ["Kopfkino", "Katzenjammer", "Bitte, Teufel", "Lauter Kopf",
+              "Altbau Blues", "König Schrei", "Hörnchen", "Sonntag im Loft"]
+DEMO_PRODUCTS = [(name, "Ab 200,00 €") for name in DEMO_NAMES]
+
+
+# Which sample piece shows which artwork (packshot name -> demo number), matching preview/make_demo.py.
+ART_TO_DEMO = {"trane": 1, "whoa": 2, "por-favor": 3, "robot": 5}
+
+
+def demo_name(n: int) -> str:
+    """Name of sample piece n (1-based)."""
+    return DEMO_NAMES[(n - 1) % len(DEMO_NAMES)]
+DEMO_BADGES = {0: "Neu", 3: "Limitiert", 5: "Unikat"}   # from product tags badge:<text> in the real theme
+DEMO_QUICK_ADD = {1, 4, 6}                                # single-variant products only
+DEMO_DESCRIPTION = ("Beispieltext: Handgefertigtes Street-Art-Unikat auf LightBeton®, von unseren Künstlern "
+                    "von Hand umgesetzt. Erhältlich von S (20 × 30 cm) bis XL (120 × 180 cm), im Hoch- oder Querformat.")
 MEDIA_PREFIX = "shopify://shop_images/"
 
 e = html.escape
@@ -75,6 +91,8 @@ ICONS = {
     "account": '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="6.6" r="3.4"/><path d="M3.6 17c0-3.3 2.9-5.4 6.4-5.4s6.4 2.1 6.4 5.4" stroke-linecap="round"/></svg>',
     "cart": '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3.4 5.6h13.2l-1.1 10a1.4 1.4 0 0 1-1.4 1.3H5.9a1.4 1.4 0 0 1-1.4-1.3z"/><path d="M7.2 8V5.2a2.8 2.8 0 0 1 5.6 0V8" stroke-linecap="round"/></svg>',
     "menu": '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h14M3 10h14M3 14h14" stroke-linecap="round"/></svg>',
+    "heart": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z" stroke-linejoin="round"/></svg>',
+    "plus": '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke-linecap="round"/></svg>',
     "close": '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 5l10 10M15 5L5 15" stroke-linecap="round"/></svg>',
     "caret": '<svg class="nav__caret" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l3 3 3-3" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     "mail": '<svg class="trust__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5.5" width="18" height="13" rx="1"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5" stroke-linejoin="round"/></svg>',
@@ -118,15 +136,19 @@ def art(seed: int, w: int = 300, h: int = 400, photo: bool = False) -> str:
             f'<path d="M{w*.3} {h} Q{cx} {h*.62} {w*.7} {h}Z" fill="#bdbdbd"/></svg>')
 
 
-def picture(value: str | None, seed: int, cls: str = "", fit: str = "cover") -> str:
+def picture(value: str | None, seed: int, cls: str = "", fit: str = "cover", alt: str = "") -> str:
     """Render a template image reference from media/, or generated art when unset."""
     if value and value.startswith(MEDIA_PREFIX):
         name = value[len(MEDIA_PREFIX):]
-        return f'<img class="{cls}" src="../media/{e(name)}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:{fit}">'
+        return f'<img class="{cls}" src="../media/{e(name)}" alt="{e(alt)}" loading="lazy" style="width:100%;height:100%;object-fit:{fit}">'
     return art(seed)
 
 
-def demo_image(i: int) -> str:
+def demo_image(i: int, alt: str = "") -> str:
+    """Product-card image: a room mockup from preview/demo/ (rendered by mockups/place.py)."""
+    demos = sorted((PREVIEW / "demo").glob("demo-*.jpg"))
+    if demos:
+        return f'<img src="demo/{demos[i % len(demos)].name}" alt="{e(alt)}" loading="lazy" style="width:100%;height:100%;object-fit:cover">'
     return picture(MEDIA_PREFIX + DEMO_IMAGES[i % len(DEMO_IMAGES)], i)
 
 
@@ -181,7 +203,9 @@ def r_header(sec: dict) -> str:
             f'<button class="header__toggle" type="button" data-drawer-open aria-controls="MenuDrawer" aria-expanded="false" aria-label="Menü">{ICONS["menu"]}</button>'
             f'<a class="header__logo" href="index.html">{logo}</a>'
             f'<nav class="nav" aria-label="Menü"><ul class="nav__list">{links}</ul></nav>'
-            f'<div class="header__actions"><a class="header__action" href="#" aria-label="Suche">{ICONS["search"]}</a>'
+            f'<div class="header__actions"><a class="btn btn--small header__cta" href="#">{e(sec["settings"].get("cta_label", ""))}</a>'
+            f'<a class="header__action" href="#" aria-label="Suche">{ICONS["search"]}</a>'
+            f'<a class="header__action" href="#" aria-label="Merkliste">{ICONS["heart"]}<span class="cart-count" data-wishlist-count hidden>0</span></a>'
             f'<a class="header__action" href="#" aria-label="Konto">{ICONS["account"]}</a>'
             f'<a class="header__action" href="#" aria-label="Warenkorb">{ICONS["cart"]}<span class="cart-count">1</span></a></div>'
             f'</div></header>'
@@ -207,19 +231,93 @@ def hero_media(s: dict) -> str:
         poster_attr = f' poster="../media/{e(poster[len(MEDIA_PREFIX):])}"' if poster.startswith(MEDIA_PREFIX) else ""
         return (f'<video class="hero__video" autoplay muted loop playsinline preload="metadata" data-autoplay{poster_attr}>'
                 f'<source src="{e(s["video_url"])}" type="video/mp4"></video>')
-    return picture(s.get("image"), 4)
+    return picture(s.get("image"), 4, alt=s.get("heading", ""))
+
+
+def demo_card(n: int) -> str:
+    """Sample product card n (1-based), same markup as snippets/product-card.liquid."""
+    i = n - 1
+    title = demo_name(n)
+    badge = f'<span class="product-card__badge product-card__badge--tag">{DEMO_BADGES[i]}</span>' if i in DEMO_BADGES else ""
+    heart = (f'<button class="wishlist-button" type="button" data-wishlist-toggle="beispielwerk-{n:02d}" aria-pressed="false" '
+             f'aria-label="{title} merken" data-label-add="{title} merken" data-label-remove="{title} von der Merkliste entfernen">{ICONS["heart"]}</button>')
+    quick = (f'<form class="product-card__quick-add" onsubmit="return false"><button class="product-card__quick-add-btn" type="submit" '
+             f'aria-label="{title} in den Warenkorb">{ICONS["plus"]}<span>In den Warenkorb</span></button></form>') if i in DEMO_QUICK_ADD else ""
+    return (f'<div class="product-card"><div class="product-card__media-wrap">'
+            f'<a class="product-card__media" href="#demo-{n:02d}" data-quick-view="#demo-{n:02d}" aria-haspopup="dialog" '
+            f'aria-label="Schnellansicht: {title}">{demo_image(i, title)}{badge}</a>{heart}{quick}</div>'
+            f'<div class="product-card__info"><h3 class="product-card__title"><a href="product.html">{title}</a></h3>'
+            f'<p class="product-card__price">Ab 200,00 €</p></div></div>')
 
 
 def r_product_carousel(sec: dict) -> str:
     s = sec["settings"]
-    slides = []
     offset = len(s["heading"])
-    for i, (title, price) in enumerate(DEMO_PRODUCTS):
-        slides.append(f'<li class="carousel__slide"><div class="product-card"><a class="product-card__media" href="#">{demo_image(i + offset)}</a>'
-                      f'<div class="product-card__info"><h3 class="product-card__title"><a href="#">{title}</a></h3>'
-                      f'<p class="product-card__price">{price}</p></div></div></li>')
+    slides = [f'<li class="carousel__slide">{demo_card((i + offset) % len(DEMO_PRODUCTS) + 1)}</li>' for i in range(len(DEMO_PRODUCTS))]
     dark = s.get("color_scheme") == "dark"
     return f'<section class="section{scheme(s)}">{heading(s)}{carousel(slides, s["slide_width"])}{button(s.get("button_label"), dark)}</section>'
+
+
+def r_main_collection(sec: dict) -> str:
+    cards = "".join(f"<li>{demo_card(n)}</li>" for n in range(1, len(DEMO_PRODUCTS) + 1))
+    return ('<div class="container"><div class="collection-hero"><h1 class="collection-hero__title">Fertige Werke</h1>'
+            '<div class="collection-hero__desc rte"><p>Beispieltext: Fertig gestaltet, handgefertigt, bereit zum Aufhängen.</p></div></div>'
+            f'<div class="collection-toolbar"><span>{len(DEMO_PRODUCTS)} Werke</span><label><span class="visually-hidden">Sortieren nach</span>'
+            '<select class="field" style="min-height:38px;padding-block:7px;"><option>Beliebt</option><option>Neueste</option>'
+            '<option>Preis aufsteigend</option></select></label></div>'
+            f'<ul class="product-grid">{cards}</ul></div>')
+
+
+def r_related(sec: dict) -> str:
+    slides = [f'<li class="carousel__slide">{demo_card(n)}</li>' for n in (1, 2, 4, 5, 6, 7)]
+    return (f'<section class="section"><div class="container section-header"><h2 class="section-header__title">{e(sec["settings"]["heading"])}</h2></div>'
+            f'{carousel(slides, 260)}</section>')
+
+
+def r_main_product(sec: dict) -> str:
+    """Sample product page: same markup as sections/main-product.liquid, with demo 03."""
+    manifest = json.loads((PREVIEW / "demo" / "manifest.json").read_text())[2]["slides"]
+    title = demo_name(3)
+    main_img = f'<img id="ProductMainImage" src="demo/{manifest[0]["file"]}" alt="{title} – {manifest[0]["label"]}">'
+    thumbs = "".join(
+        f'<button class="product__thumb" type="button" onclick="document.getElementById(\'ProductMainImage\').src=\'demo/{sl["file"]}\'" '
+        f'aria-label="{e(sl["label"])}"><img src="demo/{sl["file"]}" width="160" height="160" alt="{title} – {e(sl["label"])}"></button>' for sl in manifest)
+    def options(name, values, checked=0):
+        pills = "".join(f'<label class="option__value"><input type="radio" name="opt-{name}" value="{e(v)}" {"checked" if k == checked else ""}><span>{e(v)}</span></label>'
+                        for k, v in enumerate(values))
+        return f'<div class="option"><span class="option__label">{name}</span><div class="option__values">{pills}</div></div>'
+    b = sec["blocks"]
+    trust = "".join(f'<li class="product-trust__item">{ICONS.get(b[k]["settings"]["icon"], "")}<span>{e(b[k]["settings"]["text"])}</span></li>'
+                    for k in sec["block_order"] if b[k]["type"] == "trust_item")
+    acc = []
+    for k in sec["block_order"]:
+        blk = b[k]
+        if blk["type"] == "description":
+            acc.append(f'<details class="accordion" open><summary>{e(blk["settings"]["title"])} {ICONS["caret"]}</summary>'
+                       f'<div class="accordion__body rte"><p>{e(DEMO_DESCRIPTION)}</p></div></details>')
+        elif blk["type"] == "accordion":
+            acc.append(f'<details class="accordion"><summary>{e(blk["settings"]["title"])} {ICONS["caret"]}</summary>'
+                       f'<div class="accordion__body rte">{blk["settings"]["content"]}</div></details>')
+    pay = "".join(f'<li><span class="payment-icon payment-icon--demo">{p}</span></li>' for p in PAYMENT)
+    s = sec["settings"]
+    return (f'<div class="container product"><div class="product__gallery"><div class="product__main-image">{main_img}</div>'
+            f'<div class="product__thumbs">{thumbs}</div></div>'
+            f'<div class="product__details"><div class="product__title-row"><h1 class="product__title">{title}</h1>'
+            f'<button class="wishlist-button" type="button" data-wishlist-toggle="beispielwerk-03" aria-pressed="false" aria-label="{title} merken" '
+            f'data-label-add="{title} merken" data-label-remove="{title} von der Merkliste entfernen">{ICONS["heart"]}</button></div>'
+            f'<p class="product__vendor">Von Urban Artery</p><p class="product__price" data-product-price><span>Ab 200,00 €</span></p>'
+            f'<p class="product__tax-note">inkl. MwSt., zzgl. Versandkosten</p>'
+            f'<form class="product-form" onsubmit="return false">'
+            f'{options("Größe", ["S (20×30 cm)", "M (40×60 cm)", "L (80×120 cm)", "XL (120×180 cm)"], 2)}'
+            f'{options("Format", ["Hochformat", "Querformat"], 1)}'
+            f'{options("Trägermaterial", ["LightBeton®", "Premium-Aquarellpapier", "Leinwand auf Keilrahmen"])}'
+            f'<div class="preview-app-slot">Hier erscheint der Zakeke-Konfigurator (App-Block)</div>'
+            f'<button class="btn btn--full" type="submit" data-add-to-cart>In den Warenkorb</button>'
+            f'<p class="product__delivery">{ICONS["clock"]}<span>{e(s.get("delivery_note", ""))}</span></p>'
+            f'<ul class="product__payment" role="list">{pay}</ul></form>'
+            f'<ul class="product-trust" role="list">{trust}</ul>{"".join(acc)}</div></div>'
+            f'<div class="sticky-buy" data-sticky-buy hidden><div class="sticky-buy__info"><p class="sticky-buy__title">{title}</p>'
+            f'<p class="sticky-buy__price" data-product-price>Ab 200,00 €</p></div><button class="btn" type="button">In den Warenkorb</button></div>')
 
 
 def r_collection_carousel(sec: dict) -> str:
@@ -230,7 +328,7 @@ def r_collection_carousel(sec: dict) -> str:
         b = sec["blocks"][k]["settings"]
         text = f'<p class="edit-card__text">{e(b["text"])}</p>' if b.get("text") else ""
         cta = f'<span class="edit-card__cta">{e(b["link_label"])} {ICONS["arrow-right"]}</span>' if b.get("link_label") else ""
-        media = picture(b.get("image"), i + 2)
+        media = picture(b.get("image"), i + 2, alt=b.get("title", ""))
         slides.append(f'<li class="carousel__slide"><a class="edit-card" href="#"><div class="edit-card__media">{media}</div>'
                       f'<div class="edit-card__body"><p class="edit-card__title">{e(b.get("title", ""))}</p>{text}{cta}</div></a></li>')
     extra = " carousel--overlay" if overlay else ""
@@ -244,8 +342,8 @@ def r_before_after(sec: dict) -> str:
         b = sec["blocks"][k]["settings"]
         figs.append(f'<figure class="ba"><figcaption class="ba__title">{e(b["title"])}</figcaption>'
                     f'<div class="ba__frame" data-before-after style="--ba-pos: 50%;">'
-                    f'<div class="ba__layer ba__layer--after">{picture(b.get("image_after"), i + 5)}</div>'
-                    f'<div class="ba__layer ba__layer--before">{picture(b.get("image_before"), 0)}</div>'
+                    f'<div class="ba__layer ba__layer--after">{picture(b.get("image_after"), i + 5, alt=b["title"] + " – " + s["after_label"])}</div>'
+                    f'<div class="ba__layer ba__layer--before">{picture(b.get("image_before"), 0, alt=b["title"] + " – " + s["before_label"])}</div>'
                     f'<span class="ba__tag ba__tag--before">{e(s["before_label"])}</span><span class="ba__tag ba__tag--after">{e(s["after_label"])}</span>'
                     f'<span class="ba__handle">{ICONS["arrow-left"]}{ICONS["arrow-right"]}</span>'
                     f'<input class="ba__range" type="range" min="0" max="100" value="50" aria-label="Vorher und Nachher vergleichen: {e(b["title"])}" data-before-after-range>'
@@ -255,7 +353,7 @@ def r_before_after(sec: dict) -> str:
 
 
 def r_category_tiles(sec: dict) -> str:
-    tiles = "".join(f'<a class="tile" href="#">{picture(sec["blocks"][k]["settings"].get("image"), i + 3)}<span class="tile__label">{e(sec["blocks"][k]["settings"]["label"])}</span></a>'
+    tiles = "".join(f'<a class="tile" href="#">{picture(sec["blocks"][k]["settings"].get("image"), i + 3, alt=sec["blocks"][k]["settings"]["label"])}<span class="tile__label">{e(sec["blocks"][k]["settings"]["label"])}</span></a>'
                     for i, k in enumerate(sec["block_order"]))
     return f'<section class="tile-band"><div class="tile-band__grid">{tiles}</div></section>'
 
@@ -285,7 +383,9 @@ def r_trust(sec: dict) -> str:
 def r_video(sec: dict) -> str:
     s = sec["settings"]
     if s.get("video_url"):
-        media = f'<video class="video-band__media" controls playsinline preload="metadata"><source src="{e(s["video_url"])}" type="video/mp4"></video>'
+        poster = s.get("poster", "")
+        poster_attr = f' poster="../media/{e(poster[len(MEDIA_PREFIX):])}"' if poster.startswith(MEDIA_PREFIX) else ""
+        media = f'<video class="video-band__media" controls playsinline preload="none"{poster_attr}><source src="{e(s["video_url"])}" type="video/mp4"></video>'
     else:
         media = f'<div class="video-band__placeholder">{art(2, 1600, 900)}<span class="video-band__play">{ICONS["play"]}</span></div>'
     return f'<section class="section{scheme(s)}">{heading(s)}<div class="container"><div class="video-band">{media}</div></div></section>'
@@ -391,6 +491,92 @@ def r_contact(sec: dict) -> str:
             f'<div class="contact__form-wrap"><h2 class="contact__heading">{e(s["form_heading"])}</h2>{form}</div></div></section>')
 
 
+def media_img(value: str, cls: str, alt: str = "") -> str:
+    if value and value.startswith(MEDIA_PREFIX):
+        return f'<img class="{cls}" src="../media/{e(value[len(MEDIA_PREFIX):])}" alt="{e(alt)}" draggable="false">'
+    return art(1)
+
+
+def motion_toggle(target: str, cls: str) -> str:
+    return (f'<button type="button" class="motion-toggle {cls}" data-motion-toggle="{target}" aria-controls="{target}" data-paused="false">'
+            '<span class="motion-toggle__pause">Pause</span><span class="motion-toggle__play">Abspielen</span></button>')
+
+
+def r_statement(sec: dict) -> str:
+    s = sec["settings"]
+    sid = "statement-preview"
+    eyebrow = f'<p class="statement__eyebrow">{e(s["eyebrow"])}</p>' if s.get("eyebrow") else ""
+    btn = f'<a class="btn btn--light" href="#">{e(s["button_label"])}</a>' if s.get("button_label") else ""
+    return (f'<statement-section id="{sid}" class="statement statement--{s["effect"]} statement--{s["alignment"]} full-width" '
+            f'style="--statement-overlay: {s["overlay"] / 100}; --statement-text: {s["text_color"]}; --statement-size: var(--statement-size-{s["text_size"]}); --statement-speed: {s["marquee_speed"]}s;" '
+            f'data-effect="{s["effect"]}"><div class="statement__backdrop" aria-hidden="true"><div class="statement__fixed">'
+            f'{media_img(s.get("image", ""), "statement__image")}</div></div>'
+            f'<div class="statement__body">{eyebrow}<p class="statement__text" data-statement-text>{e(s["text"])}</p>{btn}</div></statement-section>')
+
+
+def r_scene(sec: dict) -> str:
+    s = sec["settings"]
+    points = "".join(
+        f'<a class="scene__point" href="#" style="--x: {b["settings"]["x"]}%; --y: {b["settings"]["y"]}%;" data-scene-point>'
+        f'<span class="scene__dot" aria-hidden="true"></span><span class="scene__label">{e(b["settings"]["label"])}</span></a>'
+        for b in (sec["blocks"][k] for k in sec["block_order"]))
+    heading = f'<div class="scene__header"><h2 class="scene__heading">{e(s["heading"])}</h2></div>' if s.get("heading") else ""
+    return (f'<explore-scene class="scene scene--{s["height"]} full-width" style="--scene-ratio: 2.33; --scene-point: {s["point_color"]};">{heading}'
+            f'<div class="scene__viewport" tabindex="0" aria-label="Ziehen, um den Raum zu erkunden" data-scene-viewport>'
+            f'<div class="scene__canvas" data-scene-canvas>{media_img(s.get("image", ""), "scene__image", s.get("image_alt", ""))}{points}</div></div>'
+            f'<div class="scene__hint" aria-hidden="true" data-scene-hint><svg viewBox="0 0 64 32" width="48" height="24"><path d="M6 16h52M14 8l-8 8 8 8M50 8l8 8-8 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+            f'<span>Ziehen zum Entdecken</span></div></explore-scene>')
+
+
+def r_lineup(sec: dict) -> str:
+    s = sec["settings"]
+    lid = "lineup-preview"
+    figures = "".join(
+        f'<div role="listitem" class="lineup__figure" data-lineup-figure data-title="{e(demo_name(n))}" data-url="#demo-{n:02d}">'
+        f'{media_img(b["settings"]["image"], "lineup__image", demo_name(n))}</div>'
+        for n, b in ((ART_TO_DEMO.get(sec["blocks"][k]["settings"]["image"].rsplit("ua-packshot-", 1)[-1].split(".")[0], 1), sec["blocks"][k])
+                     for k in sec["block_order"]))
+    return (f'<lineup-arc id="{lid}" class="lineup lineup--hover-{s["hover_effect"]} full-width" style="--lineup-height: {s["figure_height"]}svh;" data-autoplay="{s["autoplay"]}">'
+            f'<h2 class="lineup__heading">{e(s["heading"])}</h2>'
+            f'<div class="lineup__stage" role="list" tabindex="0" aria-label="{e(s["heading"])}" data-lineup-stage>{figures}</div>'
+            f'<div class="lineup__footer"><a class="lineup__title" href="#" data-lineup-title aria-live="polite"></a><div class="lineup__controls">'
+            f'<button type="button" class="lineup__arrow" data-lineup-prev><span aria-hidden="true">←</span><span class="visually-hidden">Zurück</span></button>'
+            f'<button type="button" class="lineup__arrow" data-lineup-next><span aria-hidden="true">→</span><span class="visually-hidden">Weiter</span></button>'
+            f'{motion_toggle(lid, "lineup__toggle")}</div></div></lineup-arc>')
+
+
+
+
+def r_ugc(sec: dict) -> str:
+    """Mirror sections/ugc-feed.liquid: two drifting rows split odd/even, a tape strip between."""
+    s = sec["settings"]
+    posts = [sec["blocks"][k]["settings"] for k in sec["block_order"] if sec["blocks"][k]["settings"].get("image")]
+    copies = int(s.get("copies", 4))
+
+    def row(items: list, reverse: bool) -> str:
+        tiles = []
+        for copy in range(copies):
+            hidden = ' aria-hidden="true"' if copy else ""
+            for b in items:
+                tiles.append(f'<li class="ugc-tile"{hidden}><a class="ugc-tile__link" href="#">'
+                             f'{media_img(b["image"], "", b.get("title", ""))}'
+                             f'<span class="ugc-tile__caption"><span class="ugc-tile__title">{e(b.get("title", ""))}</span>'
+                             f'<span class="ugc-tile__place">{e(b.get("place", ""))}</span></span></a></li>')
+        return f'<div class="ugc-row{" ugc-row--reverse" if reverse else ""}"><ul class="ugc-row__track" role="list">{"".join(tiles)}</ul></div>'
+
+    tape = ""
+    if s.get("tape_text"):
+        tape = '<div class="ugc-tape" aria-hidden="true"><div class="ugc-tape__track">' + f'<span>{e(s["tape_text"])}</span>' * 12 + "</div></div>"
+    outline = f'<span class="ugc-feed__title-outline">{e(s["heading_outline"])}</span>' if s.get("heading_outline") else ""
+    return (f'<section class="ugc-feed" style="--ugc-height: {s.get("image_height", 220)}px; --ugc-duration: {s.get("duration", 50)}s; --ugc-copies: {copies};">'
+            f'<div class="container container--wide ugc-feed__header"><div class="ugc-feed__heading">'
+            f'<p class="ugc-feed__eyebrow">{e(s.get("eyebrow", ""))}</p><h2 class="ugc-feed__title">{e(s.get("heading", ""))}{outline}</h2></div>'
+            f'<div class="ugc-feed__aside"><p class="ugc-feed__count"><strong>{len(posts)}</strong> {e(s.get("count_label", ""))}</p>'
+            f'<a class="ugc-feed__invite" href="#">{e(s.get("invite_label", ""))}</a></div></div>'
+            f'<div class="ugc-feed__stage">{row(posts[0::2], False)}{tape}{row(posts[1::2], True)}</div>'
+            f'<p class="container container--wide ugc-feed__note">{e(s.get("note", ""))}</p></section>')
+
+
 RENDERERS = {
     "announcement-bar": r_announcement, "header": r_header, "hero-split": r_hero,
     "product-carousel": r_product_carousel, "collection-carousel": r_collection_carousel,
@@ -399,7 +585,46 @@ RENDERERS = {
     "newsletter": r_newsletter, "footer": r_footer,
     "page-header": r_page_header, "rich-text": r_rich_text, "text-columns": r_text_columns,
     "faq": r_faq, "contact-form": r_contact,
+    "main-product": r_main_product, "related-products": r_related, "main-collection": r_main_collection,
+    "statement": r_statement, "ugc-feed": r_ugc, "explore-scene": r_scene, "lineup": r_lineup,
 }
+
+
+def quick_view_templates() -> str:
+    """One <template> per sample product, same markup as snippets/quick-view.liquid."""
+    manifest_path = PREVIEW / "demo" / "manifest.json"
+    if not manifest_path.exists():
+        return ""
+    out = []
+    for n, item in enumerate(json.loads(manifest_path.read_text()), 1):
+        title = demo_name(n)
+        slides = "".join(
+            f'<figure class="qv__slide" data-qv-slide><img src="demo/{e(sl["file"])}" alt="{e(title)} – {e(sl["label"])}" loading="lazy">'
+            f'<figcaption class="qv__caption">{e(sl["label"])}</figcaption></figure>' for sl in item["slides"])
+        thumbs = "".join(
+            f'<button class="qv__thumb" type="button" role="tab" data-qv-thumb="{k}" aria-label="{e(sl["label"])}">'
+            f'<img src="demo/{e(sl["file"])}" alt="" loading="lazy"></button>' for k, sl in enumerate(item["slides"]))
+        buy = ('<form class="qv__buy" data-quick-add="true" onsubmit="return false"><button class="btn btn--full" type="submit">Dieses Werk bestellen</button></form>'
+               if (n - 1) in DEMO_QUICK_ADD else '<a class="btn btn--full" href="#">Dieses Werk bestellen</a>')
+        out.append(
+            f'<template data-quick-view-template="#demo-{n:02d}"><div class="qv" data-qv><div class="qv__media">'
+            f'<div class="qv__track" data-qv-track tabindex="0" aria-label="Bilder von {title}">{slides}</div>'
+            f'<button class="qv__nav qv__nav--prev" type="button" data-qv-prev aria-label="Zurück">{ICONS["arrow-left"]}</button>'
+            f'<button class="qv__nav qv__nav--next" type="button" data-qv-next aria-label="Weiter">{ICONS["arrow-right"]}</button>'
+            f'<div class="qv__thumbs" role="tablist">{thumbs}</div></div>'
+            f'<div class="qv__info"><p class="qv__artist">Urban Artery</p><h2 class="qv__title" id="QuickViewTitle">{title}</h2>'
+            f'<p class="qv__price">Ab 200,00 €</p><p class="product__tax-note">inkl. MwSt., zzgl. Versandkosten</p>'
+            f'<div class="qv__desc rte">{e(DEMO_DESCRIPTION)}</div>'
+            f'<div class="qv__actions">{buy}<a class="btn btn--outline btn--full" href="#">Selbst gestalten</a></div>'
+            f'<a class="qv__details link-underline" href="#">Alle Details ansehen</a></div></div></template>')
+    return "\n".join(out)
+
+
+QUICK_VIEW_DIALOG = (
+    '<dialog class="qv-dialog" id="QuickView" aria-labelledby="QuickViewTitle" data-quick-view-dialog '
+    'data-error="Dieses Werk konnte nicht geladen werden.">'
+    '<button class="qv-dialog__close header__action" type="button" data-quick-view-close aria-label="Schließen">{close}</button>'
+    '<div class="qv-dialog__body" data-quick-view-body></div></dialog>')
 
 
 def render_group(path: Path) -> str:
@@ -419,7 +644,7 @@ def render_group(path: Path) -> str:
 def render_page(template: Path, out: Path) -> None:
     tokens = "\n".join(f"  {k}: {v};" for k, v in TOKENS.items())
     page = f"""<!doctype html>
-<html lang="de">
+<html lang="de" class="js">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -431,9 +656,17 @@ def render_page(template: Path, out: Path) -> None:
 {tokens}
 }}
 .payment-icon--demo {{ display: inline-flex; align-items: center; justify-content: center; background: #fff; color: #111; font: 700 9px/1 sans-serif; }}
+.preview-app-slot {{ padding: 18px; border: 1px dashed #bbb; color: #777; font: 12px/1.4 ui-monospace, monospace; text-align: center; }}
 .preview-note {{ position: fixed; right: 12px; bottom: 12px; z-index: 99; padding: 8px 12px; background: #000; color: #fff; font: 12px/1.4 ui-monospace, monospace; }}
 </style>
 <link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" href="../assets/statement.css">
+<link rel="stylesheet" href="../assets/scene.css">
+<link rel="stylesheet" href="../assets/lineup.css">
+<link rel="stylesheet" href="../assets/ugc-feed.css">
+<script src="../assets/statement.js" type="module"></script>
+<script src="../assets/scene.js" type="module"></script>
+<script src="../assets/lineup.js" type="module"></script>
 </head>
 <body class="template-{template.stem.split('.')[0]}">
 <!-- Generated by preview/build.py from templates/{template.name}. Do not edit by hand. -->
@@ -443,6 +676,8 @@ def render_page(template: Path, out: Path) -> None:
 </main>
 {render_group(ROOT / "sections" / "footer-group.json")}
 <p class="preview-note">Statische Vorschau · Platzhalter-Grafiken &amp; -Produkte</p>
+{QUICK_VIEW_DIALOG.format(close=ICONS["close"])}
+{quick_view_templates()}
 <script src="../assets/theme.js"></script>
 </body>
 </html>
@@ -453,7 +688,13 @@ def render_page(template: Path, out: Path) -> None:
 
 def main() -> None:
     render_page(ROOT / "templates" / "index.json", PREVIEW / "index.html")
+    render_page(ROOT / "templates" / "product.json", PREVIEW / "product.html")
+    render_page(ROOT / "templates" / "collection.json", PREVIEW / "collection.html")
     for template in sorted((ROOT / "templates").glob("page.*.json")):
+        types = {s["type"] for s in json.loads(template.read_text())["sections"].values()}
+        if not types <= RENDERERS.keys():
+            print(f"skip {template.name}: rendered at runtime ({', '.join(sorted(types - RENDERERS.keys()))})")
+            continue
         render_page(template, PREVIEW / f"{template.stem}.html")
 
 

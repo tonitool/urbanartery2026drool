@@ -1,7 +1,7 @@
 <section class="section {% if section.settings.color_scheme == 'subtle' %}section--subtle{% elsif section.settings.color_scheme == 'dark' %}section--dark{% endif %}">
   {% render 'section-heading', eyebrow: section.settings.eyebrow, heading: section.settings.heading, subheading: section.settings.subheading %}
 
-  <div class="carousel{% if section.settings.card_style == 'overlay' %} carousel--overlay{% endif %}" data-carousel style="--slide-width: {{ section.settings.slide_width }}px;">
+  <div class="carousel{% if section.settings.card_style == 'overlay' %} carousel--overlay{% endif %}{% if section.blocks.size <= 4 %} carousel--fill{% endif %}" data-carousel style="--slide-width: {{ section.settings.slide_width }}px;">
     <button class="carousel__btn carousel__btn--prev" type="button" data-carousel-prev aria-label="{{ 'accessibility.previous_slide' | t }}">
       {% render 'icon', name: 'arrow-left' %}
     </button>
@@ -20,7 +20,7 @@
               {%- if image != blank -%}
                 <img src="{{ image | image_url: width: 800 }}"
                      srcset="{{ image | image_url: width: 400 }} 400w, {{ image | image_url: width: 800 }} 800w"
-                     sizes="{{ section.settings.slide_width }}px"
+                     sizes="{% if section.blocks.size <= 4 %}(min-width: 750px) {{ 100 | divided_by: section.blocks.size }}vw, 80vw{% else %}{{ section.settings.slide_width }}px{% endif %}"
                      width="{{ image.width }}" height="{{ image.height }}"
                      alt="{{ title | escape }}" loading="lazy">
               {%- else -%}

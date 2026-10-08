@@ -1,0 +1,126 @@
+{%- comment -%}
+  The Urban Artery contact page: dark intro, contact channels, form in a grey card.
+  Used by the contact-form section and, as a fallback, by the default page
+  template for the page with the handle "kontakt", so the form never goes missing.
+
+  Accepts:
+  - s: section settings (optional; every text falls back to a German default)
+  - blocks: channel blocks (optional; defaults to phone, email and Instagram)
+  - section_id: used for unique field ids
+{%- endcomment -%}
+{{ 'contact.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign topics_raw = s.topics | default: 'Eigenes Motiv, Bestellung, Auftragsarbeit, Kooperation, Sonstiges'
+  assign topics = topics_raw | split: ','
+  assign privacy_default = 'Durch das Absenden erklärst du dich mit unserer <a href="/policies/privacy-policy">Datenschutzerklärung</a> einverstanden.'
+-%}
+
+<section class="ua-contact" aria-labelledby="ContactHeading-{{ section_id }}">
+  <div class="ua-contact__hero">
+    <div class="container">
+      <h1 class="ua-contact__title" id="ContactHeading-{{ section_id }}">{{ s.heading | default: 'Kontakt' }}</h1>
+      <p class="ua-contact__intro">{{ s.intro | default: 'Du hast Fragen zu Urban Artery? Du suchst spezielle Motive? Du hast generelles Feedback an uns? Nimm gerne Kontakt auf!' }}</p>
+    </div>
+  </div>
+
+  <div class="container ua-contact__body">
+    <div class="ua-contact__info">
+      <h2 class="ua-contact__heading">{{ s.info_heading | default: 'Unsere Kontaktmöglichkeiten' }}</h2>
+
+      <ul class="ua-contact__channels" role="list">
+        {%- if blocks.size > 0 -%}
+          {%- for block in blocks -%}
+            <li class="ua-channel" {{ block.shopify_attributes }}>
+              <span class="ua-channel__icon">{% render 'icon', name: block.settings.icon %}</span>
+              <div>
+                <p class="ua-channel__title">{{ block.settings.title }}</p>
+                {%- if block.settings.link != blank -%}
+                  <a class="ua-channel__link" href="{{ block.settings.link }}" {% if block.settings.link contains 'http' %}target="_blank" rel="noopener"{% endif %}>{{ block.settings.link_label | default: block.settings.link }}</a>
+                {%- endif -%}
+                {%- if block.settings.text != blank -%}<p class="ua-channel__text">{{ block.settings.text }}</p>{%- endif -%}
+              </div>
+            </li>
+          {%- endfor -%}
+        {%- else -%}
+          <li class="ua-channel">
+            <span class="ua-channel__icon">{% render 'icon', name: 'phone' %}</span>
+            <div>
+              <p class="ua-channel__title">Telefon</p>
+              <a class="ua-channel__link" href="tel:+494029851124">+49 40 298 511-24</a>
+              <p class="ua-channel__text">Hinterlasse eine Nachricht – wir rufen zurück!</p>
+            </div>
+          </li>
+          <li class="ua-channel">
+            <span class="ua-channel__icon">{% render 'icon', name: 'mail' %}</span>
+            <div>
+              <p class="ua-channel__title">E-Mail</p>
+              <a class="ua-channel__link" href="mailto:info@urban-artery.de">info@urban-artery.de</a>
+            </div>
+          </li>
+          <li class="ua-channel">
+            <span class="ua-channel__icon">{% render 'icon', name: 'instagram' %}</span>
+            <div>
+              <p class="ua-channel__title">Instagram</p>
+              <a class="ua-channel__link" href="https://instagram.com/urbanartery" target="_blank" rel="noopener">PM bei Instagram</a>
+            </div>
+          </li>
+        {%- endif -%}
+      </ul>
+
+      <p class="ua-contact__note">{{ s.note | default: 'Bitte rechne mit 3–5 Werktagen Bearbeitungszeit für Anfragen.' }}</p>
+
+      <a class="ua-contact__cta" href="{{ s.cta_link | default: '/pages/auftragsarbeiten' }}">
+        <span class="ua-contact__cta-heading">{{ s.cta_heading | default: 'Großes Projekt?' }}</span>
+        <span class="ua-contact__cta-text">{{ s.cta_text | default: 'Wandgestaltung, Firmenräume, Sonderformate: zu den Auftragsarbeiten.' }}</span>
+        <span class="ua-contact__cta-arrow">{% render 'icon', name: 'arrow-right' %}</span>
+      </a>
+    </div>
+
+    <div class="ua-contact__card">
+      <h2 class="ua-contact__card-heading">{{ s.form_heading | default: 'Kontaktformular' }}</h2>
+
+      {%- form 'contact', class: 'ua-form' -%}
+        {%- if form.posted_successfully? -%}
+          <p class="ua-form__status" role="status">{{ s.success | default: 'Danke! Wir melden uns in Kürze bei dir.' }}</p>
+        {%- elsif form.errors -%}
+          <div class="ua-form__status ua-form__status--error" role="alert">{{ form.errors | default_errors }}</div>
+        {%- endif -%}
+
+        <fieldset class="ua-form__topics">
+          <legend class="ua-form__legend">{{ s.topics_label | default: "Worum geht's?" }}</legend>
+          {%- for topic in topics -%}
+            {%- assign t = topic | strip -%}
+            <label class="ua-chip">
+              <input type="radio" name="contact[Thema]" value="{{ t | escape }}" {% if forloop.first %}checked{% endif %}>
+              <span>{{ t }}</span>
+            </label>
+          {%- endfor -%}
+        </fieldset>
+
+        <div class="ua-form__row">
+          <label class="visually-hidden" for="ContactFirst-{{ section_id }}">{{ s.label_first | default: 'Vorname' }}</label>
+          <input class="ua-input" id="ContactFirst-{{ section_id }}" type="text" name="contact[Vorname]" autocomplete="given-name" placeholder="{{ s.label_first | default: 'Vorname' }}" required>
+          <label class="visually-hidden" for="ContactLast-{{ section_id }}">{{ s.label_last | default: 'Nachname' }}</label>
+          <input class="ua-input" id="ContactLast-{{ section_id }}" type="text" name="contact[Nachname]" autocomplete="family-name" placeholder="{{ s.label_last | default: 'Nachname' }}" required>
+        </div>
+
+        <label class="visually-hidden" for="ContactEmail-{{ section_id }}">{{ s.label_email | default: 'E-Mail-Adresse' }}</label>
+        <input class="ua-input" id="ContactEmail-{{ section_id }}" type="email" name="contact[email]" autocomplete="email" value="{{ form.email }}" placeholder="{{ s.label_email | default: 'E-Mail-Adresse' }}" required>
+
+        <label class="visually-hidden" for="ContactOrder-{{ section_id }}">{{ s.label_order | default: 'Bestellnummer (optional)' }}</label>
+        <input class="ua-input" id="ContactOrder-{{ section_id }}" type="text" name="contact[Bestellnummer]" placeholder="{{ s.label_order | default: 'Bestellnummer (optional)' }}">
+
+        <label class="visually-hidden" for="ContactSubject-{{ section_id }}">{{ s.label_subject | default: 'Betreff' }}</label>
+        <input class="ua-input" id="ContactSubject-{{ section_id }}" type="text" name="contact[Betreff]" placeholder="{{ s.label_subject | default: 'Betreff' }}" required>
+
+        <label class="visually-hidden" for="ContactBody-{{ section_id }}">{{ s.label_message | default: 'Deine Nachricht' }}</label>
+        <textarea class="ua-input ua-input--area" id="ContactBody-{{ section_id }}" name="contact[body]" rows="6" placeholder="{{ s.label_message | default: 'Deine Nachricht' }}" required>{{ form.body }}</textarea>
+
+        <div class="ua-form__privacy rte">{{ s.privacy_note | default: privacy_default }}</div>
+
+        <button class="ua-form__submit" type="submit">{{ s.label_send | default: 'Absenden' }}</button>
+      {%- endform -%}
+    </div>
+  </div>
+</section>

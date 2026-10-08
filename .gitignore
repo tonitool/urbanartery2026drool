@@ -2,3 +2,7 @@
 node_modules/
 *.zip
 .shopify/
+
+# Raw AI room renders and test plates; the finished images live in media/
+mockups/ugc/**/*.png
+mockups/ugc/**/*.debug.jpg

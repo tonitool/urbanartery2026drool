@@ -1,0 +1,21 @@
+{%- comment -%}
+  One merchandising badge per product, in priority order:
+  sold out, sale, then a tag of the form "badge:<text>" (e.g. badge:Neu, badge:Limitiert, badge:Unikat).
+  Usage: {% render 'product-badge', product: product %}
+{%- endcomment -%}
+{%- liquid
+  assign tag_badge = blank
+  for tag in product.tags
+    if tag contains 'badge:'
+      assign tag_badge = tag | remove_first: 'badge:' | strip
+      break
+    endif
+  endfor
+-%}
+{%- if product.available == false -%}
+  <span class="product-card__badge">{{ 'products.product.sold_out' | t }}</span>
+{%- elsif product.compare_at_price > product.price -%}
+  <span class="product-card__badge product-card__badge--sale">{{ 'products.product.on_sale' | t }}</span>
+{%- elsif tag_badge != blank -%}
+  <span class="product-card__badge product-card__badge--tag">{{ tag_badge }}</span>
+{%- endif -%}

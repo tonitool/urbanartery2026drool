@@ -1,0 +1,120 @@
+{
+  "01-midcentury": {
+    "art": "street-art-daily-2026-06-24/posters/06-afro-profile.png",
+    "room": "Mid-Century-Wohnzimmer, München",
+    "corners": [
+      [
+        289,
+        330
+      ],
+      [
+        529,
+        306
+      ],
+      [
+        580,
+        641
+      ],
+      [
+        336,
+        672
+      ]
+    ]
+  },
+  "03-family": {
+    "art": "street-art-daily-2026-08-11/04_astronaut_lilac_poster.png",
+    "room": "Familienküche bei Hamburg"
+  },
+  "04-green-flash": {
+    "art": "street-art-daily-2026-07-01/02_tiger_head.png",
+    "room": "Grünes Wohnzimmer, spätabends",
+    "corners": [
+      [
+        47,
+        302
+      ],
+      [
+        420,
+        302
+      ],
+      [
+        426,
+        594
+      ],
+      [
+        58,
+        599
+      ]
+    ],
+    "crop": [
+      0,
+      0,
+      896,
+      1095
+    ]
+  },
+  "05-penthouse": {
+    "art": "street-art-daily-2026-08-03/design01_woman-profile-birds_poster.png",
+    "room": "Loft, Düsseldorf",
+    "corners": [
+      [
+        558,
+        409
+      ],
+      [
+        868,
+        378
+      ],
+      [
+        726,
+        929
+      ],
+      [
+        465,
+        784
+      ]
+    ]
+  },
+  "06-farmhouse": {
+    "art": "street-art-daily-2026-08-11/11_crow_wire_ochre_poster.png",
+    "room": "Bauernhaus, Brandenburg"
+  },
+  "07-maximalist": {
+    "art": "street-art-daily-2026-07-12/05_koi_pink.png",
+    "room": "Altbau, Charlottenburg"
+  },
+  "08-architect": {
+    "art": "street-art-daily-2026-07-20/03-snarling-wolf-poster.png",
+    "room": "Architekturbüro"
+  },
+  "10-closeup": {
+    "art": "street-art-daily-2026-07-01/10_skull_roses.png",
+    "room": "Sideboard, Nahaufnahme",
+    "corners": [
+      [
+        280,
+        230
+      ],
+      [
+        641,
+        193
+      ],
+      [
+        661,
+        717
+      ],
+      [
+        386,
+        896
+      ]
+    ],
+    "keep": [
+      [
+        437,
+        797,
+        580,
+        1008
+      ]
+    ]
+  }
+}

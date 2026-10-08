@@ -55,7 +55,9 @@
       "share": "Share",
       "taxes_included": "Including VAT",
       "taxes_excluded": "Excluding VAT",
-      "shipping_excluded": "plus shipping"
+      "shipping_excluded": "plus shipping",
+      "rating_label": "Rated {{ rating }} out of {{ max }} from {{ count }} reviews",
+      "quick_add": "Add {{ title }} to cart"
     }
   },
   "collections": {
@@ -87,7 +89,9 @@
         "one": "{{ count }} item",
         "other": "{{ count }} items"
       },
-      "quantity": "Quantity"
+      "quantity": "Quantity",
+      "free_shipping_remaining": "{{ amount }} more for free shipping",
+      "free_shipping_reached": "You get free shipping"
     }
   },
   "sections": {
@@ -97,6 +101,9 @@
     "before_after": {
       "slider_label": "Drag to compare before and after: {{ title }}",
       "slider_label_untitled": "Drag to compare before and after"
+    },
+    "ugc": {
+      "view": "View"
     }
   },
   "onboarding": {
@@ -119,5 +126,28 @@
       "send": "Send message",
       "success": "Thanks for your message. We'll get back to you soon."
     }
+  },
+  "wishlist": {
+    "title": "Wishlist",
+    "add": "Save {{ title }} to wishlist",
+    "remove": "Remove {{ title }} from wishlist",
+    "empty": "Your wishlist is empty.",
+    "needs_js": "The wishlist needs JavaScript."
+  },
+  "quick_view": {
+    "open": "Quick view: {{ title }}",
+    "gallery": "Images of {{ title }}",
+    "order": "Order this piece",
+    "make_your_own": "Design your own",
+    "all_details": "All details",
+    "error": "This piece could not be loaded."
+  },
+  "scene": {
+    "label": "Drag to explore the room",
+    "hint": "Drag to explore"
+  },
+  "motion": {
+    "pause": "Pause",
+    "play": "Play"
   }
 }

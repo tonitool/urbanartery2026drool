@@ -1,0 +1,149 @@
+/* Statement: fixed photo revealed through the section, one line of type. */
+.statement {
+  --statement-size-m: clamp(1.75rem, 1rem + 2.5vw, 3.25rem);
+  --statement-size-l: clamp(2.5rem, 1rem + 5vw, 6rem);
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  overflow: hidden;
+  /* clip-path keeps the fixed photo inside this section only */
+  clip-path: inset(0);
+  color: var(--statement-text, #fff);
+}
+
+.statement__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.statement__fixed {
+  position: fixed;
+  inset: 0;
+}
+
+.statement__fixed::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / var(--statement-overlay, 0.25));
+}
+
+.statement__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.statement__body {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 1.5rem;
+  padding: 4rem var(--page-margin);
+  text-align: center;
+}
+
+.statement--left .statement__body {
+  justify-items: start;
+  text-align: start;
+}
+
+.statement__text {
+  max-width: 18ch;
+  margin: 0;
+  font-family: var(--font-heading--family);
+  font-size: calc(var(--statement-size) * var(--heading-scale, 1));
+  font-style: var(--font-heading--style);
+  font-weight: var(--font-heading--weight);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.statement__eyebrow {
+  margin: 0;
+}
+
+/* ---------- Reveal effects (JS adds .is-revealed when in view) ---------- */
+.statement.is-armed.statement--fade .statement__text {
+  opacity: 0;
+  translate: 0 1.5rem;
+  transition: opacity 900ms ease, translate 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.statement.is-armed.statement--blur .statement__text {
+  opacity: 0;
+  filter: blur(14px);
+  transition: opacity 1100ms ease, filter 1100ms ease;
+}
+
+.statement.is-revealed .statement__text {
+  opacity: 1;
+  translate: 0 0;
+  filter: none;
+}
+
+.statement__caret {
+  display: inline-block;
+  width: 0.06em;
+  height: 0.9em;
+  margin-inline-start: 0.06em;
+  vertical-align: -0.05em;
+  background: currentColor;
+  animation: statement-caret 0.9s steps(1) infinite;
+}
+
+@keyframes statement-caret {
+  50% { opacity: 0; }
+}
+
+/* ---------- Marquee ---------- */
+.statement__marquee {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.statement__track {
+  display: flex;
+  gap: 0.5em;
+  width: max-content;
+  animation: statement-marquee var(--statement-speed, 30s) linear infinite;
+}
+
+.statement__track .statement__text {
+  max-width: none;
+  white-space: nowrap;
+  padding-inline-end: 0.5em;
+}
+
+@keyframes statement-marquee {
+  to { translate: -50% 0; }
+}
+
+.statement.is-paused .statement__track {
+  animation-play-state: paused;
+}
+
+.statement__toggle {
+  position: absolute;
+  right: var(--page-margin);
+  bottom: 1.25rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .statement__track {
+    animation: none;
+    flex-wrap: wrap;
+    width: auto;
+    padding-inline: var(--page-margin);
+  }
+
+  .statement__track .statement__text:not(:first-child) {
+    display: none;
+  }
+
+  .statement__caret {
+    display: none;
+  }
+}

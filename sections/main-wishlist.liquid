@@ -1,0 +1,15 @@
+<div class="container wishlist" data-wishlist-page data-empty="{{ 'wishlist.empty' | t | escape }}">
+  <div class="page-hero">
+    <h1 class="page-hero__title">{{ page.title | default: 'wishlist.title' | t }}</h1>
+  </div>
+  <ul class="product-grid" role="list" data-wishlist-grid></ul>
+  <p class="empty-state" data-wishlist-empty hidden>
+    {{ 'wishlist.empty' | t }}
+    <a class="btn" href="{{ routes.all_products_collection_url }}">{{ 'general.continue_shopping' | t }}</a>
+  </p>
+  <noscript><p class="empty-state">{{ 'wishlist.needs_js' | t }}</p></noscript>
+</div>
+
+{% schema %}
+{ "name": "Wishlist" }
+{% endschema %}

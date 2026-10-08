@@ -1,0 +1,69 @@
+{%- comment -%}
+  Statement: a full-screen photo that stays still while the page moves over it, with one
+  line of type that types itself out (or fades, blurs, or runs as a marquee) as it scrolls
+  into view. The full sentence is always in the markup. Ported from Atelier Brut.
+{%- endcomment -%}
+{{ 'statement.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'statement.js' | asset_url }}" type="module"></script>
+
+{%- liquid
+  assign statement_id = 'statement-' | append: section.id
+  assign overlay = section.settings.overlay | divided_by: 100.0
+  assign effect = section.settings.effect
+-%}
+<statement-section id="{{ statement_id }}"
+  class="statement statement--{{ effect }} statement--{{ section.settings.alignment }} full-width"
+  style="--statement-overlay: {{ overlay }}; --statement-text: {{ section.settings.text_color }}; --statement-size: var(--statement-size-{{ section.settings.text_size }}); --statement-speed: {{ section.settings.marquee_speed }}s;"
+  data-effect="{{ effect }}">
+  <div class="statement__backdrop" aria-hidden="true">
+    <div class="statement__fixed">
+      {% render 'responsive-image', image: section.settings.image, widths: '750,1100,1500,2000,2400', sizes: '100vw', alt: '', class: 'statement__image', placeholder: 'lifestyle-2' %}
+    </div>
+  </div>
+
+  {%- if effect == 'marquee' -%}
+    <div class="statement__marquee">
+      <p class="statement__text visually-hidden">{{ section.settings.text | escape }}</p>
+      <div class="statement__track" aria-hidden="true">
+        {%- for i in (1..6) -%}<span class="statement__text">{{ section.settings.text | escape }}</span>{%- endfor -%}
+      </div>
+    </div>
+    {% render 'motion-toggle', target_id: statement_id, class: 'statement__toggle' %}
+  {%- else -%}
+    <div class="statement__body">
+      {%- if section.settings.eyebrow != blank -%}<p class="statement__eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <p class="statement__text" data-statement-text>{{ section.settings.text | escape }}</p>
+      {%- if section.settings.button_label != blank -%}
+        {%- capture configurator_url -%}{% render 'configurator-url' %}{%- endcapture -%}
+        <a class="btn btn--light" href="{{ section.settings.button_link | default: configurator_url }}">{{ section.settings.button_label | escape }}</a>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</statement-section>
+
+{% schema %}
+{
+  "name": "Statement",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "range", "id": "overlay", "label": "Overlay opacity", "min": 0, "max": 70, "step": 5, "unit": "%", "default": 35 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "textarea", "id": "text", "label": "Statement", "default": "Echte Street-Art. Von Hand." },
+    { "type": "select", "id": "effect", "label": "Text effect", "default": "typewriter", "options": [
+      { "value": "typewriter", "label": "Typewriter" }, { "value": "fade", "label": "Fade up" },
+      { "value": "blur", "label": "Blur in" }, { "value": "marquee", "label": "Marquee" }
+    ]},
+    { "type": "select", "id": "alignment", "label": "Alignment", "default": "center", "options": [
+      { "value": "center", "label": "Centre" }, { "value": "left", "label": "Left" }
+    ]},
+    { "type": "select", "id": "text_size", "label": "Text size", "default": "l", "options": [
+      { "value": "m", "label": "Medium" }, { "value": "l", "label": "Large" }
+    ]},
+    { "type": "color", "id": "text_color", "label": "Text colour", "default": "#FFFFFF" },
+    { "type": "range", "id": "marquee_speed", "label": "Marquee speed", "min": 10, "max": 60, "step": 5, "unit": "s", "default": 30 },
+    { "type": "text", "id": "button_label", "label": "Button label" },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Empty: links to the configurator product." }
+  ],
+  "presets": [{ "name": "Statement" }]
+}
+{% endschema %}

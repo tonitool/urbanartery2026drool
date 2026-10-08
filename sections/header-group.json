@@ -32,7 +32,10 @@
         "menu": "main-menu",
         "color_scheme": "dark",
         "logo_height": 48,
-        "logo": "shopify://shop_images/ua-logo-weiss.png"
+        "logo": "shopify://shop_images/ua-logo-weiss.png",
+        "cta_label": "",
+        "wishlist_page": "merkliste",
+        "layout": "stacked"
       }
     }
   },

@@ -27,7 +27,9 @@
     assign alt_image = product.media[1]
   -%}
   <div class="product-card">
-    <a class="product-card__media" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+    <div class="product-card__media-wrap">
+    <a class="product-card__media" href="{{ product.url }}" aria-label="{{ 'quick_view.open' | t: title: product.title | escape }}"
+       data-quick-view="{{ product.url }}" aria-haspopup="dialog">
       {%- if product.featured_media -%}
         <img
           src="{{ product.featured_media | image_url: width: 600 }}"
@@ -37,7 +39,7 @@
           sizes="(min-width: 990px) 24vw, (min-width: 750px) 33vw, 70vw"
           width="{{ product.featured_media.width }}"
           height="{{ product.featured_media.height }}"
-          alt="{{ product.featured_media.alt | escape }}"
+          alt="{{ product.featured_media.alt | default: product.title | escape }}"
           loading="lazy">
       {%- else -%}
         {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -50,15 +52,23 @@
              alt="" loading="lazy" aria-hidden="true">
       {%- endif -%}
 
-      {%- if product.available == false -%}
-        <span class="product-card__badge">{{ 'products.product.sold_out' | t }}</span>
-      {%- elsif on_sale -%}
-        <span class="product-card__badge product-card__badge--sale">{{ 'products.product.on_sale' | t }}</span>
-      {%- endif -%}
+      {% render 'product-badge', product: product %}
     </a>
+    {% render 'wishlist-button', product: product %}
+
+    {%- if settings.card_quick_add and product.has_only_default_variant and product.available -%}
+      {%- form 'product', product, class: 'product-card__quick-add', data-quick-add: 'true' -%}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button class="product-card__quick-add-btn" type="submit" aria-label="{{ 'products.product.quick_add' | t: title: product.title | escape }}">
+          {% render 'icon', name: 'plus' %}<span>{{ 'products.product.add_to_cart' | t }}</span>
+        </button>
+      {%- endform -%}
+    {%- endif -%}
+    </div>
 
     <div class="product-card__info">
       <h3 class="product-card__title"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+      {% render 'rating', product: product, size: 'sm' %}
 
       {%- if settings.card_show_vendor and product.vendor != blank -%}
         <p class="product-card__vendor">{{ 'products.product.vendor' | t: vendor: product.vendor }}</p>
@@ -66,7 +76,7 @@
 
       <p class="product-card__price">
         {%- if settings.card_price_from and product.price_varies -%}
-          {{ 'products.product.from_price' | t: price: product.price_min | money }}
+          {{ product.price_min | money }} – {{ product.price_max | money }}
         {%- else -%}
           <span {% if on_sale %}class="on-sale"{% endif %}>{{ product.price | money }}</span>
           {%- if on_sale %}<s>{{ product.compare_at_price | money }}</s>{% endif -%}

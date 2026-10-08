@@ -13,7 +13,7 @@
              srcset="{{ section.settings.image | image_url: width: 600 }} 600w, {{ section.settings.image | image_url: width: 1200 }} 1200w"
              sizes="(min-width: 900px) 45vw, 100vw"
              width="{{ section.settings.image.width }}" height="{{ section.settings.image.height }}"
-             alt="{{ section.settings.image.alt | escape }}" loading="lazy">
+             alt="{{ section.settings.image.alt | default: section.settings.heading | escape }}" loading="lazy">
       </div>
     {%- endif -%}
 

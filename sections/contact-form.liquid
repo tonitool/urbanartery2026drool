@@ -1,89 +1,31 @@
-<section class="section {% if section.settings.color_scheme == 'subtle' %}section--subtle{% endif %}">
-  <div class="container contact">
-    <div class="contact__info">
-      {%- if section.settings.info_heading != blank -%}
-        <h2 class="contact__heading">{{ section.settings.info_heading }}</h2>
-      {%- endif -%}
-      <ul class="contact__channels" role="list">
-        {%- for block in section.blocks -%}
-          <li class="contact__channel" {{ block.shopify_attributes }}>
-            <span class="contact__icon">{% render 'icon', name: block.settings.icon %}</span>
-            <div>
-              <p class="contact__channel-title">{{ block.settings.title }}</p>
-              {%- if block.settings.link != blank -%}
-                <a class="contact__channel-link" href="{{ block.settings.link }}">{{ block.settings.link_label | default: block.settings.link }}</a>
-              {%- endif -%}
-              {%- if block.settings.text != blank -%}
-                <p class="contact__channel-text">{{ block.settings.text }}</p>
-              {%- endif -%}
-            </div>
-          </li>
-        {%- endfor -%}
-      </ul>
-      {%- if section.settings.note != blank -%}
-        <p class="contact__note">{{ section.settings.note }}</p>
-      {%- endif -%}
-    </div>
-
-    <div class="contact__form-wrap">
-      {%- if section.settings.form_heading != blank -%}
-        <h2 class="contact__heading">{{ section.settings.form_heading }}</h2>
-      {%- endif -%}
-
-      {%- form 'contact', class: 'contact__form' -%}
-        {%- if form.posted_successfully? -%}
-          <p class="form-status" role="status">{{ 'contact.form.success' | t }}</p>
-        {%- elsif form.errors -%}
-          <div class="form-status form-status--error" role="alert">{{ form.errors | default_errors }}</div>
-        {%- endif -%}
-
-        <div class="contact__row">
-          <label class="visually-hidden" for="ContactFirstName-{{ section.id }}">{{ 'contact.form.first_name' | t }}</label>
-          <input class="field" id="ContactFirstName-{{ section.id }}" type="text" name="contact[Vorname]" autocomplete="given-name"
-                 placeholder="{{ 'contact.form.first_name' | t }}" required>
-          <label class="visually-hidden" for="ContactLastName-{{ section.id }}">{{ 'contact.form.last_name' | t }}</label>
-          <input class="field" id="ContactLastName-{{ section.id }}" type="text" name="contact[Nachname]" autocomplete="family-name"
-                 placeholder="{{ 'contact.form.last_name' | t }}" required>
-        </div>
-
-        <label class="visually-hidden" for="ContactEmail-{{ section.id }}">{{ 'contact.form.email' | t }}</label>
-        <input class="field" id="ContactEmail-{{ section.id }}" type="email" name="contact[email]" autocomplete="email"
-               value="{{ form.email }}" placeholder="{{ 'contact.form.email' | t }}" required>
-
-        <label class="visually-hidden" for="ContactOrder-{{ section.id }}">{{ 'contact.form.order_number' | t }}</label>
-        <input class="field" id="ContactOrder-{{ section.id }}" type="text" name="contact[Bestellnummer]"
-               placeholder="{{ 'contact.form.order_number' | t }}">
-
-        <label class="visually-hidden" for="ContactSubject-{{ section.id }}">{{ 'contact.form.subject' | t }}</label>
-        <input class="field" id="ContactSubject-{{ section.id }}" type="text" name="contact[Betreff]"
-               placeholder="{{ 'contact.form.subject' | t }}" required>
-
-        <label class="visually-hidden" for="ContactBody-{{ section.id }}">{{ 'contact.form.message' | t }}</label>
-        <textarea class="field contact__message" id="ContactBody-{{ section.id }}" name="contact[body]" rows="6"
-                  placeholder="{{ 'contact.form.message' | t }}" required>{{ form.body }}</textarea>
-
-        {%- if section.settings.privacy_note != blank -%}
-          <div class="contact__privacy rte">{{ section.settings.privacy_note }}</div>
-        {%- endif -%}
-
-        <button class="btn" type="submit">{{ 'contact.form.send' | t }}</button>
-      {%- endform -%}
-    </div>
-  </div>
-</section>
+{% render 'contact-page', s: section.settings, blocks: section.blocks, section_id: section.id %}
 
 {% schema %}
 {
   "name": "Contact form",
   "settings": [
-    { "type": "text", "id": "info_heading", "label": "Contact details heading", "default": "Contact" },
-    { "type": "text", "id": "note", "label": "Note below contact details" },
-    { "type": "text", "id": "form_heading", "label": "Form heading", "default": "Contact form" },
-    { "type": "richtext", "id": "privacy_note", "label": "Privacy note above the button" },
-    { "type": "select", "id": "color_scheme", "label": "Colour scheme", "default": "default", "options": [
-      { "value": "default", "label": "Default" },
-      { "value": "subtle", "label": "Subtle" }
-    ]}
+    { "type": "header", "content": "Intro" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Kontakt" },
+    { "type": "textarea", "id": "intro", "label": "Intro text" },
+    { "type": "header", "content": "Contact details" },
+    { "type": "text", "id": "info_heading", "label": "Heading", "default": "Unsere Kontaktmöglichkeiten" },
+    { "type": "text", "id": "note", "label": "Note" },
+    { "type": "text", "id": "cta_heading", "label": "Teaser heading", "default": "Großes Projekt?" },
+    { "type": "text", "id": "cta_text", "label": "Teaser text" },
+    { "type": "url", "id": "cta_link", "label": "Teaser link", "info": "Empty: /pages/auftragsarbeiten" },
+    { "type": "header", "content": "Form" },
+    { "type": "text", "id": "form_heading", "label": "Form heading", "default": "Kontaktformular" },
+    { "type": "text", "id": "topics_label", "label": "Topic question", "default": "Worum geht's?" },
+    { "type": "text", "id": "topics", "label": "Topics", "info": "Comma-separated.", "default": "Eigenes Motiv, Bestellung, Auftragsarbeit, Kooperation, Sonstiges" },
+    { "type": "text", "id": "label_first", "label": "First name", "default": "Vorname" },
+    { "type": "text", "id": "label_last", "label": "Last name", "default": "Nachname" },
+    { "type": "text", "id": "label_email", "label": "Email", "default": "E-Mail-Adresse" },
+    { "type": "text", "id": "label_order", "label": "Order number", "default": "Bestellnummer (optional)" },
+    { "type": "text", "id": "label_subject", "label": "Subject", "default": "Betreff" },
+    { "type": "text", "id": "label_message", "label": "Message", "default": "Deine Nachricht" },
+    { "type": "text", "id": "label_send", "label": "Button", "default": "Absenden" },
+    { "type": "text", "id": "success", "label": "Success message", "default": "Danke! Wir melden uns in Kürze bei dir." },
+    { "type": "richtext", "id": "privacy_note", "label": "Privacy note" }
   ],
   "blocks": [
     {
@@ -91,17 +33,18 @@
       "name": "Contact channel",
       "settings": [
         { "type": "select", "id": "icon", "label": "Icon", "default": "mail", "options": [
-          { "value": "mail", "label": "Email" },
           { "value": "phone", "label": "Phone" },
-          { "value": "instagram", "label": "Instagram" }
+          { "value": "mail", "label": "Email" },
+          { "value": "instagram", "label": "Instagram" },
+          { "value": "clock", "label": "Clock" }
         ]},
-        { "type": "text", "id": "title", "label": "Title", "default": "Email" },
-        { "type": "url", "id": "link", "label": "Link", "info": "mailto:, tel: or https:// link." },
-        { "type": "text", "id": "link_label", "label": "Link text" },
+        { "type": "text", "id": "title", "label": "Title", "default": "E-Mail" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "text", "id": "link_label", "label": "Link label" },
         { "type": "text", "id": "text", "label": "Text" }
       ]
     }
   ],
-  "presets": [ { "name": "Contact form", "blocks": [ { "type": "channel" } ] } ]
+  "presets": [ { "name": "Contact form" } ]
 }
 {% endschema %}

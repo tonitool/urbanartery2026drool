@@ -1,0 +1,9 @@
+{%- comment -%}
+  Pause/play for content that moves on its own (WCAG 2.2.2). theme.js toggles
+  .is-paused on the target and pauses or plays videos inside it.
+  Usage: {% render 'motion-toggle', target_id: 'stream-123', class: 'stream__toggle' %}
+{%- endcomment -%}
+<button type="button" class="motion-toggle {{ class }}" data-motion-toggle="{{ target_id }}" aria-controls="{{ target_id }}" data-paused="false">
+  <span class="motion-toggle__pause">{{ 'motion.pause' | t }}</span>
+  <span class="motion-toggle__play">{{ 'motion.play' | t }}</span>
+</button>

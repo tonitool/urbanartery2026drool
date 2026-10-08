@@ -1,0 +1,77 @@
+{%- comment -%}
+  Explore scene ("Shop the wall"): one wide photo, wider than the screen. Visitors drag or
+  swipe across it; pulsing points open labels that link to products. Ported from Atelier Brut.
+{%- endcomment -%}
+{{ 'scene.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'scene.js' | asset_url }}" type="module"></script>
+
+{%- liquid
+  assign scene_image = section.settings.image
+  assign scene_ratio = 2.33
+  if scene_image
+    assign scene_ratio = scene_image.aspect_ratio
+  endif
+-%}
+<explore-scene class="scene scene--{{ section.settings.height }} full-width"
+  style="--scene-ratio: {{ scene_ratio }}; --scene-point: {{ section.settings.point_color }};">
+  {%- if section.settings.heading != blank -%}
+    <div class="scene__header"><h2 class="scene__heading">{{ section.settings.heading | escape }}</h2></div>
+  {%- endif -%}
+
+  <div class="scene__viewport" tabindex="0" aria-label="{{ 'scene.label' | t }}" data-scene-viewport>
+    <div class="scene__canvas" data-scene-canvas>
+      {% render 'responsive-image', image: scene_image, widths: '1200,1800,2400,3200', sizes: '250vw', alt: section.settings.image_alt, class: 'scene__image', placeholder: 'lifestyle-1' %}
+      {%- capture configurator_url -%}{% render 'configurator-url' %}{%- endcapture -%}
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign point_url = block.settings.link
+          assign point_label = block.settings.label
+          if block.settings.product != blank
+            assign point_url = point_url | default: block.settings.product.url
+            assign point_label = point_label | default: block.settings.product.title
+          endif
+        -%}
+        <a class="scene__point" href="{{ point_url | default: configurator_url }}" style="--x: {{ block.settings.x }}%; --y: {{ block.settings.y }}%;"
+           data-scene-point {% if block.settings.product != blank %}data-quick-view="{{ block.settings.product.url }}" aria-haspopup="dialog"{% endif %} {{ block.shopify_attributes }}>
+          <span class="scene__dot" aria-hidden="true"></span>
+          <span class="scene__label">{{ point_label | escape }}</span>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <div class="scene__hint" aria-hidden="true" data-scene-hint>
+    <svg viewBox="0 0 64 32" width="48" height="24" focusable="false"><path d="M6 16h52M14 8l-8 8 8 8M50 8l8 8-8 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    <span>{{ 'scene.hint' | t }}</span>
+  </div>
+</explore-scene>
+
+{% schema %}
+{
+  "name": "Explore scene",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "image_picker", "id": "image", "label": "Image", "info": "A wide photo (at least 2:1), e.g. a room with several pieces." },
+    { "type": "text", "id": "image_alt", "label": "Image description" },
+    { "type": "select", "id": "height", "label": "Height", "default": "large", "options": [
+      { "value": "screen", "label": "Full screen" }, { "value": "large", "label": "Large" }
+    ]},
+    { "type": "color", "id": "point_color", "label": "Point colour", "default": "#FFFFFF" }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Point",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product", "info": "Opens the quick view." },
+        { "type": "text", "id": "label", "label": "Label" },
+        { "type": "url", "id": "link", "label": "Link override", "info": "Empty and no product: links to the configurator." },
+        { "type": "range", "id": "x", "label": "Horizontal position", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 50 },
+        { "type": "range", "id": "y", "label": "Vertical position", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 50 }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Explore scene", "blocks": [ { "type": "point", "settings": { "x": 30, "y": 50 } }, { "type": "point", "settings": { "x": 60, "y": 45 } } ] }]
+}
+{% endschema %}

@@ -1,0 +1,71 @@
+{%- comment -%}
+  Lineup: pieces standing on an arc, the centre one largest. Drag, swipe, arrow keys or
+  autoplay; clicking a side piece centres it, clicking the centre piece opens the quick view.
+  Without JavaScript it is a swipeable row. Ported from Atelier Brut.
+{%- endcomment -%}
+{{ 'lineup.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'lineup.js' | asset_url }}" type="module"></script>
+
+{%- liquid
+  assign lineup_id = 'lineup-' | append: section.id
+  assign autoplay = section.settings.autoplay
+  if section.blocks.size < 2
+    assign autoplay = 0
+  endif
+  assign stage_label = section.settings.heading | default: 'Lineup'
+-%}
+<lineup-arc id="{{ lineup_id }}" class="lineup lineup--hover-{{ section.settings.hover_effect }} full-width"
+  style="--lineup-height: {{ section.settings.figure_height }}svh;" data-autoplay="{{ autoplay }}">
+  {%- if section.settings.heading != blank -%}<h2 class="lineup__heading">{{ section.settings.heading | escape }}</h2>{%- endif -%}
+
+  <div class="lineup__stage" role="list" tabindex="0" aria-label="{{ stage_label | escape }}" data-lineup-stage>
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign figure_product = block.settings.product
+        assign figure_image = block.settings.image | default: figure_product.featured_image
+        assign figure_title = block.settings.title | default: figure_product.title
+        assign figure_url = block.settings.link | default: figure_product.url
+      -%}
+      <div role="listitem" class="lineup__figure" data-lineup-figure data-title="{{ figure_title | escape }}" data-url="{{ figure_url }}" {{ block.shopify_attributes }}>
+        {% render 'responsive-image', image: figure_image, widths: '300,500,800,1100', sizes: '(min-width: 990px) 40vw, 80vw', alt: figure_title, class: 'lineup__image', placeholder: 'product-1' %}
+      </div>
+    {%- endfor -%}
+  </div>
+
+  <div class="lineup__footer">
+    <a class="lineup__title" href="#" data-lineup-title aria-live="polite"></a>
+    <div class="lineup__controls">
+      <button type="button" class="lineup__arrow" data-lineup-prev><span aria-hidden="true">←</span><span class="visually-hidden">{{ 'accessibility.previous_slide' | t }}</span></button>
+      <button type="button" class="lineup__arrow" data-lineup-next><span aria-hidden="true">→</span><span class="visually-hidden">{{ 'accessibility.next_slide' | t }}</span></button>
+      {%- if autoplay > 0 -%}{% render 'motion-toggle', target_id: lineup_id, class: 'lineup__toggle' %}{%- endif -%}
+    </div>
+  </div>
+</lineup-arc>
+
+{% schema %}
+{
+  "name": "Lineup",
+  "max_blocks": 14,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "range", "id": "figure_height", "label": "Piece height", "min": 25, "max": 85, "step": 5, "unit": "%", "default": 40 },
+    { "type": "range", "id": "autoplay", "label": "Autoplay (seconds)", "info": "0 turns it off.", "min": 0, "max": 10, "step": 1, "unit": "s", "default": 4 },
+    { "type": "select", "id": "hover_effect", "label": "Side pieces", "default": "grayscale", "options": [
+      { "value": "none", "label": "Unchanged" }, { "value": "grayscale", "label": "Greyscale until centred" }, { "value": "lift", "label": "Lift on hover" }
+    ]}
+  ],
+  "blocks": [
+    {
+      "type": "figure",
+      "name": "Piece",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Cut-out image", "info": "Transparent PNG/WebP, e.g. made with mockups/packshot.py." },
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "url", "id": "link", "label": "Link override" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Lineup", "blocks": [ { "type": "figure" }, { "type": "figure" }, { "type": "figure" }, { "type": "figure" } ] }]
+}
+{% endschema %}

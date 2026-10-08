@@ -1,0 +1,187 @@
+/* Explore scene: a photo wider than the screen, panned by swipe or drag. */
+.scene {
+  position: relative;
+  isolation: isolate;
+  --scene-height: 100svh;
+  overflow: hidden;
+  background: var(--color-foreground);
+  color: var(--color-on-media);
+}
+
+.scene--large {
+  --scene-height: 80svh;
+}
+
+.scene__header {
+  position: absolute;
+  top: 1.5rem;
+  left: var(--page-margin);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.scene__heading {
+  margin: 0;
+  color: var(--color-on-media);
+  text-shadow: 0 1px 12px rgb(0 0 0 / 0.35);
+}
+
+.scene__viewport {
+  height: var(--scene-height);
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.scene__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.scene__viewport.is-dragging {
+  cursor: grabbing;
+}
+
+.scene__viewport:focus-visible {
+  outline: 2px solid var(--color-on-media);
+  outline-offset: -4px;
+}
+
+/* At least 1.6 screens wide, otherwise as wide as the photo's proportions. */
+.scene__canvas {
+  position: relative;
+  height: 100%;
+  width: max(160vw, calc(var(--scene-height) * var(--scene-ratio)));
+}
+
+.scene__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ---------- Points ---------- */
+.scene__point {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  translate: -50% -50%;
+  color: var(--color-foreground);
+  text-decoration: none;
+}
+
+.scene__dot {
+  position: relative;
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 50%;
+  background: var(--scene-point);
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.15);
+}
+
+.scene__dot::after {
+  content: '';
+  position: absolute;
+  inset: -0.75rem;
+  border: 1.5px solid var(--scene-point);
+  border-radius: 50%;
+  animation: scene-pulse 2.2s ease-out infinite;
+}
+
+@keyframes scene-pulse {
+  from { opacity: 0.9; scale: 0.4; }
+  to { opacity: 0; scale: 1.4; }
+}
+
+.scene__label {
+  position: absolute;
+  bottom: calc(100% + 0.25rem);
+  left: 50%;
+  padding: 0.45rem 0.75rem;
+  translate: -50% 0.25rem;
+  background: var(--scene-point);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease, translate 200ms ease;
+}
+
+.scene__label::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  border: 5px solid transparent;
+  border-top-color: var(--scene-point);
+  translate: -50% 0;
+}
+
+.scene__point:is(:hover, :focus-visible, .is-open) .scene__label {
+  opacity: 1;
+  translate: -50% 0;
+  pointer-events: auto;
+}
+
+.scene__point:focus-visible {
+  outline: none;
+}
+
+.scene__point:focus-visible .scene__dot {
+  outline: 2px solid var(--color-on-media);
+  outline-offset: 4px;
+}
+
+/* ---------- Swipe hint ---------- */
+.scene__hint {
+  position: absolute;
+  left: 50%;
+  bottom: 1.5rem;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  translate: -50% 0;
+  border-radius: 999px;
+  background: rgb(0 0 0 / 0.45);
+  backdrop-filter: blur(6px);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+  transition: opacity 400ms ease;
+}
+
+.scene__hint svg {
+  animation: scene-swipe 1.8s ease-in-out infinite;
+}
+
+@keyframes scene-swipe {
+  0%, 100% { translate: -6px 0; }
+  50% { translate: 6px 0; }
+}
+
+.scene.has-moved .scene__hint {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene__dot::after,
+  .scene__hint svg {
+    animation: none;
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "wohnen-usm": {
+    "file": "rooms/wohnen-usm.jpg",
+    "ref": "USM Haller sideboard, 2 modules",
+    "ref_cm": 153,
+    "ref_px": [
+      465,
+      1412
+    ],
+    "surface_y": 1390,
+    "center_x": 938,
+    "gap_cm": 22,
+    "lean_x": 720,
+    "mode": {
+      "S": "lean"
+    }
+  },
+  "wohnen-sofa": {
+    "file": "rooms/wohnen-sofa.jpg",
+    "ref": "3-seat sofa at the backrest",
+    "ref_cm": 230,
+    "ref_px": [
+      90,
+      1615
+    ],
+    "surface_y": 1305,
+    "center_x": 853,
+    "gap_cm": 20
+  },
+  "essen": {
+    "file": "rooms/essen.jpg",
+    "ref": "oak lowboard on back wall (width estimated)",
+    "ref_cm": 160,
+    "ref_px": [
+      582,
+      1272
+    ],
+    "surface_y": 1322,
+    "center_x": 927,
+    "gap_cm": 25,
+    "lean_x": 1150,
+    "mode": {
+      "S": "lean"
+    }
+  },
+  "schlafen": {
+    "file": "rooms/schlafen.jpg",
+    "ref": "pillow row at the wall (≈155 cm on a 160 cm bed)",
+    "ref_cm": 155,
+    "ref_px": [
+      587,
+      1194
+    ],
+    "surface_y": 1335,
+    "center_x": 890,
+    "gap_cm": 25
+  },
+  "flur": {
+    "file": "rooms/flur.jpg",
+    "ref": "oak bench",
+    "ref_cm": 120,
+    "ref_px": [
+      482,
+      1100
+    ],
+    "surface_y": 1572,
+    "center_x": 791,
+    "gap_cm": 25,
+    "lean_x": 950,
+    "mode": {
+      "S": "lean"
+    }
+  },
+  "arbeiten": {
+    "file": "rooms/arbeiten.jpg",
+    "ref": "USM Haller desk, back edge",
+    "ref_cm": 175,
+    "ref_px": [
+      410,
+      1400
+    ],
+    "surface_y": 1395,
+    "center_x": 905,
+    "gap_cm": 30,
+    "lean_x": 1300,
+    "mode": {
+      "S": "lean"
+    }
+  }
+}

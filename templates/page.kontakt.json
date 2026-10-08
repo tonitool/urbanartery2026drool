@@ -1,14 +1,5 @@
 {
   "sections": {
-    "header": {
-      "type": "page-header",
-      "settings": {
-        "eyebrow": "",
-        "heading": "Kontakt",
-        "text": "Du hast Fragen zu Urban Artery? Du suchst spezielle Motive? Du hast generelles Feedback an uns? Nimm gerne Kontakt auf!",
-        "color_scheme": "dark"
-      }
-    },
     "form": {
       "type": "contact-form",
       "blocks": {
@@ -47,16 +38,29 @@
         "k3"
       ],
       "settings": {
+        "heading": "Kontakt",
+        "intro": "Du hast Fragen zu Urban Artery? Du suchst spezielle Motive? Du hast generelles Feedback an uns? Nimm gerne Kontakt auf!",
         "info_heading": "Unsere Kontaktmöglichkeiten",
         "note": "Bitte rechne mit 3–5 Werktagen Bearbeitungszeit für Anfragen.",
+        "cta_heading": "Großes Projekt?",
+        "cta_text": "Wandgestaltung, Firmenräume, Sonderformate: zu den Auftragsarbeiten.",
+        "cta_link": "/pages/auftragsarbeiten",
         "form_heading": "Kontaktformular",
-        "privacy_note": "<p>Wir verwenden deine Angaben nur zur Bearbeitung deiner Anfrage. Mehr dazu in unserer <a href=\"/policies/privacy-policy\">Datenschutzerklärung</a>.</p>",
-        "color_scheme": "default"
+        "topics_label": "Worum geht's?",
+        "topics": "Eigenes Motiv, Bestellung, Auftragsarbeit, Kooperation, Sonstiges",
+        "label_first": "Vorname",
+        "label_last": "Nachname",
+        "label_email": "E-Mail-Adresse",
+        "label_order": "Bestellnummer (optional)",
+        "label_subject": "Betreff",
+        "label_message": "Deine Nachricht",
+        "label_send": "Absenden",
+        "success": "Danke! Wir melden uns in Kürze bei dir.",
+        "privacy_note": "<p>Durch das Absenden erklärst du dich mit unserer <a href=\"/policies/privacy-policy\">Datenschutzerklärung</a> einverstanden.</p>"
       }
     }
   },
   "order": [
-    "header",
     "form"
   ]
 }

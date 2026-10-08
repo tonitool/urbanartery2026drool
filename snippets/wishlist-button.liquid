@@ -1,0 +1,10 @@
+{%- comment -%}
+  Heart toggle for the browser-local wishlist (see assets/theme.js, initWishlist).
+  Usage: {% render 'wishlist-button', product: product %}
+{%- endcomment -%}
+<button class="wishlist-button" type="button" data-wishlist-toggle="{{ product.handle | escape }}"
+        aria-pressed="false" aria-label="{{ 'wishlist.add' | t: title: product.title | escape }}"
+        data-label-add="{{ 'wishlist.add' | t: title: product.title | escape }}"
+        data-label-remove="{{ 'wishlist.remove' | t: title: product.title | escape }}">
+  {% render 'icon', name: 'heart' %}
+</button>

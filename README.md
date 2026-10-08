@@ -43,7 +43,7 @@ page. **Theme settings → Konfigurator** stores that product once; every
 | --- | --- | --- | --- |
 | 1 | „Dein Street-Art-Unikat.“ + Gestalten / Inspirieren | `hero-split` | Split hero |
 | 2 | Press logos — **disabled** until there is real coverage | `press-bar` | As seen in |
-| 3 | Künstler-Editionen | `product-carousel` | Best sellers |
+| 3 | Inspiration / October Picks | `product-carousel` | Best sellers |
 | 4 | Vorher & Nachher sliders | `before-after` (new) | Explore edits |
 | 5 | Werke anderer Kunden + „Selbst gestalten“ | `collection-carousel` | Trending today |
 | 6 | Trägermaterialien / Gutscheine tiles | `category-tiles` | Dark category band |

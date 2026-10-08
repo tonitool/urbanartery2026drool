@@ -1,19 +1,25 @@
-{%- if recommendations.performed? and recommendations.products_count > 0 -%}
-  <section class="section">
-    <div class="container section-header">
-      <h2 class="section-header__title">{{ section.settings.heading }}</h2>
-    </div>
-    <div class="carousel" data-carousel style="--slide-width: 260px;">
-      <button class="carousel__btn carousel__btn--prev" type="button" data-carousel-prev aria-label="{{ 'accessibility.previous_slide' | t }}">{% render 'icon', name: 'arrow-left' %}</button>
-      <ul class="carousel__track" data-carousel-track>
-        {%- for product in recommendations.products -%}
-          <li class="carousel__slide">{% render 'product-card', product: product %}</li>
-        {%- endfor -%}
-      </ul>
-      <button class="carousel__btn carousel__btn--next" type="button" data-carousel-next aria-label="{{ 'accessibility.next_slide' | t }}">{% render 'icon', name: 'arrow-right' %}</button>
-    </div>
-  </section>
-{%- endif -%}
+{%- comment -%}
+  Shopify only fills `recommendations` on the /recommendations/products route, so on the
+  product page this renders an empty shell that theme.js fills from that route.
+{%- endcomment -%}
+<div data-recommendations="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=8">
+  {%- if recommendations.performed? and recommendations.products_count > 0 -%}
+    <section class="section">
+      <div class="container section-header">
+        <h2 class="section-header__title">{{ section.settings.heading }}</h2>
+      </div>
+      <div class="carousel" data-carousel style="--slide-width: 260px;">
+        <button class="carousel__btn carousel__btn--prev" type="button" data-carousel-prev aria-label="{{ 'accessibility.previous_slide' | t }}">{% render 'icon', name: 'arrow-left' %}</button>
+        <ul class="carousel__track" data-carousel-track>
+          {%- for product in recommendations.products -%}
+            <li class="carousel__slide">{% render 'product-card', product: product %}</li>
+          {%- endfor -%}
+        </ul>
+        <button class="carousel__btn carousel__btn--next" type="button" data-carousel-next aria-label="{{ 'accessibility.next_slide' | t }}">{% render 'icon', name: 'arrow-right' %}</button>
+      </div>
+    </section>
+  {%- endif -%}
+</div>
 
 {% schema %}
 {

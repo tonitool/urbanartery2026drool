@@ -18,14 +18,17 @@
             <figcaption class="ba__title">{{ block.settings.title }}</figcaption>
           {%- endif -%}
 
-          <div class="ba__frame" data-before-after style="--ba-pos: 50%;">
+          {%- liquid
+            assign ratio_img = block.settings.image_after | default: block.settings.image_before
+          -%}
+          <div class="ba__frame" data-before-after style="--ba-pos: 50%;{% if ratio_img != blank %} aspect-ratio: {{ ratio_img.width }} / {{ ratio_img.height }};{% endif %}">
             <div class="ba__layer ba__layer--after">
               {%- if block.settings.image_after != blank -%}
                 <img src="{{ block.settings.image_after | image_url: width: 1200 }}"
                      srcset="{{ block.settings.image_after | image_url: width: 600 }} 600w, {{ block.settings.image_after | image_url: width: 1200 }} 1200w"
                      sizes="(min-width: 900px) 50vw, 100vw"
                      width="{{ block.settings.image_after.width }}" height="{{ block.settings.image_after.height }}"
-                     alt="{{ block.settings.image_after.alt | escape }}" loading="lazy">
+                     alt="{{ block.settings.image_after.alt | default: block.settings.title | append: ' – ' | append: after_label | escape }}" loading="lazy">
               {%- else -%}
                 {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
               {%- endif -%}
@@ -37,7 +40,7 @@
                      srcset="{{ block.settings.image_before | image_url: width: 600 }} 600w, {{ block.settings.image_before | image_url: width: 1200 }} 1200w"
                      sizes="(min-width: 900px) 50vw, 100vw"
                      width="{{ block.settings.image_before.width }}" height="{{ block.settings.image_before.height }}"
-                     alt="{{ block.settings.image_before.alt | escape }}" loading="lazy">
+                     alt="{{ block.settings.image_before.alt | default: block.settings.title | append: ' – ' | append: before_label | escape }}" loading="lazy">
               {%- else -%}
                 {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
               {%- endif -%}

@@ -1,0 +1,170 @@
+[
+ {
+  "art": "ua-motiv-trane.jpg",
+  "slides": [
+   {
+    "file": "qv-01-1.jpg",
+    "label": "Motiv"
+   },
+   {
+    "file": "qv-01-2.jpg",
+    "label": "L im Raum"
+   },
+   {
+    "file": "qv-01-3.jpg",
+    "label": "Nahaufnahme"
+   },
+   {
+    "file": "qv-01-4.jpg",
+    "label": "L im Raum"
+   }
+  ]
+ },
+ {
+  "art": "ua-motiv-whoa.jpg",
+  "slides": [
+   {
+    "file": "qv-02-1.jpg",
+    "label": "Motiv"
+   },
+   {
+    "file": "qv-02-2.jpg",
+    "label": "S im Raum"
+   },
+   {
+    "file": "qv-02-3.jpg",
+    "label": "Nahaufnahme"
+   },
+   {
+    "file": "qv-02-4.jpg",
+    "label": "M im Raum"
+   }
+  ]
+ },
+ {
+  "art": "ua-motiv-por-favor.jpg",
+  "slides": [
+   {
+    "file": "qv-03-1.jpg",
+    "label": "Motiv"
+   },
+   {
+    "file": "qv-03-2.jpg",
+    "label": "L im Raum"
+   },
+   {
+    "file": "qv-03-3.jpg",
+    "label": "Nahaufnahme"
+   },
+   {
+    "file": "qv-03-4.jpg",
+    "label": "L im Raum"
+   }
+  ]
+ },
+ {
+  "art": "ua-motiv-trane.jpg",
+  "slides": [
+   {
+    "file": "qv-04-1.jpg",
+    "label": "Motiv"
+   },
+   {
+    "file": "qv-04-2.jpg",
+    "label": "XL im Raum"
+   },
+   {
+    "file": "qv-04-3.jpg",
+    "label": "Nahaufnahme"
+   },
+   {
+    "file": "qv-04-4.jpg",
+    "label": "L im Raum"
+   }
+  ]
+ },
+ {
+  "art": "ua-motiv-robot.jpg",
+  "slides": [
+   {
+    "file": "qv-05-1.jpg",
+    "label": "Motiv"
+   },
+   {
+    "file": "qv-05-2.jpg",
+    "label": "L im Raum"
+   },
+   {
+    "file": "qv-05-3.jpg",
+    "label": "Nahaufnahme"
+   },
+   {
+    "file": "qv-05-4.jpg",
+    "label": "L im Raum"
+   }
+  ]
+ },
+ {
+  "art": "ua-motiv-whoa.jpg",
+  "slides": [
+   {
+    "file": "qv-06-1.jpg",
+    "label": "Motiv"
+   },
+   {
+    "file": "qv-06-2.jpg",
+    "label": "L im Raum"
+   },
+   {
+    "file": "qv-06-3.jpg",
+    "label": "Nahaufnahme"
+   },
+   {
+    "file": "qv-06-4.jpg",
+    "label": "M im Raum"
+   }
+  ]
+ },
+ {
+  "art": "ua-motiv-por-favor.jpg",
+  "slides": [
+   {
+    "file": "qv-07-1.jpg",
+    "label": "Motiv"
+   },
+   {
+    "file": "qv-07-2.jpg",
+    "label": "L im Raum"
+   },
+   {
+    "file": "qv-07-3.jpg",
+    "label": "Nahaufnahme"
+   },
+   {
+    "file": "qv-07-4.jpg",
+    "label": "L im Raum"
+   }
+  ]
+ },
+ {
+  "art": "ua-motiv-robot.jpg",
+  "slides": [
+   {
+    "file": "qv-08-1.jpg",
+    "label": "Motiv"
+   },
+   {
+    "file": "qv-08-2.jpg",
+    "label": "M im Raum"
+   },
+   {
+    "file": "qv-08-3.jpg",
+    "label": "Nahaufnahme"
+   },
+   {
+    "file": "qv-08-4.jpg",
+    "label": "L im Raum"
+   }
+  ]
+ }
+]

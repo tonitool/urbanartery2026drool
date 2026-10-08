@@ -1,9 +1,14 @@
-<div class="container container--narrow" style="padding-block:20px 60px;">
-  <div class="page-hero">
-    <h1 class="page-hero__title">{{ page.title }}</h1>
+{%- if page.handle == 'kontakt' or page.handle == 'contact' -%}
+  {%- comment -%} The contact page keeps its form even before the page.kontakt template is assigned. {%- endcomment -%}
+  {% render 'contact-page', section_id: section.id %}
+{%- else -%}
+  <div class="container container--narrow" style="padding-block:20px 60px;">
+    <div class="page-hero">
+      <h1 class="page-hero__title">{{ page.title }}</h1>
+    </div>
+    <div class="rte">{{ page.content }}</div>
   </div>
-  <div class="rte">{{ page.content }}</div>
-</div>
+{%- endif -%}
 
 {% schema %}
 { "name": "Page" }

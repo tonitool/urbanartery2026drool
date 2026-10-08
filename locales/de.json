@@ -55,7 +55,9 @@
       "share": "Teilen",
       "taxes_included": "inkl. MwSt.",
       "taxes_excluded": "zzgl. MwSt.",
-      "shipping_excluded": "zzgl. Versandkosten"
+      "shipping_excluded": "zzgl. Versandkosten",
+      "rating_label": "Bewertet mit {{ rating }} von {{ max }} aus {{ count }} Bewertungen",
+      "quick_add": "{{ title }} in den Warenkorb"
     }
   },
   "collections": {
@@ -87,7 +89,9 @@
         "one": "{{ count }} Artikel",
         "other": "{{ count }} Artikel"
       },
-      "quantity": "Anzahl"
+      "quantity": "Anzahl",
+      "free_shipping_remaining": "Noch {{ amount }} bis zum kostenlosen Versand",
+      "free_shipping_reached": "Dein Versand ist kostenlos"
     }
   },
   "sections": {
@@ -97,6 +101,9 @@
     "before_after": {
       "slider_label": "Ziehen zum Vergleichen von Vorher und Nachher: {{ title }}",
       "slider_label_untitled": "Ziehen zum Vergleichen von Vorher und Nachher"
+    },
+    "ugc": {
+      "view": "Ansehen"
     }
   },
   "onboarding": {
@@ -119,5 +126,28 @@
       "send": "Nachricht senden",
       "success": "Danke für deine Nachricht! Wir melden uns in Kürze bei dir."
     }
+  },
+  "wishlist": {
+    "title": "Merkliste",
+    "add": "{{ title }} merken",
+    "remove": "{{ title }} von der Merkliste entfernen",
+    "empty": "Deine Merkliste ist leer.",
+    "needs_js": "Die Merkliste benötigt JavaScript."
+  },
+  "quick_view": {
+    "open": "Schnellansicht: {{ title }}",
+    "gallery": "Bilder von {{ title }}",
+    "order": "Dieses Werk bestellen",
+    "make_your_own": "Selbst gestalten",
+    "all_details": "Alle Details ansehen",
+    "error": "Dieses Werk konnte nicht geladen werden."
+  },
+  "scene": {
+    "label": "Ziehen, um den Raum zu erkunden",
+    "hint": "Ziehen zum Entdecken"
+  },
+  "motion": {
+    "pause": "Pause",
+    "play": "Abspielen"
   }
 }

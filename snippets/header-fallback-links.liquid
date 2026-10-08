@@ -1,0 +1,16 @@
+{%- comment -%}
+  Menu used when the header's menu is empty or missing, so the shop never shows a bare header.
+  Accepts: style ('nav' or 'drawer')
+{%- endcomment -%}
+{%- capture configurator_url -%}{% render 'configurator-url' %}{%- endcapture -%}
+{%- liquid
+  assign titles = 'Konfigurator|Inspiration|Auftragsarbeiten|Kontakt' | split: '|'
+  assign urls = configurator_url | append: '|/collections/kunstlermotive|/pages/auftragsarbeiten|/pages/kontakt' | split: '|'
+-%}
+{%- for title in titles -%}
+  {%- if style == 'drawer' -%}
+    <a class="drawer__link" href="{{ urls[forloop.index0] }}">{{ title }}</a>
+  {%- else -%}
+    <li class="nav__item"><a class="nav__link" href="{{ urls[forloop.index0] }}">{{ title }}</a></li>
+  {%- endif -%}
+{%- endfor -%}

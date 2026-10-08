@@ -7,6 +7,22 @@
       <a class="btn" href="{{ routes.all_products_collection_url }}">{{ 'general.continue_shopping' | t }}</a>
     </div>
   {%- else -%}
+    {%- assign threshold = settings.free_shipping_threshold | times: 100 -%}
+    {%- if threshold > 0 -%}
+      {%- assign remaining = threshold | minus: cart.total_price -%}
+      {%- assign progress = cart.total_price | times: 100 | divided_by: threshold | at_most: 100 -%}
+      <div class="shipping-progress" role="status">
+        <p class="shipping-progress__text">
+          {%- if remaining > 0 -%}
+            {{ 'cart.general.free_shipping_remaining' | t: amount: remaining | money }}
+          {%- else -%}
+            {{ 'cart.general.free_shipping_reached' | t }}
+          {%- endif -%}
+        </p>
+        <div class="shipping-progress__bar" aria-hidden="true"><span style="width: {{ progress }}%;"></span></div>
+      </div>
+    {%- endif -%}
+
     <form action="{{ routes.cart_url }}" method="post" novalidate>
       <table class="cart__table">
         <thead>
@@ -23,7 +39,7 @@
               <td>
                 <div class="cart__item">
                   {%- if item.image -%}
-                    <img src="{{ item.image | image_url: width: 200 }}" width="84" height="112" alt="{{ item.image.alt | escape }}" loading="lazy">
+                    <img src="{{ item.image | image_url: width: 200 }}" width="84" height="112" alt="{{ item.image.alt | default: item.product.title | escape }}" loading="lazy">
                   {%- endif -%}
                   <div>
                     <a class="cart__item-title" href="{{ item.url }}">{{ item.product.title }}</a>
@@ -54,6 +70,13 @@
           <button class="btn btn--outline" type="submit" name="update">{{ 'cart.general.update' | t }}</button>
           <button class="btn" type="submit" name="checkout">{{ 'cart.general.checkout' | t }}</button>
         </div>
+        {%- if shop.enabled_payment_types.size > 0 -%}
+          <ul class="product__payment" role="list">
+            {%- for type in shop.enabled_payment_types -%}
+              <li>{{ type | payment_type_svg_tag: class: 'payment-icon' }}</li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
       </div>
     </form>
   {%- endif -%}

@@ -1,0 +1,182 @@
+/* Contact page: the original Urban Artery layout (dark intro, channels left,
+   form in a grey card right) with grain, topic chips and a project teaser. */
+.ua-contact {
+  --c-ink: #0c0c0c;
+  --c-paper: #f2f0ec;
+  --c-pink: var(--color-accent, #e60073);
+  --c-card: var(--color-subtle, #f1f1f1);
+  --c-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- intro ---------- */
+.ua-contact__hero {
+  padding-block: clamp(64px, 8vw, 112px);
+  background-color: var(--c-ink);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  color: var(--c-paper);
+  text-align: center;
+}
+.ua-contact__title {
+  margin: 0 0 22px;
+  font-family: var(--font-heading);
+  font-size: clamp(2.6rem, 1.6rem + 4vw, 4.6rem);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.ua-contact__intro {
+  max-width: 42rem;
+  margin: 0 auto;
+  color: rgb(242 240 236 / 0.8);
+  font-size: clamp(1rem, 0.94rem + 0.3vw, 1.18rem);
+  line-height: 1.6;
+}
+
+/* ---------- body ---------- */
+.ua-contact__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(36px, 5vw, 64px);
+  max-width: 1080px;
+  padding-block: clamp(56px, 6vw, 88px);
+}
+
+.ua-contact__heading {
+  margin: 0 0 32px;
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.ua-contact__channels { display: grid; gap: 24px; margin: 0 0 36px; padding: 0; list-style: none; }
+.ua-channel { display: flex; align-items: flex-start; gap: 16px; }
+.ua-channel__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  background: var(--c-pink);
+  color: #fff;
+}
+.ua-channel__icon svg { width: 24px; height: 24px; }
+.ua-channel__title {
+  margin: 0 0 4px;
+  font-family: var(--font-heading);
+  font-size: 0.86rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.ua-channel__link {
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+.ua-channel__link:hover { color: var(--c-pink); }
+.ua-channel__text { margin: 4px 0 0; color: var(--color-muted); font-size: 0.85rem; }
+
+.ua-contact__note { margin: 0 0 28px; color: var(--color-muted); font-size: 0.85rem; }
+
+.ua-contact__cta {
+  position: relative;
+  display: grid;
+  gap: 6px;
+  padding: 20px 54px 20px 22px;
+  background: var(--c-ink);
+  color: var(--c-paper);
+  text-decoration: none;
+  transition: transform 300ms var(--c-ease);
+}
+.ua-contact__cta-heading { font-family: var(--font-heading); font-size: 1.2rem; text-transform: uppercase; }
+.ua-contact__cta-text { color: rgb(242 240 236 / 0.7); font-size: 0.8rem; line-height: 1.5; }
+.ua-contact__cta-arrow { position: absolute; right: 20px; top: 50%; width: 18px; height: 18px; color: var(--c-pink); transform: translateY(-50%); transition: transform 300ms var(--c-ease); }
+.ua-contact__cta:hover { transform: translateY(-3px); }
+.ua-contact__cta:hover .ua-contact__cta-arrow { transform: translate(5px, -50%); }
+
+/* ---------- form card ---------- */
+.ua-contact__card { align-self: start; padding: clamp(24px, 3vw, 36px); background: var(--c-card); }
+.ua-contact__card-heading {
+  margin: 0 0 22px;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ua-form { display: grid; gap: 14px; }
+.ua-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+.ua-form__topics { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 6px; padding: 0; border: 0; }
+.ua-form__legend {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.ua-chip { position: relative; cursor: pointer; }
+.ua-chip input { position: absolute; opacity: 0; pointer-events: none; }
+.ua-chip span {
+  display: inline-block;
+  padding: 8px 13px;
+  background: #fff;
+  font-size: 0.78rem;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+.ua-chip:hover span { background: rgb(12 12 12 / 0.08); }
+.ua-chip input:checked + span { background: var(--c-ink); color: var(--c-paper); }
+.ua-chip input:focus-visible + span { outline: 2px solid var(--c-pink); outline-offset: 2px; }
+
+.ua-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 0;
+  background: #fff;
+  color: var(--c-ink);
+  font: inherit;
+  font-size: 0.95rem;
+  transition: box-shadow 180ms ease;
+}
+.ua-input--area { height: auto; min-height: 150px; padding-block: 12px; resize: vertical; }
+.ua-input::placeholder { color: rgb(12 12 12 / 0.45); }
+.ua-input:focus { outline: none; box-shadow: inset 0 0 0 2px var(--c-pink); }
+
+.ua-form__privacy { color: var(--color-muted); font-size: 0.75rem; }
+.ua-form__privacy p { margin: 0; }
+.ua-form__privacy a { color: inherit; text-decoration: underline; }
+.ua-form__privacy a:hover { color: var(--c-pink); }
+
+.ua-form__submit {
+  width: 100%;
+  height: 56px;
+  border: 0;
+  background: var(--c-pink);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 200ms ease;
+}
+.ua-form__submit:hover { background: #ff1a8c; }
+.ua-form__submit:focus-visible { outline: 2px solid var(--c-ink); outline-offset: 3px; }
+
+.ua-form__status { margin: 0; padding: 14px 16px; background: #fff; border-left: 3px solid var(--c-ink); font-size: 0.85rem; }
+.ua-form__status--error { border-left-color: var(--c-pink); }
+
+@media (max-width: 899px) {
+  .ua-contact__body { grid-template-columns: 1fr; }
+}
+@media (max-width: 479px) {
+  .ua-form__row { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ua-contact__cta, .ua-contact__cta-arrow { transition: none; }
+}

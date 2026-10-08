@@ -1,0 +1,79 @@
+{%- comment -%}
+  Quick-view content for a product: media slideshow (motif, room mockups, close-ups —
+  upload them in that order and name each image in its alt text, e.g. "Motiv",
+  "Wohnzimmer", "Nahaufnahme"), artist, title, rating, price, short description and
+  two actions: order this piece, or design your own in the configurator.
+  Served by templates/product.quick.liquid and loaded into the #QuickView dialog.
+  Usage: {% render 'quick-view', product: product %}
+{%- endcomment -%}
+{%- liquid
+  assign current = product.selected_or_first_available_variant
+  assign on_sale = false
+  if current.compare_at_price > current.price
+    assign on_sale = true
+  endif
+-%}
+{%- capture configurator_url -%}{% render 'configurator-url' %}{%- endcapture -%}
+
+<div class="qv" data-qv>
+  <div class="qv__media">
+    <div class="qv__track" data-qv-track tabindex="0" aria-label="{{ 'quick_view.gallery' | t: title: product.title | escape }}">
+      {%- for media in product.media -%}
+        {%- if media.media_type == 'image' -%}
+          <figure class="qv__slide" data-qv-slide>
+            <img src="{{ media | image_url: width: 1200 }}"
+                 srcset="{{ media | image_url: width: 600 }} 600w, {{ media | image_url: width: 1200 }} 1200w"
+                 sizes="(min-width: 900px) 50vw, 100vw"
+                 width="{{ media.width }}" height="{{ media.height }}"
+                 alt="{{ media.alt | default: product.title | escape }}" {% unless forloop.first %}loading="lazy"{% endunless %}>
+            {%- if media.alt != blank -%}<figcaption class="qv__caption">{{ media.alt }}</figcaption>{%- endif -%}
+          </figure>
+        {%- endif -%}
+      {%- else -%}
+        <figure class="qv__slide" data-qv-slide>{{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}</figure>
+      {%- endfor -%}
+    </div>
+    {%- if product.media.size > 1 -%}
+      <button class="qv__nav qv__nav--prev" type="button" data-qv-prev aria-label="{{ 'accessibility.previous_slide' | t }}">{% render 'icon', name: 'arrow-left' %}</button>
+      <button class="qv__nav qv__nav--next" type="button" data-qv-next aria-label="{{ 'accessibility.next_slide' | t }}">{% render 'icon', name: 'arrow-right' %}</button>
+      <div class="qv__thumbs" role="tablist">
+        {%- for media in product.media limit: 8 -%}
+          <button class="qv__thumb" type="button" role="tab" data-qv-thumb="{{ forloop.index0 }}" aria-label="{{ media.alt | default: product.title | escape }}">
+            <img src="{{ media | image_url: width: 140 }}" width="70" height="88" alt="" loading="lazy">
+          </button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="qv__info">
+    {%- if product.vendor != blank -%}<p class="qv__artist">{{ 'products.product.vendor' | t: vendor: product.vendor }}</p>{%- endif -%}
+    <h2 class="qv__title" id="QuickViewTitle">{{ product.title }}</h2>
+    {% render 'rating', product: product, size: 'md' %}
+    <p class="qv__price">
+      {%- if product.price_varies -%}
+        {{ product.price_min | money }} – {{ product.price_max | money }}
+      {%- else -%}
+        <span {% if on_sale %}class="on-sale"{% endif %}>{{ current.price | money }}</span>
+        {%- if on_sale %} <s>{{ current.compare_at_price | money }}</s>{% endif -%}
+      {%- endif -%}
+    </p>
+    <p class="product__tax-note">{% if shop.taxes_included %}{{ 'products.product.taxes_included' | t }}{% else %}{{ 'products.product.taxes_excluded' | t }}{% endif %}, {{ 'products.product.shipping_excluded' | t }}</p>
+    {%- if product.description != blank -%}
+      <div class="qv__desc rte">{{ product.description | strip_html | truncatewords: 55 }}</div>
+    {%- endif -%}
+
+    <div class="qv__actions">
+      {%- if product.has_only_default_variant and current.available -%}
+        {%- form 'product', product, class: 'qv__buy', data-quick-add: 'true' -%}
+          <input type="hidden" name="id" value="{{ current.id }}">
+          <button class="btn btn--full" type="submit">{{ 'quick_view.order' | t }}</button>
+        {%- endform -%}
+      {%- else -%}
+        <a class="btn btn--full" href="{{ product.url }}">{{ 'quick_view.order' | t }}</a>
+      {%- endif -%}
+      <a class="btn btn--outline btn--full" href="{{ configurator_url }}">{{ 'quick_view.make_your_own' | t }}</a>
+    </div>
+    <a class="qv__details link-underline" href="{{ product.url }}">{{ 'quick_view.all_details' | t }}</a>
+  </div>
+</div>

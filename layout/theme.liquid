@@ -119,5 +119,10 @@
     {% sections 'footer-group' %}
 
     <div id="Overlay" class="overlay" hidden></div>
+
+    <dialog class="qv-dialog" id="QuickView" aria-labelledby="QuickViewTitle" data-quick-view-dialog data-error="{{ 'quick_view.error' | t | escape }}">
+      <button class="qv-dialog__close header__action" type="button" data-quick-view-close aria-label="{{ 'accessibility.close' | t }}">{% render 'icon', name: 'close' %}</button>
+      <div class="qv-dialog__body" data-quick-view-body></div>
+    </dialog>
   </body>
 </html>

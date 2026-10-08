@@ -1,4 +1,4 @@
-<header class="header{% if section.settings.color_scheme == 'dark' %} header--dark{% endif %}">
+<header class="header{% if section.settings.color_scheme == 'dark' %} header--dark{% endif %} header--{{ section.settings.layout }}">
   <div class="container container--wide header__inner">
 
     <button class="header__toggle" type="button" data-drawer-open aria-controls="MenuDrawer" aria-expanded="false" aria-label="{{ 'accessibility.menu' | t }}">
@@ -54,11 +54,17 @@
               </div>
             {%- endif -%}
           </li>
+        {%- else -%}
+          {% render 'header-fallback-links', style: 'nav' %}
         {%- endfor -%}
       </ul>
     </nav>
 
     <div class="header__actions">
+      {%- if section.settings.cta_label != blank -%}
+        {%- capture configurator_url -%}{% render 'configurator-url' %}{%- endcapture -%}
+        <a class="btn btn--small header__cta" href="{{ section.settings.cta_link | default: configurator_url }}">{{ section.settings.cta_label }}</a>
+      {%- endif -%}
       <a class="header__action" href="{{ routes.search_url }}" aria-label="{{ 'accessibility.search' | t }}">
         {% render 'icon', name: 'search' %}
       </a>
@@ -66,6 +72,13 @@
       {%- if shop.customer_accounts_enabled -%}
         <a class="header__action" href="{{ routes.account_url }}" aria-label="{{ 'accessibility.account' | t }}">
           {% render 'icon', name: 'account' %}
+        </a>
+      {%- endif -%}
+
+      {%- if section.settings.wishlist_page != blank -%}
+        <a class="header__action" href="{{ section.settings.wishlist_page.url }}" aria-label="{{ 'wishlist.title' | t }}">
+          {% render 'icon', name: 'heart' %}
+          <span class="cart-count" data-wishlist-count hidden>0</span>
         </a>
       {%- endif -%}
 
@@ -103,6 +116,8 @@
     {%- else -%}
       <a class="drawer__link" href="{{ link.url }}">{{ link.title }}</a>
     {%- endif -%}
+  {%- else -%}
+    {% render 'header-fallback-links', style: 'drawer' %}
   {%- endfor -%}
 </div>
 
@@ -112,6 +127,13 @@
   "settings": [
     { "type": "image_picker", "id": "logo", "label": "Logo", "info": "Falls back to the store name as a wordmark." },
     { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu", "info": "Two levels of nesting render as a mega menu." },
+    { "type": "text", "id": "cta_label", "label": "Header button", "info": "For example \"Jetzt gestalten\". Hidden on small screens." },
+    { "type": "url", "id": "cta_link", "label": "Header button link", "info": "Empty: links to the configurator product." },
+    { "type": "page", "id": "wishlist_page", "label": "Wishlist page", "info": "A page using the page.wishlist template. Shows a heart in the header." },
+    { "type": "select", "id": "layout", "label": "Layout", "default": "stacked", "options": [
+      { "value": "stacked", "label": "Logo centred, menu row below" },
+      { "value": "inline", "label": "Logo centred, menu left" }
+    ]},
     { "type": "range", "id": "logo_height", "label": "Logo height", "min": 24, "max": 72, "step": 2, "unit": "px", "default": 34 },
     { "type": "select", "id": "color_scheme", "label": "Colour scheme", "default": "light", "options": [
       { "value": "light", "label": "Light" },

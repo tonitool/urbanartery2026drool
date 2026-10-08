@@ -1,4 +1,5 @@
 {%- liquid
+  assign product_form_id = 'ProductForm-' | append: section.id
   assign current = product.selected_or_first_available_variant
   assign on_sale = false
   if current.compare_at_price > current.price
@@ -16,7 +17,7 @@
                      {{ product.featured_media | image_url: width: 1200 }} 1200w"
              sizes="(min-width: 900px) 55vw, 100vw"
              width="{{ product.featured_media.width }}" height="{{ product.featured_media.height }}"
-             alt="{{ product.featured_media.alt | escape }}"
+             alt="{{ product.featured_media.alt | default: product.title | escape }}"
              fetchpriority="high">
       {%- else -%}
         {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -29,7 +30,7 @@
           <button class="product__thumb" type="button"
                   onclick="document.getElementById('ProductMainImage').src='{{ media | image_url: width: 1200 }}';document.getElementById('ProductMainImage').srcset='';"
                   aria-label="{{ media.alt | escape | default: product.title | escape }}">
-            <img src="{{ media | image_url: width: 160 }}" width="160" height="160" alt="" loading="lazy">
+            <img src="{{ media | image_url: width: 160 }}" width="160" height="160" alt="{{ media.alt | default: product.title | escape }}" loading="lazy">
           </button>
         {%- endfor -%}
       </div>
@@ -37,7 +38,14 @@
   </div>
 
   <div class="product__details">
-    <h1 class="product__title">{{ product.title }}</h1>
+    <div class="product__title-row">
+      <h1 class="product__title">{{ product.title }}</h1>
+      {% render 'wishlist-button', product: product %}
+    </div>
+    {%- capture rating_html -%}{% render 'rating', product: product, size: 'md' %}{%- endcapture -%}
+    {%- if rating_html != blank -%}
+      <a class="product__rating" href="#{{ section.settings.reviews_anchor | default: 'reviews' }}">{{ rating_html }}</a>
+    {%- endif -%}
 
     {%- if product.vendor != blank -%}
       <p class="product__vendor">{{ 'products.product.vendor' | t: vendor: product.vendor }}</p>
@@ -59,7 +67,7 @@
       </p>
     {%- endif -%}
 
-    {%- form 'product', product, class: 'product-form', data-product-form: 'true' -%}
+    {%- form 'product', product, id: product_form_id, class: 'product-form', data-product-form: 'true' -%}
       <input type="hidden" name="id" value="{{ current.id }}" data-variant-id>
 
       {%- unless product.has_only_default_variant -%}
@@ -96,6 +104,17 @@
       </button>
 
       {{ form | payment_button }}
+
+      {%- if section.settings.delivery_note != blank -%}
+        <p class="product__delivery">{% render 'icon', name: 'clock' %}<span>{{ section.settings.delivery_note }}</span></p>
+      {%- endif -%}
+      {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+        <ul class="product__payment" role="list">
+          {%- for type in shop.enabled_payment_types -%}
+            <li>{{ type | payment_type_svg_tag: class: 'payment-icon' }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
 
       <script type="application/json" data-variants>
         [
@@ -160,11 +179,54 @@
   </div>
 </div>
 
+{%- if section.settings.sticky_buy_bar -%}
+  <div class="sticky-buy" data-sticky-buy hidden>
+    <div class="sticky-buy__info">
+      <p class="sticky-buy__title">{{ product.title }}</p>
+      <p class="sticky-buy__price" data-product-price>{{ current.price | money }}</p>
+    </div>
+    <button class="btn" type="submit" name="add" form="{{ product_form_id }}" {% unless current.available %}disabled{% endunless %}>
+      {{ 'products.product.add_to_cart' | t }}
+    </button>
+  </div>
+{%- endif -%}
+
+{%- liquid
+  assign rating = product.metafields.reviews.rating.value
+  assign rating_count = product.metafields.reviews.rating_count.value | default: 0
+-%}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": {{ product.title | json }},
+    "url": {{ request.origin | append: product.url | json }},
+    {%- if product.featured_media %}"image": {{ product.featured_media | image_url: width: 1200 | prepend: 'https:' | json }},{% endif %}
+    "description": {{ product.description | strip_html | truncate: 500 | json }},
+    {%- if product.vendor != blank %}"brand": { "@type": "Brand", "name": {{ product.vendor | json }} },{% endif %}
+    {%- if rating != blank and rating_count > 0 -%}
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": {{ rating.rating | json }}, "bestRating": {{ rating.scale_max | json }}, "reviewCount": {{ rating_count | json }} },
+    {%- endif %}
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": {{ cart.currency.iso_code | json }},
+      "lowPrice": {{ product.price_min | divided_by: 100.0 | json }},
+      "highPrice": {{ product.price_max | divided_by: 100.0 | json }},
+      "offerCount": {{ product.variants.size }},
+      "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}"
+    }
+  }
+</script>
+
 {% schema %}
 {
   "name": "Product",
   "settings": [
-    { "type": "checkbox", "id": "show_tax_note", "label": "Show tax and shipping note under price", "default": true, "info": "Required for consumer sales in Germany (PAngV)." }
+    { "type": "checkbox", "id": "show_tax_note", "label": "Show tax and shipping note under price", "default": true, "info": "Required for consumer sales in Germany (PAngV)." },
+    { "type": "text", "id": "delivery_note", "label": "Delivery promise under the buy button", "default": "Handmade and shipped within 10–14 working days" },
+    { "type": "checkbox", "id": "show_payment_icons", "label": "Show payment icons under the buy button", "default": true },
+    { "type": "checkbox", "id": "sticky_buy_bar", "label": "Sticky buy bar on mobile", "default": true },
+    { "type": "text", "id": "reviews_anchor", "label": "Reviews anchor id", "default": "reviews", "info": "The rating under the title links to this id; set it to your reviews app block's id." }
   ],
   "blocks": [
     { "type": "@app" },

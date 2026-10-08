@@ -63,7 +63,10 @@
         "returns"
       ],
       "settings": {
-        "show_tax_note": true
+        "show_tax_note": true,
+        "delivery_note": "Handgefertigt und versandbereit in 10–14 Werktagen",
+        "show_payment_icons": true,
+        "sticky_buy_bar": true
       }
     },
     "before-after": {
@@ -73,8 +76,8 @@
           "type": "comparison",
           "settings": {
             "title": "Aus Foto wird Kunst",
-            "image_before": "shopify://shop_images/ua-foto-kunst-vorher.jpg",
-            "image_after": "shopify://shop_images/ua-foto-kunst-nachher.jpg",
+            "image_before": "shopify://shop_images/ua-ba-eppendorf-vorher.jpg",
+            "image_after": "shopify://shop_images/ua-ba-eppendorf-nachher.jpg",
             "text": "Lade dein Lieblingsfoto hoch und unsere Künstler verwandeln es in ein einzigartiges Street-Art-Werk."
           }
         },
@@ -82,8 +85,8 @@
           "type": "comparison",
           "settings": {
             "title": "Aus quer wird hoch",
-            "image_before": "shopify://shop_images/ua-quer-hoch-vorher.jpg",
-            "image_after": "shopify://shop_images/ua-quer-hoch-nachher.jpg",
+            "image_before": "shopify://shop_images/ua-ba-pier-vorher.jpg",
+            "image_after": "shopify://shop_images/ua-ba-pier-nachher-blau.jpg",
             "text": "Wir erweitern dein Foto für das perfekte Format – ohne dabei Details zu verlieren."
           }
         }
