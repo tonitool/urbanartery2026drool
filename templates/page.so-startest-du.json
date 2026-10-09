@@ -111,7 +111,7 @@
         "color_scheme": "default",
         "button_style": "outline",
         "button_label": "Zu den FAQs",
-        "button_link": "/pages/faq"
+        "button_link": "/pages/faqs"
       }
     }
   },

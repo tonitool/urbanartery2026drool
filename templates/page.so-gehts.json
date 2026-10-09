@@ -74,7 +74,7 @@
       "type": "rich-text",
       "settings": {
         "heading": "Noch Fragen?",
-        "text": "<p>Schau in unsere <a href=\"/pages/faq\">FAQ</a> oder <a href=\"/pages/kontakt\">kontaktiere uns</a> direkt.</p>",
+        "text": "<p>Schau in unsere <a href=\"/pages/faqs\">FAQ</a> oder <a href=\"/pages/kontakt\">kontaktiere uns</a> direkt.</p>",
         "alignment": "center",
         "color_scheme": "default",
         "button_style": "solid"

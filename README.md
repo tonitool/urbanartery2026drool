@@ -114,12 +114,17 @@ zip -r dist/urban-artery-theme.zip assets config layout locales sections snippet
    | Page | Handle | Template |
    | --- | --- | --- |
    | Auftragsarbeiten | `auftragsarbeiten` | `page.auftragsarbeiten` |
-   | Über Urban Artery | `ueber-uns` | `page.ueber-uns` |
+   | Über Urban Artery | `uber-urban-artery` | `page.ueber-uns` |
    | So startest du mit Blanks | `so-startest-du` | `page.so-startest-du` |
-   | So funktioniert's | `so-gehts` | `page.so-gehts` |
-   | FAQ | `faq` | `page.faq` |
-   | Verpackung & Versand | `versand` | `page.versand` |
+   | So funktioniert's | `so-funktionierts` | `page.so-gehts` |
+   | Häufige Fragen | `faqs` | `page.faq` |
+   | Verpackung und Versand | `verpackung-und-versand` | `page.versand` |
    | Kontakt | `kontakt` | `page.kontakt` |
+   | Merkliste | `merkliste` | `page.wishlist` |
+
+   These are the handles the live shop uses (urban-artery.de). Theme links point to
+   them, so keep them when renaming a page. The contact layout also renders on the
+   default page template for the handle `kontakt`.
 
    The contact form is Shopify's own and emails the store's sender address.
    Impressum, Datenschutz and AGB belong in Settings → Policies.
