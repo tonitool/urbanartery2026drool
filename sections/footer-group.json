@@ -43,19 +43,22 @@
         "f1": {
           "type": "links",
           "settings": {
-            "title": "Hilfe"
+            "title": "Hilfe",
+            "menu": "hilfe-men"
           }
         },
         "f2": {
           "type": "links",
           "settings": {
-            "title": "Urban Artery"
+            "title": "Urban Artery",
+            "menu": "ber-urban-artery"
           }
         },
         "f3": {
           "type": "links",
           "settings": {
-            "title": "Rechtliches"
+            "title": "Rechtliches",
+            "menu": "rechtliches"
           }
         },
         "f4": {
