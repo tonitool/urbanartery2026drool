@@ -48,11 +48,12 @@
   outline-offset: -4px;
 }
 
-/* At least 1.6 screens wide, otherwise as wide as the photo's proportions. */
+/* A little wider than the screen so there is always something to drag, otherwise as wide as
+   the photo's proportions; kept low so wide screens do not crop the wall top and bottom. */
 .scene__canvas {
   position: relative;
   height: 100%;
-  width: max(160vw, calc(var(--scene-height) * var(--scene-ratio)));
+  width: max(115vw, calc(var(--scene-height) * var(--scene-ratio)));
 }
 
 .scene__image {

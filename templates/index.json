@@ -3,21 +3,21 @@
     "hero": {
       "type": "hero-split",
       "settings": {
+        "layout": "full",
         "show_rating": false,
         "rating_text": "",
         "heading": "Dein Street-Art-Unikat.",
         "text": "Aus deinem Lieblingsfoto wird ein handgefertigtes Kunstwerk für deine Wand.",
         "button_label": "Jetzt gestalten",
+        "button_link": "",
         "button_label_2": "Inspiration",
         "button_link_2": "/collections/kunstlermotive",
         "image": "shopify://shop_images/ua-foto-kunst-nachher.jpg",
-        "video_url": "https://cdn.shopify.com/videos/c/o/v/f6553138823543e7a732c900a191f151.mov",
-        "layout": "full"
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/f6553138823543e7a732c900a191f151.mov"
       }
     },
     "press": {
       "type": "press-bar",
-      "disabled": true,
       "blocks": {
         "p1": {
           "type": "logo",
@@ -57,19 +57,10 @@
         "p4",
         "p5"
       ],
+      "disabled": true,
       "settings": {
         "label": "Bekannt aus"
       }
-    },
-    "intro": {
-      "type": "cta-banner",
-      "settings": {
-        "heading": "Echte Street-Art für dein Zuhause.",
-        "text": "Gestaltet von dir. Handgefertigt von unseren Künstlern.",
-        "button_label": "",
-        "color_scheme": "default"
-      },
-      "disabled": true
     },
     "popular": {
       "type": "product-carousel",
@@ -77,11 +68,12 @@
         "eyebrow": "Inspiration",
         "heading": "October Picks",
         "subheading": "",
+        "collection": "kunstlermotive",
         "products_to_show": 12,
         "slide_width": 280,
         "button_label": "Alle Werke",
-        "color_scheme": "default",
-        "collection": "kunstlermotive"
+        "button_link": "",
+        "color_scheme": "default"
       }
     },
     "before-after": {
@@ -90,19 +82,23 @@
         "b1": {
           "type": "comparison",
           "settings": {
-            "title": "Aus Foto wird Kunst",
+            "title": "Aus quer wird hoch",
             "image_before": "shopify://shop_images/ua-ba-eppendorf-vorher.jpg",
             "image_after": "shopify://shop_images/ua-ba-eppendorf-nachher.jpg",
-            "text": "Lade dein Lieblingsfoto hoch und unsere Künstler verwandeln es in ein einzigartiges Street-Art-Werk."
+            "text": "Lade dein Lieblingsfoto hoch und unsere Künstler verwandeln es in ein einzigartiges Street-Art-Werk.",
+            "before_label": "",
+            "after_label": ""
           }
         },
         "b2": {
           "type": "comparison",
           "settings": {
-            "title": "Aus quer wird hoch",
+            "title": "Aus Foto wird Kunst",
             "image_before": "shopify://shop_images/ua-ba-pier-vorher.jpg",
             "image_after": "shopify://shop_images/ua-ba-pier-nachher-blau.jpg",
-            "text": "Wir erweitern dein Foto für das perfekte Format – ohne dabei Details zu verlieren."
+            "text": "Auch Sonderwünsche in der Bildkomposition machen wir möglich. Nimm Kontakt auf!",
+            "before_label": "",
+            "after_label": ""
           }
         }
       },
@@ -111,12 +107,64 @@
         "b2"
       ],
       "settings": {
-        "eyebrow": "Individualisierungen",
+        "eyebrow": "Kundenbeispiele",
         "heading": "Vorher & Nachher",
+        "subheading": "",
         "before_label": "Vorher",
         "after_label": "Nachher",
         "button_label": "Jetzt gestalten",
+        "button_link": "",
         "color_scheme": "subtle"
+      }
+    },
+    "shop-the-wall": {
+      "type": "explore-scene",
+      "blocks": {
+        "size-1": {
+          "type": "point",
+          "settings": {
+            "label": "S · 20 × 30 cm",
+            "x": 13,
+            "y": 56
+          }
+        },
+        "size-2": {
+          "type": "point",
+          "settings": {
+            "label": "M · 40 × 60 cm",
+            "x": 22,
+            "y": 56
+          }
+        },
+        "size-3": {
+          "type": "point",
+          "settings": {
+            "label": "XL · 120 × 180 cm",
+            "x": 39,
+            "y": 50
+          }
+        },
+        "size-4": {
+          "type": "point",
+          "settings": {
+            "label": "L · 80 × 120 cm",
+            "x": 72,
+            "y": 48
+          }
+        }
+      },
+      "block_order": [
+        "size-1",
+        "size-2",
+        "size-3",
+        "size-4"
+      ],
+      "settings": {
+        "heading": "So wirken die Größen",
+        "image": "shopify://shop_images/ua-wall-sizes.jpg",
+        "image_alt": "Vier Street-Art-Leinwände in S, M, L und XL an einer Wohnzimmerwand",
+        "height": "large",
+        "point_color": "#ffffff"
       }
     },
     "customer-works": {
@@ -126,17 +174,9 @@
           "type": "post",
           "settings": {
             "image": "shopify://shop_images/ua-ugc-paper-tiger.jpg",
+            "product": "",
             "title": "Tigerherz",
             "place": "Wohnzimmer, Hamburg",
-            "link": "/products/masterprodukt-individuelle-streetart"
-          }
-        },
-        "p2": {
-          "type": "post",
-          "settings": {
-            "image": "shopify://shop_images/ua-ugc-office-bulldog.jpg",
-            "title": "König Bulli",
-            "place": "Start-up, Berlin",
             "link": "/products/masterprodukt-individuelle-streetart"
           }
         },
@@ -144,8 +184,19 @@
           "type": "post",
           "settings": {
             "image": "shopify://shop_images/ua-ugc-birds.jpg",
+            "product": "",
             "title": "Zugvogel",
             "place": "Altbau, Berlin",
+            "link": "/products/masterprodukt-individuelle-streetart"
+          }
+        },
+        "p2": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ua-ugc-office-bulldog.jpg",
+            "product": "",
+            "title": "König Bulli",
+            "place": "Start-up, Berlin",
             "link": "/products/masterprodukt-individuelle-streetart"
           }
         },
@@ -153,6 +204,7 @@
           "type": "post",
           "settings": {
             "image": "shopify://shop_images/ua-ugc-office-phoenix.jpg",
+            "product": "",
             "title": "Phönix",
             "place": "Agentur, Hamburg",
             "link": "/products/masterprodukt-individuelle-streetart"
@@ -162,17 +214,9 @@
           "type": "post",
           "settings": {
             "image": "shopify://shop_images/ua-ugc-wolf.jpg",
+            "product": "",
             "title": "Rudelchef",
             "place": "Flur bei München",
-            "link": "/products/masterprodukt-individuelle-streetart"
-          }
-        },
-        "p6": {
-          "type": "post",
-          "settings": {
-            "image": "shopify://shop_images/ua-ugc-office-hummingbird.jpg",
-            "title": "Kolibri",
-            "place": "Kanzlei, Frankfurt",
             "link": "/products/masterprodukt-individuelle-streetart"
           }
         },
@@ -180,8 +224,19 @@
           "type": "post",
           "settings": {
             "image": "shopify://shop_images/ua-ugc-afro.jpg",
+            "product": "",
             "title": "Lockenkopf",
             "place": "Schlafzimmer, Düsseldorf",
+            "link": "/products/masterprodukt-individuelle-streetart"
+          }
+        },
+        "p6": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ua-ugc-office-hummingbird.jpg",
+            "product": "",
+            "title": "Kolibri",
+            "place": "Kanzlei, Frankfurt",
             "link": "/products/masterprodukt-individuelle-streetart"
           }
         },
@@ -189,6 +244,7 @@
           "type": "post",
           "settings": {
             "image": "shopify://shop_images/ua-ugc-office-balloon.jpg",
+            "product": "",
             "title": "Luftnummer",
             "place": "Chefbüro, Düsseldorf",
             "link": "/products/masterprodukt-individuelle-streetart"
@@ -198,17 +254,9 @@
           "type": "post",
           "settings": {
             "image": "shopify://shop_images/ua-ugc-astronaut.jpg",
+            "product": "",
             "title": "Ab ins All",
             "place": "Familienküche bei Köln",
-            "link": "/products/masterprodukt-individuelle-streetart"
-          }
-        },
-        "p10": {
-          "type": "post",
-          "settings": {
-            "image": "shopify://shop_images/ua-ugc-office-elephant.jpg",
-            "title": "Gelber Riese",
-            "place": "Büroküche, München",
             "link": "/products/masterprodukt-individuelle-streetart"
           }
         },
@@ -216,8 +264,19 @@
           "type": "post",
           "settings": {
             "image": "shopify://shop_images/ua-ugc-koi.jpg",
+            "product": "",
             "title": "Koi Pink",
             "place": "Homeoffice, Frankfurt",
+            "link": "/products/masterprodukt-individuelle-streetart"
+          }
+        },
+        "p10": {
+          "type": "post",
+          "settings": {
+            "image": "shopify://shop_images/ua-ugc-office-elephant.jpg",
+            "product": "",
+            "title": "Gelber Riese",
+            "place": "Büroküche, München",
             "link": "/products/masterprodukt-individuelle-streetart"
           }
         },
@@ -225,6 +284,7 @@
           "type": "post",
           "settings": {
             "image": "shopify://shop_images/ua-ugc-crow.jpg",
+            "product": "",
             "title": "Krähe auf Draht",
             "place": "Treppenhaus bei Stuttgart",
             "link": "/products/masterprodukt-individuelle-streetart"
@@ -234,6 +294,7 @@
           "type": "post",
           "settings": {
             "image": "shopify://shop_images/ua-ugc-bubblegum.jpg",
+            "product": "",
             "title": "Kaugummiblase",
             "place": "Loft, Leipzig",
             "link": "/products/masterprodukt-individuelle-streetart"
@@ -243,6 +304,7 @@
           "type": "post",
           "settings": {
             "image": "shopify://shop_images/ua-ugc-paper-skull.jpg",
+            "product": "",
             "title": "Rosenschädel",
             "place": "Esszimmer, Eppendorf",
             "link": "/products/masterprodukt-individuelle-streetart"
@@ -279,50 +341,58 @@
         "note": "Beispielbilder. Dein Werk hängt schon? Schick uns ein Foto – wir zeigen es hier."
       }
     },
-    "tiles": {
-      "type": "category-tiles",
+    "editions-lineup": {
+      "type": "lineup",
       "blocks": {
-        "t1": {
-          "type": "tile",
+        "f1": {
+          "type": "figure",
           "settings": {
-            "label": "Selbst gestalten",
-            "image": "shopify://shop_images/ua-motiv-por-favor.jpg",
-            "link": "/products/masterprodukt-individuelle-streetart"
+            "image": "shopify://shop_images/ua-packshot-trane.webp",
+            "product": "",
+            "title": "",
+            "link": ""
           }
         },
-        "t2": {
-          "type": "tile",
+        "f2": {
+          "type": "figure",
           "settings": {
-            "label": "Fertige Werke",
-            "image": "shopify://shop_images/ua-motiv-trane.jpg",
-            "link": "/collections/all"
+            "image": "shopify://shop_images/ua-packshot-por-favor.webp",
+            "product": "",
+            "title": "",
+            "link": ""
           }
         },
-        "t3": {
-          "type": "tile",
+        "f3": {
+          "type": "figure",
           "settings": {
-            "label": "Inspiration",
-            "image": "shopify://shop_images/ua-motiv-whoa.jpg",
-            "link": "/collections/kunstlermotive"
+            "image": "shopify://shop_images/ua-packshot-whoa.webp",
+            "product": "",
+            "title": "",
+            "link": ""
           }
         },
-        "t4": {
-          "type": "tile",
+        "f4": {
+          "type": "figure",
           "settings": {
-            "label": "Auftragsarbeiten",
-            "image": "shopify://shop_images/ua-auftragsarbeiten.jpg",
-            "link": "/pages/auftragsarbeiten"
+            "image": "shopify://shop_images/ua-packshot-robot.webp",
+            "product": "",
+            "title": "",
+            "link": ""
           }
         }
       },
       "block_order": [
-        "t1",
-        "t2",
-        "t3",
-        "t4"
+        "f1",
+        "f2",
+        "f3",
+        "f4"
       ],
-      "settings": {},
-      "disabled": true
+      "settings": {
+        "heading": "Kundenbeispiele",
+        "figure_height": 45,
+        "autoplay": 4,
+        "hover_effect": "grayscale"
+      }
     },
     "new": {
       "type": "product-carousel",
@@ -330,24 +400,29 @@
         "eyebrow": "Frisch aus dem Atelier",
         "heading": "Neue Motive",
         "subheading": "",
+        "collection": "neue-motive",
         "products_to_show": 12,
         "slide_width": 280,
         "button_label": "Alle Motive",
-        "color_scheme": "default",
-        "collection": "neue-motive",
-        "button_link": "/collections/neue-motive"
+        "button_link": "/collections/neue-motive",
+        "color_scheme": "default"
       }
     },
-    "design-service": {
-      "type": "cta-banner",
+    "design-statement": {
+      "type": "statement",
       "settings": {
-        "heading": "Urban Artery Design Service",
-        "text": "Du hast eine Vision? Wir machen sie zur Realität. Lass uns gemeinsam dein individuelles Street-Art-Kunstwerk erschaffen.",
+        "image": "shopify://shop_images/ua-auftragsarbeiten.jpg",
+        "overlay": 45,
+        "eyebrow": "Urban Artery Design Service",
+        "text": "Du hast eine Vision? Wir machen sie zur Realität.",
+        "effect": "typewriter",
+        "alignment": "center",
+        "text_size": "m",
+        "text_color": "#ffffff",
+        "marquee_speed": 30,
         "button_label": "Kontaktiere uns",
-        "button_link": "/pages/kontakt",
-        "color_scheme": "dark"
-      },
-      "disabled": true
+        "button_link": "/pages/kontakt"
+      }
     },
     "how-it-works": {
       "type": "trust-badges",
@@ -356,8 +431,8 @@
           "type": "badge",
           "settings": {
             "icon": "upload",
-            "title": "Foto hochladen",
-            "text": "Wähle ein Bild aus deiner Galerie oder mach ein neues Foto. Porträts, Landschaften, Haustiere – alles ist möglich."
+            "title": "Foto hochladen (Optional)",
+            "text": "Wähle ein Bild aus deiner Galerie oder mach ein neues Foto. Porträts, Landschaften, Haustiere – alles ist möglich. Es geht natürlich auch ohne eigenes Motiv - unser Konfigurator hat einiges zu bieten!"
           }
         },
         "s2": {
@@ -365,7 +440,7 @@
           "settings": {
             "icon": "palette",
             "title": "Motiv gestalten",
-            "text": "Kombiniere dein Foto mit Elementen aus unserer Motiv-Datenbank und gestalte dein Werk im Konfigurator."
+            "text": "Kombiniere Fotos, Texte oder Elemente aus unserer Motiv-Datenbank, lege Farben fest und kombiniere ganz nach Deinen Wünschen und Ansprüchen."
           }
         },
         "s3": {
@@ -373,7 +448,7 @@
           "settings": {
             "icon": "frame",
             "title": "Format bestimmen",
-            "text": "Wähle Größe, Hoch- oder Querformat und Trägermaterial passend zu deinem Raum."
+            "text": "Wähle die für Dich passende Größe, Hoch- oder Querformat und das Trägermaterial passend zu deinen Vorliegen und Räumlichkeiten."
           }
         },
         "s4": {
@@ -381,7 +456,7 @@
           "settings": {
             "icon": "hand",
             "title": "Handgefertigt & geliefert",
-            "text": "Unsere Künstler fertigen dein Unikat in 10–14 Werktagen. Sicher verpackt kommt es zu dir nach Hause."
+            "text": "Unsere Künstler fertigen dein Unikat in 4 - 6 Wochen. Sicher verpackt kommt es zu dir nach Hause."
           }
         }
       },
@@ -394,14 +469,15 @@
       "settings": {
         "eyebrow": "So funktioniert's",
         "heading": "In vier Schritten zum Unikat",
+        "subheading": "",
         "numbered": true,
         "button_label": "Zum Konfigurator",
+        "button_link": "",
         "color_scheme": "subtle"
       }
     },
     "reviews": {
       "type": "reviews",
-      "disabled": true,
       "blocks": {
         "r1": {
           "type": "review",
@@ -436,9 +512,22 @@
         "r2",
         "r3"
       ],
+      "disabled": true,
       "settings": {
         "heading": "Das sagen unsere Kunden",
         "color_scheme": "default"
+      }
+    },
+    "behind-the-scenes": {
+      "type": "video",
+      "settings": {
+        "eyebrow": "Behind the scenes",
+        "heading": "Urban Artery",
+        "subheading": "",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/f6553138823543e7a732c900a191f151.mov",
+        "poster": "shopify://shop_images/ua-mockup-wohnen-sofa.jpg",
+        "text": "",
+        "color_scheme": "dark"
       }
     },
     "more": {
@@ -447,31 +536,34 @@
         "m1": {
           "type": "edit",
           "settings": {
+            "collection": "",
             "title": "Auftragsarbeiten",
-            "text": "Individueller geht es nicht!",
-            "link_label": "Mehr erfahren",
             "image": "shopify://shop_images/ua-auftragsarbeiten.jpg",
-            "link": "/pages/auftragsarbeiten"
+            "link": "/pages/auftragsarbeiten",
+            "text": "Individueller geht es nicht!",
+            "link_label": "Mehr erfahren"
           }
         },
         "m2": {
           "type": "edit",
           "settings": {
+            "collection": "",
             "title": "Unsere Story",
-            "text": "Die Leidenschaft für Urban Art. Erfahrt mehr über die Idee und das Team.",
-            "link_label": "Mehr erfahren",
             "image": "shopify://shop_images/ua-unsere-story.jpg",
-            "link": "/pages/uber-urban-artery"
+            "link": "/pages/uber-urban-artery",
+            "text": "Erfahrt mehr über die Idee und das Team.",
+            "link_label": "Mehr erfahren"
           }
         },
         "m3": {
           "type": "edit",
           "settings": {
-            "title": "So startest du mit Blanks",
-            "text": "Von deinem Foto zum Street-Art-Unikat. So einfach geht's.",
-            "link_label": "Mehr erfahren",
+            "collection": "",
+            "title": "So geht es",
             "image": "shopify://shop_images/ua-blanks.jpg",
-            "link": "/pages/so-startest-du"
+            "link": "/pages/so-startest-du",
+            "text": "In 4 Schritten zum Street-Art Unikat",
+            "link_label": "Mehr erfahren"
           }
         }
       },
@@ -487,46 +579,48 @@
         "slide_width": 420,
         "card_style": "overlay",
         "button_label": "",
+        "button_link": "",
         "color_scheme": "default"
-      }
-    },
-    "behind-the-scenes": {
-      "type": "video",
-      "settings": {
-        "eyebrow": "Behind the scenes",
-        "heading": "Urban Artery",
-        "video_url": "https://cdn.shopify.com/videos/c/o/v/f6553138823543e7a732c900a191f151.mov",
-        "color_scheme": "dark",
-        "poster": "shopify://shop_images/ua-mockup-wohnen-sofa.jpg"
       }
     },
     "community": {
       "type": "community",
-      "disabled": true,
       "blocks": {
         "c1": {
           "type": "photo",
-          "settings": {}
+          "settings": {
+            "link": ""
+          }
         },
         "c2": {
           "type": "photo",
-          "settings": {}
+          "settings": {
+            "link": ""
+          }
         },
         "c3": {
           "type": "photo",
-          "settings": {}
+          "settings": {
+            "link": ""
+          }
         },
         "c4": {
           "type": "photo",
-          "settings": {}
+          "settings": {
+            "link": ""
+          }
         },
         "c5": {
           "type": "photo",
-          "settings": {}
+          "settings": {
+            "link": ""
+          }
         },
         "c6": {
           "type": "photo",
-          "settings": {}
+          "settings": {
+            "link": ""
+          }
         }
       },
       "block_order": [
@@ -537,119 +631,504 @@
         "c5",
         "c6"
       ],
+      "disabled": true,
       "settings": {
         "eyebrow": "Community",
         "heading": "Folge uns auf Instagram",
         "text": "Markiere uns mit deinem Unikat – die schönsten Wände zeigen wir hier.",
+        "link": "",
         "color_scheme": "default"
       }
     },
-    "newsletter": {
-      "type": "newsletter",
+    "intro": {
+      "type": "cta-banner",
+      "disabled": true,
       "settings": {
-        "heading": "Join the Movement",
-        "text": "Melde dich für unseren Newsletter an und erhalte 10 % Rabatt auf deine erste Bestellung.",
-        "button_label": "Anmelden",
-        "fine_print": "<p>Mit der Anmeldung willigst du ein, unseren Newsletter zu erhalten. Abmeldung jederzeit über den Link in jeder E-Mail. Details in unserer <a href=\"/policies/privacy-policy\">Datenschutzerklärung</a>.</p>",
+        "heading": "Echte Street-Art für dein Zuhause.",
+        "text": "Gestaltet von dir. Handgefertigt von unseren Künstlern.",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "default"
+      }
+    },
+    "tiles": {
+      "type": "category-tiles",
+      "blocks": {
+        "t1": {
+          "type": "tile",
+          "settings": {
+            "label": "Selbst gestalten",
+            "collection": "",
+            "image": "shopify://shop_images/ua-motiv-por-favor.jpg",
+            "link": "/products/masterprodukt-individuelle-streetart"
+          }
+        },
+        "t2": {
+          "type": "tile",
+          "settings": {
+            "label": "Fertige Werke",
+            "collection": "",
+            "image": "shopify://shop_images/ua-motiv-trane.jpg",
+            "link": "/collections/all"
+          }
+        },
+        "t3": {
+          "type": "tile",
+          "settings": {
+            "label": "Inspiration",
+            "collection": "",
+            "image": "shopify://shop_images/ua-motiv-whoa.jpg",
+            "link": "/collections/kunstlermotive"
+          }
+        },
+        "t4": {
+          "type": "tile",
+          "settings": {
+            "label": "Auftragsarbeiten",
+            "collection": "",
+            "image": "shopify://shop_images/ua-auftragsarbeiten.jpg",
+            "link": "/pages/auftragsarbeiten"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": ""
+      }
+    },
+    "design-service": {
+      "type": "cta-banner",
+      "disabled": true,
+      "settings": {
+        "heading": "Urban Artery Design Service",
+        "text": "Du hast eine Vision? Wir machen sie zur Realität. Lass uns gemeinsam dein individuelles Street-Art-Kunstwerk erschaffen.",
+        "button_label": "Kontaktiere uns",
+        "button_link": "/pages/kontakt",
         "color_scheme": "dark"
       }
     },
-    "shop-the-wall": {
-      "type": "explore-scene",
+    "room-tour": {
+      "type": "room-tour",
       "blocks": {
-        "a": {
-          "type": "point",
+        "room-hof": {
+          "type": "room",
           "settings": {
-            "label": "M · 60 × 40 cm",
-            "x": 30,
-            "y": 51
+            "name": "Hof",
+            "image": "shopify://shop_images/ua-haus-hof.jpg"
           }
         },
-        "b": {
-          "type": "point",
+        "hof-art-1": {
+          "type": "piece",
           "settings": {
-            "label": "L · 120 × 80 cm",
-            "x": 58,
-            "y": 46
+            "title": "Goldmähne",
+            "image": "shopify://shop_images/ua-art-loewe-1.jpg",
+            "size": "XL",
+            "format": "Hochformat",
+            "x": 36,
+            "y": 49,
+            "product": "stencil-goldmaehne"
           }
         },
-        "c": {
-          "type": "point",
+        "hof-art-2": {
+          "type": "piece",
           "settings": {
-            "label": "M · LightBeton®",
-            "x": 81,
+            "title": "Koi-Kreis",
+            "image": "shopify://shop_images/ua-art-koi-2.jpg",
+            "size": "L",
+            "format": "Querformat",
+            "x": 46,
+            "y": 35,
+            "product": "stencil-koi-kreis"
+          }
+        },
+        "hof-art-3": {
+          "type": "piece",
+          "settings": {
+            "title": "Kaugummi-Queen",
+            "image": "shopify://shop_images/ua-art-bubblegum-1.jpg",
+            "size": "M",
+            "format": "Hochformat",
+            "x": 50,
+            "y": 28,
+            "product": "stencil-kaugummi-queen"
+          }
+        },
+        "hof-door-1": {
+          "type": "door",
+          "settings": {
+            "label": "Rein ins Loft",
+            "target": 2,
+            "direction": "left",
+            "x": 15,
             "y": 59
           }
+        },
+        "hof-door-2": {
+          "type": "door",
+          "settings": {
+            "label": "Hoch ins Atelier",
+            "target": 5,
+            "direction": "up",
+            "x": 66,
+            "y": 12
+          }
+        },
+        "room-loft": {
+          "type": "room",
+          "settings": {
+            "name": "Loft",
+            "image": "shopify://shop_images/ua-haus-loft.jpg"
+          }
+        },
+        "loft-art-1": {
+          "type": "piece",
+          "settings": {
+            "title": "Abflug",
+            "image": "shopify://shop_images/ua-art-papierflieger-1.jpg",
+            "size": "L",
+            "format": "Querformat",
+            "x": 37,
+            "y": 41,
+            "product": "stencil-abflug"
+          }
+        },
+        "loft-art-2": {
+          "type": "piece",
+          "settings": {
+            "title": "Kopfkino",
+            "image": "shopify://shop_images/ua-art-muse-2.jpg",
+            "size": "L",
+            "format": "Hochformat",
+            "x": 72,
+            "y": 48,
+            "product": "stencil-kopfkino"
+          }
+        },
+        "loft-art-3": {
+          "type": "piece",
+          "settings": {
+            "title": "Kolibri-Blüte",
+            "image": "shopify://shop_images/ua-art-kolibri-2.jpg",
+            "size": "S",
+            "format": "Hochformat",
+            "x": 52,
+            "y": 26,
+            "product": "stencil-kolibri-bluete"
+          }
+        },
+        "loft-door-1": {
+          "type": "door",
+          "settings": {
+            "label": "Schlafzimmer",
+            "target": 3,
+            "direction": "right",
+            "x": 44,
+            "y": 39
+          }
+        },
+        "loft-door-2": {
+          "type": "door",
+          "settings": {
+            "label": "Rauf aufs Dach",
+            "target": 6,
+            "direction": "up",
+            "x": 84,
+            "y": 73
+          }
+        },
+        "loft-door-3": {
+          "type": "door",
+          "settings": {
+            "label": "Zurück zum Hof",
+            "target": 1,
+            "direction": "left",
+            "x": 20,
+            "y": 56
+          }
+        },
+        "room-schlafzimmer": {
+          "type": "room",
+          "settings": {
+            "name": "Schlafzimmer",
+            "image": "shopify://shop_images/ua-haus-schlafzimmer.jpg"
+          }
+        },
+        "schlafzimmer-art-1": {
+          "type": "piece",
+          "settings": {
+            "title": "Schwerelos",
+            "image": "shopify://shop_images/ua-art-astronaut-2.jpg",
+            "size": "L",
+            "format": "Querformat",
+            "x": 62,
+            "y": 45,
+            "product": "stencil-schwerelos"
+          }
+        },
+        "schlafzimmer-art-2": {
+          "type": "piece",
+          "settings": {
+            "title": "Mondwache",
+            "image": "shopify://shop_images/ua-art-mondkatze-2.jpg",
+            "size": "M",
+            "format": "Hochformat",
+            "x": 28,
+            "y": 49,
+            "product": "stencil-mondwache"
+          }
+        },
+        "schlafzimmer-art-3": {
+          "type": "piece",
+          "settings": {
+            "title": "Nachteule",
+            "image": "shopify://shop_images/ua-art-eule-2.jpg",
+            "size": "S",
+            "format": "Hochformat",
+            "x": 50,
+            "y": 33,
+            "product": "stencil-nachteule"
+          }
+        },
+        "schlafzimmer-art-4": {
+          "type": "piece",
+          "settings": {
+            "title": "Sturzflug",
+            "image": "shopify://shop_images/ua-art-vogel-1.jpg",
+            "size": "S",
+            "format": "Hochformat",
+            "x": 68,
+            "y": 48,
+            "product": "stencil-sturzflug"
+          }
+        },
+        "schlafzimmer-door-1": {
+          "type": "door",
+          "settings": {
+            "label": "Ins Bad",
+            "target": 4,
+            "direction": "right",
+            "x": 73,
+            "y": 56
+          }
+        },
+        "schlafzimmer-door-2": {
+          "type": "door",
+          "settings": {
+            "label": "Zurück ins Loft",
+            "target": 2,
+            "direction": "up",
+            "x": 86,
+            "y": 37
+          }
+        },
+        "room-bad": {
+          "type": "room",
+          "settings": {
+            "name": "Bad",
+            "image": "shopify://shop_images/ua-haus-bad.jpg"
+          }
+        },
+        "bad-art-1": {
+          "type": "piece",
+          "settings": {
+            "title": "Honigflug",
+            "image": "shopify://shop_images/ua-art-biene-1.jpg",
+            "size": "M",
+            "format": "Hochformat",
+            "x": 43,
+            "y": 36,
+            "product": "stencil-honigflug"
+          }
+        },
+        "bad-art-2": {
+          "type": "piece",
+          "settings": {
+            "title": "Hibiskus-Kolibri",
+            "image": "shopify://shop_images/ua-art-kolibri-1.jpg",
+            "size": "S",
+            "format": "Hochformat",
+            "x": 79,
+            "y": 52,
+            "product": "stencil-hibiskus-kolibri"
+          }
+        },
+        "bad-door-1": {
+          "type": "door",
+          "settings": {
+            "label": "Zurück ins Schlafzimmer",
+            "target": 3,
+            "direction": "left",
+            "x": 59,
+            "y": 35
+          }
+        },
+        "room-atelier": {
+          "type": "room",
+          "settings": {
+            "name": "Atelier",
+            "image": "shopify://shop_images/ua-haus-atelier.jpg"
+          }
+        },
+        "atelier-art-1": {
+          "type": "piece",
+          "settings": {
+            "title": "Koi-Strudel",
+            "image": "shopify://shop_images/ua-art-koi-1.jpg",
+            "size": "L",
+            "format": "Querformat",
+            "x": 25,
+            "y": 35,
+            "product": "stencil-koi-strudel"
+          }
+        },
+        "atelier-art-2": {
+          "type": "piece",
+          "settings": {
+            "title": "Zündfunke",
+            "image": "shopify://shop_images/ua-art-streichholz-2.jpg",
+            "size": "L",
+            "format": "Hochformat",
+            "x": 67,
+            "y": 55,
+            "product": "stencil-zuendfunke"
+          }
+        },
+        "atelier-art-3": {
+          "type": "piece",
+          "settings": {
+            "title": "Wiesengriff",
+            "image": "shopify://shop_images/ua-art-gras-2.jpg",
+            "size": "S",
+            "format": "Hochformat",
+            "x": 72,
+            "y": 51,
+            "product": "stencil-wiesengriff"
+          }
+        },
+        "atelier-door-1": {
+          "type": "door",
+          "settings": {
+            "label": "Runter zum Hof",
+            "target": 1,
+            "direction": "down",
+            "x": 87,
+            "y": 52
+          }
+        },
+        "atelier-door-2": {
+          "type": "door",
+          "settings": {
+            "label": "Ins Loft",
+            "target": 2,
+            "direction": "left",
+            "x": 52,
+            "y": 34
+          }
+        },
+        "room-dach": {
+          "type": "room",
+          "settings": {
+            "name": "Dach-Café",
+            "image": "shopify://shop_images/ua-haus-dach.jpg"
+          }
+        },
+        "dach-art-1": {
+          "type": "piece",
+          "settings": {
+            "title": "Sternenflug",
+            "image": "shopify://shop_images/ua-art-astronaut-1.jpg",
+            "size": "XL",
+            "format": "Querformat",
+            "x": 39,
+            "y": 49,
+            "product": "stencil-sternenflug"
+          }
+        },
+        "dach-art-2": {
+          "type": "piece",
+          "settings": {
+            "title": "Boombox 86",
+            "image": "shopify://shop_images/ua-art-boombox-2.jpg",
+            "size": "M",
+            "format": "Hochformat",
+            "x": 47,
+            "y": 38,
+            "product": "stencil-boombox-86"
+          }
+        },
+        "dach-art-3": {
+          "type": "piece",
+          "settings": {
+            "title": "Honigwabe",
+            "image": "shopify://shop_images/ua-art-biene-2.jpg",
+            "size": "S",
+            "format": "Hochformat",
+            "x": 51,
+            "y": 27,
+            "product": "stencil-honigwabe"
+          }
+        },
+        "dach-door-1": {
+          "type": "door",
+          "settings": {
+            "label": "Runter ins Loft",
+            "target": 2,
+            "direction": "down",
+            "x": 58,
+            "y": 25
+          }
         }
       },
       "block_order": [
-        "a",
-        "b",
-        "c"
+        "room-hof",
+        "hof-art-1",
+        "hof-art-2",
+        "hof-art-3",
+        "hof-door-1",
+        "hof-door-2",
+        "room-loft",
+        "loft-art-1",
+        "loft-art-2",
+        "loft-art-3",
+        "loft-door-1",
+        "loft-door-2",
+        "loft-door-3",
+        "room-schlafzimmer",
+        "schlafzimmer-art-1",
+        "schlafzimmer-art-2",
+        "schlafzimmer-art-3",
+        "schlafzimmer-art-4",
+        "schlafzimmer-door-1",
+        "schlafzimmer-door-2",
+        "room-bad",
+        "bad-art-1",
+        "bad-art-2",
+        "bad-door-1",
+        "room-atelier",
+        "atelier-art-1",
+        "atelier-art-2",
+        "atelier-art-3",
+        "atelier-door-1",
+        "atelier-door-2",
+        "room-dach",
+        "dach-art-1",
+        "dach-art-2",
+        "dach-art-3",
+        "dach-door-1"
       ],
       "settings": {
-        "heading": "So wirken die Größen",
-        "image": "shopify://shop_images/ua-shop-the-wall.jpg",
-        "image_alt": "Altbau-Wohnzimmer mit drei Urban-Artery-Werken in den Größen M und L über Sideboard, Sofa und Bank",
-        "height": "large",
-        "point_color": "#FFFFFF"
-      }
-    },
-    "editions-lineup": {
-      "type": "lineup",
-      "blocks": {
-        "f1": {
-          "type": "figure",
-          "settings": {
-            "image": "shopify://shop_images/ua-packshot-trane.webp"
-          }
-        },
-        "f2": {
-          "type": "figure",
-          "settings": {
-            "image": "shopify://shop_images/ua-packshot-por-favor.webp"
-          }
-        },
-        "f3": {
-          "type": "figure",
-          "settings": {
-            "image": "shopify://shop_images/ua-packshot-whoa.webp"
-          }
-        },
-        "f4": {
-          "type": "figure",
-          "settings": {
-            "image": "shopify://shop_images/ua-packshot-robot.webp"
-          }
-        }
-      },
-      "block_order": [
-        "f1",
-        "f2",
-        "f3",
-        "f4"
-      ],
-      "settings": {
-        "heading": "Bereit zum Aufhängen",
-        "figure_height": 45,
-        "autoplay": 4,
-        "hover_effect": "grayscale"
-      }
-    },
-    "design-statement": {
-      "type": "statement",
-      "settings": {
-        "image": "shopify://shop_images/ua-auftragsarbeiten.jpg",
-        "overlay": 45,
-        "eyebrow": "Urban Artery Design Service",
-        "text": "Du hast eine Vision? Wir machen sie zur Realität.",
-        "effect": "typewriter",
-        "alignment": "center",
-        "text_size": "m",
-        "text_color": "#FFFFFF",
-        "marquee_speed": 30,
-        "button_label": "Kontaktiere uns",
-        "button_link": "/pages/kontakt"
+        "background": "#0C0C0C",
+        "make_label": "Make yours",
+        "text": "Folge den Pfeilen durch Hof, Loft, Schlafzimmer, Bad, Atelier und Dach. Jede Nummer an der Wand ist ein Motiv in echter Größe, von S bis XL, im Hoch- oder Querformat. Tippe drauf und mach es zu deinem.",
+        "heading": "Komm rein ins Urban Artery Haus.",
+        "button_label": "",
+        "note": ""
       }
     }
   },
@@ -658,6 +1137,7 @@
     "press",
     "popular",
     "before-after",
+    "room-tour",
     "shop-the-wall",
     "customer-works",
     "editions-lineup",
@@ -668,7 +1148,6 @@
     "behind-the-scenes",
     "more",
     "community",
-    "newsletter",
     "intro",
     "tiles",
     "design-service"

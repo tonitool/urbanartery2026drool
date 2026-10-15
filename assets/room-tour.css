@@ -1,0 +1,292 @@
+/* Room tour ("Urban Artery Haus"): copy and floor plan on top, then one full-width isometric scene
+   at a time. Arrow points sit on doors and stairs and walk into the next room; numbered points on
+   the art open a large motif card. On phones the scene keeps its height and pans sideways. */
+.room-tour {
+  --rt-ink: #0c0c0c;
+  --rt-paper: #f6f3ee;
+  --rt-pink: var(--color-accent, #e60073);
+  --rt-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  display: block;
+  padding-block: clamp(48px, 6vw, 88px) 0;
+  background: var(--room-bg, #0c0c0c);
+  color: var(--rt-paper);
+}
+
+/* ---------- stage ---------- */
+.room-tour__stage { position: relative; }
+.room-tour__room[hidden] { display: none; }
+.room-tour__viewport { position: relative; overflow: hidden; }
+.room-tour__canvas { position: relative; width: 100%; aspect-ratio: var(--room-ratio, 1.78); }
+.room-tour__image { display: block; width: 100%; height: 100%; -webkit-user-drag: none; }
+
+/* Walking in: the next room comes towards you with a short push-in. */
+.room-tour__room { animation: room-enter 700ms var(--rt-ease) both; }
+.room-tour[data-direction="back"] .room-tour__room { animation-name: room-leave; }
+@keyframes room-enter { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: none; } }
+@keyframes room-leave { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: none; } }
+
+/* ---------- doors ---------- */
+.room-tour__door {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+  transform: translate(-21px, -50%);
+}
+.room-tour__door-arrow {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border: 1.5px solid #fff;
+  border-radius: 50%;
+  background: rgb(12 12 12 / 0.72);
+  backdrop-filter: blur(4px);
+  transition: background-color 200ms ease, transform 300ms var(--rt-ease);
+}
+.room-tour__door-arrow::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border: 1px solid rgb(255 255 255 / 0.5);
+  border-radius: 50%;
+  animation: room-pulse 2.4s ease-out infinite;
+}
+/* Near the right edge the label goes to the left of the arrow. */
+.room-tour__door--flip { flex-direction: row-reverse; transform: translate(calc(-100% + 21px), -50%); }
+.room-tour__door--left .room-tour__door-arrow svg { transform: rotate(180deg); }
+.room-tour__door--up .room-tour__door-arrow svg { transform: rotate(-90deg); }
+.room-tour__door--down .room-tour__door-arrow svg { transform: rotate(90deg); }
+.room-tour__door-label {
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgb(12 12 12 / 0.72);
+  backdrop-filter: blur(4px);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.room-tour__door:hover .room-tour__door-arrow,
+.room-tour__door:focus-visible .room-tour__door-arrow { background: var(--rt-pink); border-color: var(--rt-pink); transform: scale(1.1); }
+.room-tour__door:focus-visible { outline: none; }
+.room-tour__door:focus-visible .room-tour__door-label { outline: 2px solid var(--rt-pink); outline-offset: 2px; }
+
+/* ---------- points ---------- */
+.room-tour__point {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  z-index: 1;
+  transform: translate(-50%, -50%);
+}
+.room-tour__point:is(:hover, :focus-within), .room-tour__point.is-open { z-index: 5; }
+
+.room-tour__pin {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1.5px solid rgb(255 255 255 / 0.9);
+  border-radius: 50%;
+  background: rgb(12 12 12 / 0.6);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background-color 200ms ease, transform 300ms var(--rt-ease);
+}
+.room-tour__pin::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 1px solid rgb(255 255 255 / 0.55);
+  border-radius: 50%;
+  animation: room-pulse 2.4s ease-out infinite;
+}
+.room-tour__pin:hover, .room-tour__pin[aria-expanded="true"] { background: var(--rt-pink); transform: scale(1.12); }
+.room-tour__pin:focus-visible { outline: 2px solid var(--rt-pink); outline-offset: 4px; }
+
+@keyframes room-pulse {
+  from { opacity: 0.9; transform: scale(0.7); }
+  to { opacity: 0; transform: scale(1.5); }
+}
+
+/* ---------- motif card ---------- */
+/* The card sits beside the pin; its transparent padding bridges the gap so hovering into it keeps it open. */
+.room-tour__card {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  padding-left: 14px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(8px, -50%);
+  transition: opacity 220ms ease, transform 320ms var(--rt-ease), visibility 0s linear 220ms;
+}
+.room-tour__point[data-side="left"] .room-tour__card {
+  left: auto;
+  right: 100%;
+  padding-left: 0;
+  padding-right: 14px;
+  transform: translate(-8px, -50%);
+}
+.room-tour__point:hover .room-tour__card,
+.room-tour__point.is-open .room-tour__card {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(0, -50%);
+  transition-delay: 0s;
+}
+
+.room-tour__card-inner {
+  position: relative;
+  width: 300px;
+  background: var(--rt-paper);
+  color: var(--rt-ink);
+  box-shadow: 0 24px 60px rgb(0 0 0 / 0.55);
+}
+.room-tour__close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 1;
+  display: none;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(12 12 12 / 0.7);
+  color: #fff;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.room-tour__point.is-open .room-tour__close { display: block; }
+
+/* Fixed-height frame; the motif is scaled to fit inside it whatever its own size attributes say. */
+.room-tour__media {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+.room-tour__media--landscape { height: 210px; }
+.room-tour__art {
+  position: absolute;
+  inset: 14px;
+  width: calc(100% - 28px);
+  height: calc(100% - 28px);
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgb(0 0 0 / 0.45));
+}
+
+.room-tour__card-body { display: grid; gap: 4px; padding: 14px 16px 16px; }
+.room-tour__size { margin: 0; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: #555; }
+.room-tour__size b { display: inline-block; margin-right: 4px; padding: 1px 6px; background: var(--rt-ink); color: #fff; letter-spacing: 0.04em; }
+.room-tour__title { margin: 2px 0 0; font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.1; text-transform: uppercase; }
+.room-tour__price { margin: 0; font-size: 0.85rem; }
+.room-tour__card-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 10px; }
+.room-tour__make { flex: 1 1 auto; justify-content: center; border-radius: 999px; background: var(--rt-pink); color: #fff; text-align: center; }
+.room-tour__make:hover { background: #ff1a8c; }
+.room-tour__link { color: var(--rt-ink); font-size: 0.8rem; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.room-tour__link:hover { color: var(--rt-pink); }
+
+/* ---------- copy, counter, tabs, actions ---------- */
+.room-tour__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px 40px;
+  margin-bottom: clamp(16px, 2.5vw, 28px);
+}
+.room-tour__intro { display: grid; gap: 14px; max-width: 40rem; }
+.room-tour__heading {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 1.2rem + 2.4vw, 3rem);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.room-tour__text { max-width: 36rem; margin: 0; color: rgb(246 243 238 / 0.78); line-height: 1.55; }
+
+.room-tour__tabs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.room-tour__count { margin-right: 10px; font-size: 0.8rem; letter-spacing: 0.12em; color: rgb(246 243 238 / 0.6); }
+.room-tour__count b { color: var(--rt-paper); font-size: 1.1rem; }
+.room-tour__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  border: 1px solid rgb(246 243 238 / 0.25);
+  border-radius: 999px;
+  background: transparent;
+  color: rgb(246 243 238 / 0.75);
+  font: inherit;
+  font-size: 0.74rem;
+  cursor: pointer;
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.room-tour__tab-num { opacity: 0.55; font-size: 0.66rem; }
+.room-tour__tab:hover { border-color: var(--rt-paper); color: var(--rt-paper); }
+.room-tour__tab[aria-selected="true"] { background: var(--rt-paper); color: var(--rt-ink); border-color: var(--rt-paper); }
+.room-tour__tab:focus-visible { outline: 2px solid var(--rt-pink); outline-offset: 3px; }
+
+.room-tour__foot { padding-block: clamp(16px, 2.5vw, 28px) clamp(40px, 5vw, 72px); }
+.room-tour__actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 20px; text-align: center; }
+.room-tour__cta { border-radius: 999px; }
+.room-tour__note { margin: 0; color: rgb(246 243 238 / 0.7); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* ---------- small screens ---------- */
+
+@media (max-width: 749px) {
+  /* The scene keeps its height and pans sideways, so doors and points stay on the right spots. */
+  .room-tour__viewport { overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain; }
+  .room-tour__viewport::-webkit-scrollbar { display: none; }
+  .room-tour__canvas { width: calc(68svh * var(--room-ratio, 1.78)); height: 68svh; }
+  .room-tour__door-label { font-size: 0.66rem; }
+  .room-tour__pin { width: 28px; height: 28px; font-size: 0.74rem; }
+  .room-tour__tab { display: none; }
+  /* No transform here: it would make the fixed sheet below position itself inside the point. */
+  .room-tour__point { transform: none; margin: -14px 0 0 -14px; }
+
+  /* On phones the card is a sheet from the bottom of the screen and opens on tap only. */
+  .room-tour__point:hover .room-tour__card { opacity: 0; visibility: hidden; }
+  .room-tour__card,
+  .room-tour__point[data-side="left"] .room-tour__card {
+    position: fixed;
+    inset: auto 0 0 0;
+    padding: 0;
+    transform: translateY(24px);
+  }
+  .room-tour__point.is-open .room-tour__card { opacity: 1; visibility: visible; transform: none; }
+  .room-tour__card-inner { display: grid; grid-template-columns: 120px 1fr; width: 100%; }
+  .room-tour__media, .room-tour__media--landscape { height: 100%; min-height: 170px; padding: 10px; }
+  .room-tour__close { display: block; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .room-tour__room, .room-tour__pin::after { animation: none; }
+  .room-tour__card, .room-tour__pin, .room-tour__door-arrow { transition: none; }
+  .room-tour__door-arrow::after { animation: none; }
+}

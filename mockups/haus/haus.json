@@ -1,0 +1,607 @@
+{
+ "hof": {
+  "name": "Hof",
+  "pieces": [
+   {
+    "art": "loewe-1.png",
+    "title": "Goldmähne",
+    "size": "XL",
+    "format": "Hochformat",
+    "corners": [
+     [
+      774,
+      486
+     ],
+     [
+      980,
+      380
+     ],
+     [
+      980,
+      750
+     ],
+     [
+      774,
+      860
+     ]
+    ],
+    "x": 35.6,
+    "y": 48.8,
+    "product": "stencil-goldmaehne"
+   },
+   {
+    "art": "koi-2.png",
+    "title": "Koi-Kreis",
+    "size": "L",
+    "format": "Querformat",
+    "corners": [
+     [
+      1028,
+      460
+     ],
+     [
+      1262,
+      340
+     ],
+     [
+      1262,
+      540
+     ],
+     [
+      1028,
+      652
+     ]
+    ],
+    "x": 45.9,
+    "y": 35.2,
+    "product": "stencil-koi-kreis"
+   },
+   {
+    "art": "bubblegum-1.png",
+    "title": "Kaugummi-Queen",
+    "size": "M",
+    "format": "Hochformat",
+    "corners": [
+     [
+      1306,
+      330
+     ],
+     [
+      1386,
+      292
+     ],
+     [
+      1386,
+      436
+     ],
+     [
+      1306,
+      474
+     ]
+    ],
+    "x": 50.4,
+    "y": 28.4,
+    "product": "stencil-kaugummi-queen"
+   }
+  ],
+  "doors": [
+   {
+    "label": "Rein ins Loft",
+    "target": 2,
+    "direction": "left",
+    "x": 15.3,
+    "y": 59.2
+   },
+   {
+    "label": "Hoch ins Atelier",
+    "target": 5,
+    "direction": "up",
+    "x": 66.5,
+    "y": 12.4
+   }
+  ]
+ },
+ "loft": {
+  "name": "Loft",
+  "pieces": [
+   {
+    "art": "papierflieger-1.png",
+    "title": "Abflug",
+    "size": "L",
+    "format": "Querformat",
+    "corners": [
+     [
+      816,
+      590
+     ],
+     [
+      1024,
+      482
+     ],
+     [
+      1024,
+      636
+     ],
+     [
+      816,
+      744
+     ]
+    ],
+    "x": 37.2,
+    "y": 41.4,
+    "product": "stencil-abflug"
+   },
+   {
+    "art": "muse-2.png",
+    "title": "Kopfkino",
+    "size": "L",
+    "format": "Hochformat",
+    "corners": [
+     [
+      1796,
+      342
+     ],
+     [
+      1970,
+      430
+     ],
+     [
+      1970,
+      730
+     ],
+     [
+      1796,
+      642
+     ]
+    ],
+    "x": 71.6,
+    "y": 47.5,
+    "product": "stencil-kopfkino"
+   },
+   {
+    "art": "kolibri-2.png",
+    "title": "Kolibri-Blüte",
+    "size": "S",
+    "format": "Hochformat",
+    "corners": [
+     [
+      1388,
+      328
+     ],
+     [
+      1436,
+      310
+     ],
+     [
+      1436,
+      398
+     ],
+     [
+      1388,
+      418
+     ]
+    ],
+    "x": 52.2,
+    "y": 25.9,
+    "product": "stencil-kolibri-bluete"
+   }
+  ],
+  "doors": [
+   {
+    "label": "Schlafzimmer",
+    "target": 3,
+    "direction": "right",
+    "x": 43.6,
+    "y": 39.1
+   },
+   {
+    "label": "Rauf aufs Dach",
+    "target": 6,
+    "direction": "up",
+    "x": 83.6,
+    "y": 72.9
+   },
+   {
+    "label": "Zurück zum Hof",
+    "target": 1,
+    "direction": "left",
+    "x": 19.6,
+    "y": 56.0
+   }
+  ]
+ },
+ "schlafzimmer": {
+  "name": "Schlafzimmer",
+  "pieces": [
+   {
+    "art": "astronaut-2.png",
+    "title": "Schwerelos",
+    "size": "L",
+    "format": "Querformat",
+    "corners": [
+     [
+      1446,
+      360
+     ],
+     [
+      1710,
+      480
+     ],
+     [
+      1710,
+      690
+     ],
+     [
+      1446,
+      570
+     ]
+    ],
+    "x": 62.1,
+    "y": 44.9,
+    "product": "stencil-schwerelos"
+   },
+   {
+    "art": "mondkatze-2.png",
+    "title": "Mondwache",
+    "size": "M",
+    "format": "Hochformat",
+    "corners": [
+     [
+      612,
+      560
+     ],
+     [
+      760,
+      492
+     ],
+     [
+      760,
+      752
+     ],
+     [
+      612,
+      820
+     ]
+    ],
+    "x": 27.6,
+    "y": 49.0,
+    "product": "stencil-mondwache"
+   },
+   {
+    "art": "eule-2.png",
+    "title": "Nachteule",
+    "size": "S",
+    "format": "Hochformat",
+    "corners": [
+     [
+      1302,
+      350
+     ],
+     [
+      1380,
+      382
+     ],
+     [
+      1380,
+      500
+     ],
+     [
+      1302,
+      470
+     ]
+    ],
+    "x": 50.1,
+    "y": 32.6,
+    "product": "stencil-nachteule"
+   },
+   {
+    "art": "vogel-1.png",
+    "title": "Sturzflug",
+    "size": "S",
+    "format": "Hochformat",
+    "corners": [
+     [
+      1782,
+      592
+     ],
+     [
+      1860,
+      622
+     ],
+     [
+      1860,
+      742
+     ],
+     [
+      1782,
+      712
+     ]
+    ],
+    "x": 67.6,
+    "y": 48.3,
+    "product": "stencil-sturzflug"
+   }
+  ],
+  "doors": [
+   {
+    "label": "Ins Bad",
+    "target": 4,
+    "direction": "right",
+    "x": 72.7,
+    "y": 56.0
+   },
+   {
+    "label": "Zurück ins Loft",
+    "target": 2,
+    "direction": "up",
+    "x": 85.8,
+    "y": 37.1
+   }
+  ]
+ },
+ "bad": {
+  "name": "Bad",
+  "pieces": [
+   {
+    "art": "biene-1.png",
+    "title": "Honigflug",
+    "size": "M",
+    "format": "Hochformat",
+    "corners": [
+     [
+      1046,
+      376
+     ],
+     [
+      1194,
+      302
+     ],
+     [
+      1195,
+      560
+     ],
+     [
+      1046,
+      632
+     ]
+    ],
+    "x": 43.4,
+    "y": 36.5,
+    "product": "stencil-honigflug"
+   },
+   {
+    "art": "kolibri-1.png",
+    "title": "Hibiskus-Kolibri",
+    "size": "S",
+    "format": "Hochformat",
+    "corners": [
+     [
+      2120,
+      670
+     ],
+     [
+      2184,
+      696
+     ],
+     [
+      2184,
+      804
+     ],
+     [
+      2120,
+      778
+     ]
+    ],
+    "x": 79.4,
+    "y": 52.3,
+    "product": "stencil-hibiskus-kolibri"
+   }
+  ],
+  "doors": [
+   {
+    "label": "Zurück ins Schlafzimmer",
+    "target": 3,
+    "direction": "left",
+    "x": 59.2,
+    "y": 35.2
+   }
+  ]
+ },
+ "atelier": {
+  "name": "Atelier",
+  "pieces": [
+   {
+    "art": "koi-1.png",
+    "title": "Koi-Strudel",
+    "size": "L",
+    "format": "Querformat",
+    "corners": [
+     [
+      426,
+      486
+     ],
+     [
+      680,
+      360
+     ],
+     [
+      680,
+      544
+     ],
+     [
+      426,
+      670
+     ]
+    ],
+    "x": 24.7,
+    "y": 35.4,
+    "product": "stencil-koi-strudel"
+   },
+   {
+    "art": "streichholz-2.png",
+    "title": "Zündfunke",
+    "size": "L",
+    "format": "Hochformat",
+    "corners": [
+     [
+      1624,
+      376
+     ],
+     [
+      1844,
+      476
+     ],
+     [
+      1844,
+      850
+     ],
+     [
+      1624,
+      750
+     ]
+    ],
+    "x": 67.0,
+    "y": 55.3,
+    "product": "stencil-zuendfunke"
+   },
+   {
+    "art": "gras-2.png",
+    "title": "Wiesengriff",
+    "size": "S",
+    "format": "Hochformat",
+    "corners": [
+     [
+      1906,
+      610
+     ],
+     [
+      1994,
+      650
+     ],
+     [
+      1994,
+      786
+     ],
+     [
+      1906,
+      746
+     ]
+    ],
+    "x": 72.5,
+    "y": 51.2,
+    "product": "stencil-wiesengriff"
+   }
+  ],
+  "doors": [
+   {
+    "label": "Runter zum Hof",
+    "target": 1,
+    "direction": "down",
+    "x": 86.8,
+    "y": 52.1
+   },
+   {
+    "label": "Ins Loft",
+    "target": 2,
+    "direction": "left",
+    "x": 52.2,
+    "y": 33.9
+   }
+  ]
+ },
+ "dach": {
+  "name": "Dach-Café",
+  "pieces": [
+   {
+    "art": "astronaut-1.png",
+    "title": "Sternenflug",
+    "size": "XL",
+    "format": "Querformat",
+    "corners": [
+     [
+      656,
+      570
+     ],
+     [
+      1074,
+      420
+     ],
+     [
+      1074,
+      756
+     ],
+     [
+      656,
+      904
+     ]
+    ],
+    "x": 39.0,
+    "y": 49.2,
+    "product": "stencil-sternenflug"
+   },
+   {
+    "art": "boombox-2.png",
+    "title": "Boombox 86",
+    "size": "M",
+    "format": "Hochformat",
+    "corners": [
+     [
+      1152,
+      390
+     ],
+     [
+      1284,
+      346
+     ],
+     [
+      1284,
+      590
+     ],
+     [
+      1152,
+      636
+     ]
+    ],
+    "x": 46.7,
+    "y": 38.4,
+    "product": "stencil-boombox-86"
+   },
+   {
+    "art": "biene-2.png",
+    "title": "Honigwabe",
+    "size": "S",
+    "format": "Hochformat",
+    "corners": [
+     [
+      1348,
+      326
+     ],
+     [
+      1412,
+      304
+     ],
+     [
+      1412,
+      416
+     ],
+     [
+      1348,
+      438
+     ]
+    ],
+    "x": 51.3,
+    "y": 27.1,
+    "product": "stencil-honigwabe"
+   }
+  ],
+  "doors": [
+   {
+    "label": "Runter ins Loft",
+    "target": 2,
+    "direction": "down",
+    "x": 57.6,
+    "y": 24.7
+   }
+  ]
+ }
+}

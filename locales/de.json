@@ -149,5 +149,14 @@
   "motion": {
     "pause": "Pause",
     "play": "Abspielen"
+  },
+  "room_tour": {
+    "rooms": "Räume",
+    "from": "ab {{ price }}",
+    "view": "Motiv ansehen",
+    "create": "Ähnliches gestalten",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "close": "Schließen"
   }
 }

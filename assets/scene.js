@@ -14,6 +14,10 @@ class ExploreScene extends HTMLElement {
     requestAnimationFrame(() => this.centre());
     this.querySelector('.scene__image')?.addEventListener('load', () => this.centre(), { once: true });
     this.viewport.addEventListener('scroll', () => this.markMoved(), { passive: true });
+    // Only a visitor's own drag, swipe, wheel or key counts as moving, never our centring.
+    ['pointerdown', 'touchstart', 'wheel', 'keydown'].forEach((type) => {
+      this.viewport.addEventListener(type, () => { this.hasInteracted = true; }, { passive: true });
+    });
     this.viewport.addEventListener('pointerdown', (event) => this.startDrag(event));
     this.viewport.addEventListener('keydown', (event) => this.handleKey(event));
     this.querySelectorAll('[data-scene-point]').forEach((point) => {
@@ -33,7 +37,7 @@ class ExploreScene extends HTMLElement {
   }
 
   markMoved() {
-    if (this.isCentring || this.hasMoved) return;
+    if (this.isCentring || this.hasMoved || !this.hasInteracted) return;
     this.hasMoved = true;
     this.classList.add('has-moved');
   }

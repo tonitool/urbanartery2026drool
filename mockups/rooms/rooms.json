@@ -1,0 +1,417 @@
+{
+ "wohnzimmer": {
+  "raw": "wohnzimmer-a-2x.jpg",
+  "pieces": [
+   {
+    "size": "XL",
+    "format": "Hochformat",
+    "corners": [
+     [
+      395,
+      197
+     ],
+     [
+      514,
+      158
+     ],
+     [
+      515,
+      377
+     ],
+     [
+      396,
+      417
+     ]
+    ],
+    "x": 34.5,
+    "y": 48.6,
+    "art": "loewe-1.png",
+    "title": "Goldmähne"
+   },
+   {
+    "size": "L",
+    "format": "Querformat",
+    "corners": [
+     [
+      819,
+      217
+     ],
+     [
+      963,
+      267
+     ],
+     [
+      964,
+      393
+     ],
+     [
+      819,
+      345
+     ]
+    ],
+    "x": 74.4,
+    "y": 50.7,
+    "art": "koi-2.png",
+    "title": "Koi-Kreis"
+   },
+   {
+    "size": "S",
+    "format": "Hochformat",
+    "corners": [
+     [
+      988,
+      313
+     ],
+     [
+      1016,
+      322
+     ],
+     [
+      1014,
+      374
+     ],
+     [
+      987,
+      365
+     ]
+    ],
+    "x": 78.8,
+    "y": 48.2,
+    "art": "kolibri-2.png",
+    "title": "Kolibri-Blüte"
+   }
+  ]
+ },
+ "schlafzimmer": {
+  "raw": "schlafzimmer-a-2x.jpg",
+  "pieces": [
+   {
+    "size": "L",
+    "format": "Querformat",
+    "corners": [
+     [
+      388,
+      208
+     ],
+     [
+      550,
+      159
+     ],
+     [
+      550,
+      292
+     ],
+     [
+      389,
+      346
+     ]
+    ],
+    "x": 37.5,
+    "y": 38.0,
+    "art": "astronaut-2.png",
+    "title": "Schwerelos"
+   },
+   {
+    "size": "M",
+    "format": "Hochformat",
+    "corners": [
+     [
+      857,
+      166
+     ],
+     [
+      933,
+      188
+     ],
+     [
+      933,
+      324
+     ],
+     [
+      857,
+      300
+     ]
+    ],
+    "x": 70.8,
+    "y": 42.2,
+    "art": "mondkatze-2.png",
+    "title": "Mondkatze"
+   },
+   {
+    "size": "S",
+    "format": "Hochformat",
+    "corners": [
+     [
+      593,
+      227
+     ],
+     [
+      624,
+      218
+     ],
+     [
+      625,
+      276
+     ],
+     [
+      594,
+      285
+     ]
+    ],
+    "x": 44.1,
+    "y": 35.9,
+    "art": "eule-2.png",
+    "title": "Nachteule"
+   },
+   {
+    "size": "S",
+    "format": "Hochformat",
+    "corners": [
+     [
+      305,
+      322
+     ],
+     [
+      340,
+      312
+     ],
+     [
+      340,
+      372
+     ],
+     [
+      306,
+      382
+     ]
+    ],
+    "x": 19.3,
+    "y": 48.4,
+    "art": "vogel-1.png",
+    "title": "Freiflug"
+   }
+  ]
+ },
+ "bad": {
+  "raw": "bad-a-2x.jpg",
+  "pieces": [
+   {
+    "size": "M",
+    "format": "Hochformat",
+    "corners": [
+     [
+      481,
+      207
+     ],
+     [
+      572,
+      170
+     ],
+     [
+      572,
+      334
+     ],
+     [
+      481,
+      372
+     ]
+    ],
+    "x": 39.7,
+    "y": 43.4,
+    "art": "bubblegum-1.png",
+    "title": "Kaugummi-Queen"
+   },
+   {
+    "size": "S",
+    "format": "Hochformat",
+    "corners": [
+     [
+      919,
+      260
+     ],
+     [
+      970,
+      285
+     ],
+     [
+      970,
+      372
+     ],
+     [
+      919,
+      346
+     ]
+    ],
+    "x": 75.0,
+    "y": 48.4,
+    "art": "biene-1.png",
+    "title": "Honigflug"
+   }
+  ]
+ },
+ "cafe": {
+  "raw": "cafe-a-2x.jpg",
+  "pieces": [
+   {
+    "size": "XL",
+    "format": "Querformat",
+    "corners": [
+     [
+      305,
+      218
+     ],
+     [
+      577,
+      138
+     ],
+     [
+      577,
+      309
+     ],
+     [
+      305,
+      388
+     ]
+    ],
+    "x": 39.8,
+    "y": 40.2,
+    "art": "saxofon-1.png",
+    "title": "Jazzsolo"
+   },
+   {
+    "size": "M",
+    "format": "Hochformat",
+    "corners": [
+     [
+      918,
+      133
+     ],
+     [
+      999,
+      163
+     ],
+     [
+      999,
+      322
+     ],
+     [
+      918,
+      296
+     ]
+    ],
+    "x": 76.4,
+    "y": 41.9,
+    "art": "boombox-2.png",
+    "title": "Boombox 86"
+   },
+   {
+    "size": "S",
+    "format": "Hochformat",
+    "corners": [
+     [
+      1071,
+      265
+     ],
+     [
+      1102,
+      277
+     ],
+     [
+      1102,
+      338
+     ],
+     [
+      1071,
+      327
+     ]
+    ],
+    "x": 85.3,
+    "y": 44.0,
+    "art": "streichholz-2.png",
+    "title": "Zündfunke"
+   }
+  ]
+ },
+ "buero": {
+  "raw": "buero-a-2x.jpg",
+  "pieces": [
+   {
+    "size": "L",
+    "format": "Hochformat",
+    "corners": [
+     [
+      497,
+      195
+     ],
+     [
+      614,
+      148
+     ],
+     [
+      614,
+      346
+     ],
+     [
+      497,
+      392
+     ]
+    ],
+    "x": 43.4,
+    "y": 44.6,
+    "art": "muse-2.png",
+    "title": "Kopfkino"
+   },
+   {
+    "size": "M",
+    "format": "Querformat",
+    "corners": [
+     [
+      742,
+      162
+     ],
+     [
+      866,
+      210
+     ],
+     [
+      866,
+      316
+     ],
+     [
+      742,
+      268
+     ]
+    ],
+    "x": 66.1,
+    "y": 40.6,
+    "art": "papierflieger-1.png",
+    "title": "Papierflieger"
+   },
+   {
+    "size": "S",
+    "format": "Hochformat",
+    "corners": [
+     [
+      905,
+      250
+     ],
+     [
+      942,
+      264
+     ],
+     [
+      942,
+      328
+     ],
+     [
+      905,
+      314
+     ]
+    ],
+    "x": 72.9,
+    "y": 42.2,
+    "art": "gras-2.png",
+    "title": "Touch Grass"
+   }
+  ]
+ }
+}

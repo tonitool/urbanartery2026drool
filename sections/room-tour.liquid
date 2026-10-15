@@ -1,0 +1,182 @@
+{%- comment -%}
+  Room tour: isometric cut-away rooms with real motifs on the walls. A "room" block starts a
+  room; the "piece" blocks after it are its numbered points. Each point names the size and
+  format on the wall and links to that size of the product.
+{%- endcomment -%}
+{{ 'room-tour.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'room-tour.js' | asset_url }}" type="module"></script>
+
+{%- liquid
+  assign room_count = section.blocks | where: 'type', 'room' | size
+  assign heading_id = 'RoomTourHeading-' | append: section.id
+-%}
+
+<room-tour class="room-tour full-width" aria-labelledby="{{ heading_id }}" style="--room-bg: {{ section.settings.background }};">
+  <div class="room-tour__head container">
+    <div class="room-tour__intro">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="room-tour__heading" id="{{ heading_id }}">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <p class="room-tour__text">{{ section.settings.text | escape }}</p>
+      {%- endif -%}
+
+    </div>
+    {%- if room_count > 1 -%}
+      <div class="room-tour__tabs" role="tablist" aria-label="{{ 'room_tour.rooms' | t }}">
+        <span class="room-tour__count" aria-hidden="true"><b data-room-current>01</b> / {{ room_count | prepend: '0' | slice: -2, 2 }}</span>
+        {%- assign tab_index = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'room' -%}
+            {%- assign tab_index = tab_index | plus: 1 -%}
+            <button class="room-tour__tab" type="button" role="tab" id="RoomTab-{{ section.id }}-{{ tab_index }}"
+                    aria-controls="Room-{{ section.id }}-{{ tab_index }}" aria-selected="{% if tab_index == 1 %}true{% else %}false{% endif %}"
+                    {% unless tab_index == 1 %}tabindex="-1"{% endunless %} data-room-tab>
+              <span class="room-tour__tab-num">{{ tab_index | prepend: '0' | slice: -2, 2 }}</span>{{ block.settings.name | escape }}
+            </button>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+
+  <div class="room-tour__stage">
+    {%- assign room_index = 0 -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type != 'room' -%}{%- continue -%}{%- endif -%}
+      {%- assign room_index = room_index | plus: 1 -%}
+      {%- liquid
+        assign room_ratio = 1.7
+        if block.settings.image
+          assign room_ratio = block.settings.image.aspect_ratio
+        endif
+      -%}
+      <div class="room-tour__room" id="Room-{{ section.id }}-{{ room_index }}" role="tabpanel"
+           aria-labelledby="RoomTab-{{ section.id }}-{{ room_index }}" data-room data-room-name="{{ block.settings.name | escape }}"
+           {% unless room_index == 1 %}hidden{% endunless %} {{ block.shopify_attributes }}>
+        <div class="room-tour__viewport" data-room-viewport>
+        <div class="room-tour__canvas" style="--room-ratio: {{ room_ratio }};">
+          {%- if block.settings.image -%}
+            {%- if room_index == 1 -%}
+              {{ block.settings.image | image_url: width: 2752 | image_tag: widths: '900,1400,2000,2752', sizes: '(max-width: 749px) 200vw, 100vw', class: 'room-tour__image', alt: block.settings.name, fetchpriority: 'high' }}
+            {%- else -%}
+              {{ block.settings.image | image_url: width: 2752 | image_tag: widths: '900,1400,2000,2752', sizes: '(max-width: 749px) 200vw, 100vw', class: 'room-tour__image', alt: block.settings.name, loading: 'lazy' }}
+            {%- endif -%}
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'room-tour__image placeholder-svg' }}
+          {%- endif -%}
+
+          {%- comment -%} The pieces and doors of this room are the blocks up to the next room block. {%- endcomment -%}
+          {%- assign in_room = false -%}
+          {%- assign piece_number = 0 -%}
+          {%- for piece_block in section.blocks -%}
+            {%- if piece_block.type == 'room' -%}
+              {%- if in_room -%}{%- break -%}{%- endif -%}
+              {%- if piece_block.id == block.id -%}{%- assign in_room = true -%}{%- endif -%}
+              {%- continue -%}
+            {%- endif -%}
+            {%- unless in_room -%}{%- continue -%}{%- endunless -%}
+            {%- if piece_block.type == 'door' -%}
+              <button class="room-tour__door room-tour__door--{{ piece_block.settings.direction }}{% if piece_block.settings.x > 72 %} room-tour__door--flip{% endif %}" type="button"
+                      style="--x: {{ piece_block.settings.x }}%; --y: {{ piece_block.settings.y }}%;"
+                      data-room-door="{{ piece_block.settings.target | minus: 1 }}" {{ piece_block.shopify_attributes }}>
+                <span class="room-tour__door-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" focusable="false"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span class="room-tour__door-label">{{ piece_block.settings.label | escape }}</span>
+              </button>
+            {%- else -%}
+              {%- assign piece_number = piece_number | plus: 1 -%}
+              {% render 'room-tour-piece', piece_block: piece_block, piece_number: piece_number, make_label: section.settings.make_label %}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        </div>
+      </div>
+    {%- endfor -%}
+
+  </div>
+
+  {%- if section.settings.button_label != blank or section.settings.note != blank -%}
+  <div class="room-tour__foot container">
+    <div class="room-tour__actions">
+      {%- if section.settings.button_label != blank -%}
+        {%- capture configurator_url -%}{% render 'configurator-url' %}{%- endcapture -%}
+        <a class="btn room-tour__cta" href="{{ section.settings.button_link | default: configurator_url }}">{{ section.settings.button_label | escape }}</a>
+      {%- endif -%}
+      {%- if section.settings.note != blank -%}
+        <p class="room-tour__note">{{ section.settings.note | escape }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+  {%- endif -%}
+</room-tour>
+
+{% schema %}
+{
+  "name": "Room tour",
+  "tag": "section",
+  "class": "section-room-tour",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Räume, in denen Street-Art lebt." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Komm rein. Folge den Pfeilen durch unser Haus: Jede Nummer an der Wand ist ein Motiv in echter Größe, von S bis XL, im Hoch- oder Querformat. Tippe drauf und mach es zu deinem." },
+    { "type": "text", "id": "make_label", "label": "Button on each motif", "default": "Make yours" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Eigenes Motiv gestalten" },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Empty: the configurator." },
+    { "type": "text", "id": "note", "label": "Note next to the button", "default": "S 20×30 · M 40×60 · L 80×120 · XL 120×180 cm" },
+    { "type": "color", "id": "background", "label": "Background", "default": "#0C0C0C", "info": "Match the backdrop of the room images." }
+  ],
+  "blocks": [
+    {
+      "type": "room",
+      "name": "Room",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Room name", "default": "Wohnzimmer" },
+        { "type": "image_picker", "id": "image", "label": "Room image", "info": "Isometric cut-away render, 16:9." }
+      ]
+    },
+    {
+      "type": "door",
+      "name": "Door to another room",
+      "settings": [
+        { "type": "paragraph", "content": "Belongs to the room block above it. Place it on a door or stair in the image." },
+        { "type": "text", "id": "label", "label": "Label", "default": "Zum Loft" },
+        { "type": "range", "id": "target", "label": "Leads to room number", "min": 1, "max": 8, "step": 1, "default": 2 },
+        { "type": "select", "id": "direction", "label": "Arrow", "default": "right", "options": [
+          { "value": "right", "label": "Right" },
+          { "value": "left", "label": "Left" },
+          { "value": "up", "label": "Up" },
+          { "value": "down", "label": "Down" }
+        ]},
+        { "type": "range", "id": "x", "label": "Horizontal position", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 50 },
+        { "type": "range", "id": "y", "label": "Vertical position", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 50 }
+      ]
+    },
+    {
+      "type": "piece",
+      "name": "Motif on the wall",
+      "settings": [
+        { "type": "paragraph", "content": "Belongs to the room block above it." },
+        { "type": "product", "id": "product", "label": "Motif" },
+        { "type": "text", "id": "title", "label": "Title", "info": "Used when no product is picked." },
+        { "type": "image_picker", "id": "image", "label": "Thumbnail", "info": "Used when no product is picked." },
+        { "type": "url", "id": "link", "label": "Link", "info": "Used when no product is picked. Empty: the configurator." },
+        { "type": "select", "id": "size", "label": "Size", "default": "M", "options": [
+          { "value": "S", "label": "S (20×30 cm)" },
+          { "value": "M", "label": "M (40×60 cm)" },
+          { "value": "L", "label": "L (80×120 cm)" },
+          { "value": "XL", "label": "XL (120×180 cm)" }
+        ]},
+        { "type": "select", "id": "format", "label": "Format", "default": "Hochformat", "options": [
+          { "value": "Hochformat", "label": "Hochformat" },
+          { "value": "Querformat", "label": "Querformat" }
+        ]},
+        { "type": "range", "id": "x", "label": "Horizontal position", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 50 },
+        { "type": "range", "id": "y", "label": "Vertical position", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 40 }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Room tour", "blocks": [ { "type": "room" }, { "type": "piece" } ] }]
+}
+{% endschema %}

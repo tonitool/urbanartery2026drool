@@ -6,3 +6,7 @@ node_modules/
 # Raw AI room renders and test plates; the finished images live in media/
 mockups/ugc/**/*.png
 mockups/ugc/**/*.debug.jpg
+mockups/rooms/**/*.png
+mockups/rooms/**/*.jpg
+mockups/haus/**/*.png
+mockups/haus/**/*.jpg

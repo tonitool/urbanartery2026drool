@@ -7,14 +7,14 @@
           "type": "trust_item",
           "settings": {
             "icon": "hand",
-            "text": "Handgefertigt in 10–14 Werktagen"
+            "text": "Handgefertigt in 4-6 Wochen"
           }
         },
         "trust-2": {
           "type": "trust_item",
           "settings": {
             "icon": "truck",
-            "text": "Versandkostenfrei ab 150 € (DE)"
+            "text": "Versandkostenfreie Lieferung (DE)"
           }
         },
         "trust-3": {
@@ -42,7 +42,7 @@
           "type": "accordion",
           "settings": {
             "title": "Verpackung & Versand",
-            "content": "<p><strong>Deutschland:</strong> ab 150 € Bestellwert versandkostenfrei, darunter 9,90 € Versandpauschale. Internationale Versandkosten werden im Checkout berechnet.</p><p><strong>Lieferzeit:</strong> ca. 10–14 Werktage Anfertigung, dazu Versand (Deutschland 2–3, EU 5–7, international 7–14 Werktage).</p><p>Jedes Werk wird einzeln in säurefreies Papier eingeschlagen, in einem maßgefertigten Karton versendet und ist gegen Verlust und Beschädigung versichert.</p>"
+            "content": "<p><strong>Deutschland:</strong> Kostenfreie Lieferung.</p><p><strong>Internationale Versandkosten: </strong>Werden im Checkout berechnet.</p><p><strong>Produktions- und Lieferzeit:</strong> Je nach Komplexität dauert die Fertigung zwischen 4 - 6 Wochen nach Auftragseingang. Der Versand dauert in der Regel 2-3 Werktage innerhalb von Deutschland. Internationale Lieferzeiten bis zu 14 Werktage.</p><p>Jedes Werk wird einzeln in säurefreies Papier eingeschlagen, in einem maßgefertigten Karton versendet und ist gegen Verlust und Beschädigung versichert.</p>"
           }
         },
         "returns": {
@@ -66,7 +66,10 @@
         "show_tax_note": true,
         "delivery_note": "Handgefertigt und versandbereit in 10–14 Werktagen",
         "show_payment_icons": true,
-        "sticky_buy_bar": true
+        "sticky_buy_bar": true,
+        "reviews_anchor": "reviews",
+        "tax_note_text": "Inkl. 7 % Umsatzsteuer und <a href=\"/policies/shipping-policy\">kostenfreie Lieferung</a> innerhalb Deutschlands.",
+        "hide_thumbs_for_variant_images": true
       }
     },
     "before-after": {
@@ -78,7 +81,9 @@
             "title": "Aus Foto wird Kunst",
             "image_before": "shopify://shop_images/ua-ba-eppendorf-vorher.jpg",
             "image_after": "shopify://shop_images/ua-ba-eppendorf-nachher.jpg",
-            "text": "Lade dein Lieblingsfoto hoch und unsere Künstler verwandeln es in ein einzigartiges Street-Art-Werk."
+            "text": "Lade dein Lieblingsfoto hoch und unsere Künstler verwandeln es in ein einzigartiges Street-Art-Werk.",
+            "before_label": "",
+            "after_label": ""
           }
         },
         "b2": {
@@ -87,7 +92,9 @@
             "title": "Aus quer wird hoch",
             "image_before": "shopify://shop_images/ua-ba-pier-vorher.jpg",
             "image_after": "shopify://shop_images/ua-ba-pier-nachher-blau.jpg",
-            "text": "Wir erweitern dein Foto für das perfekte Format – ohne dabei Details zu verlieren."
+            "text": "Wir erweitern dein Foto für das perfekte Format – ohne dabei Details zu verlieren.",
+            "before_label": "",
+            "after_label": ""
           }
         }
       },
@@ -95,11 +102,15 @@
         "b1",
         "b2"
       ],
+      "disabled": true,
       "settings": {
         "eyebrow": "Individualisierungen",
         "heading": "Vorher & Nachher",
+        "subheading": "",
         "before_label": "Vorher",
         "after_label": "Nachher",
+        "button_label": "",
+        "button_link": "",
         "color_scheme": "subtle"
       }
     },
@@ -110,8 +121,8 @@
           "type": "badge",
           "settings": {
             "icon": "upload",
-            "title": "Foto hochladen",
-            "text": "Wähle ein Bild aus deiner Galerie oder mach ein neues Foto. Porträts, Landschaften, Haustiere – alles ist möglich."
+            "title": "Foto hochladen (optional)",
+            "text": "Wähle ein Bild aus deiner Galerie oder mach ein neues Foto. Porträts, Landschaften, Haustiere – alles ist möglich. Es geht natürlich auch ohne eigenes Motiv - unser Konfigurator hat einiges zu bieten!"
           }
         },
         "s2": {
@@ -119,7 +130,7 @@
           "settings": {
             "icon": "palette",
             "title": "Motiv gestalten",
-            "text": "Kombiniere dein Foto mit Elementen aus unserer Motiv-Datenbank und gestalte dein Werk im Konfigurator."
+            "text": "Kombiniere Fotos, Texte oder Elemente aus unserer Motiv-Datenbank, lege Farben fest und kombiniere ganz nach Deinen Wünschen und Ansprüchen."
           }
         },
         "s3": {
@@ -127,7 +138,7 @@
           "settings": {
             "icon": "frame",
             "title": "Format bestimmen",
-            "text": "Wähle Größe, Hoch- oder Querformat und Trägermaterial passend zu deinem Raum."
+            "text": "Wähle die für Dich passende Größe, Hoch- oder Querformat und das Trägermaterial passend zu deinen Vorliegen und Räumlichkeiten."
           }
         },
         "s4": {
@@ -135,7 +146,7 @@
           "settings": {
             "icon": "hand",
             "title": "Handgefertigt & geliefert",
-            "text": "Unsere Künstler fertigen dein Unikat in 10–14 Werktagen. Sicher verpackt kommt es zu dir nach Hause."
+            "text": "Unsere Künstler fertigen dein Unikat in 4 - 6 Wochen. Sicher verpackt kommt es zu dir nach Hause."
           }
         }
       },
@@ -148,7 +159,10 @@
       "settings": {
         "eyebrow": "So funktioniert's",
         "heading": "In vier Schritten zum Unikat",
+        "subheading": "",
         "numbered": true,
+        "button_label": "",
+        "button_link": "",
         "color_scheme": "default"
       }
     },
@@ -169,7 +183,7 @@
           "type": "question",
           "settings": {
             "question": "Wie lange dauert die Anfertigung meines Kunstwerks?",
-            "answer": "<p>In der Regel 10–14 Werktage. Da jedes Werk von Hand gefertigt wird, kann es je nach Komplexität und Auslastung etwas länger dauern. Du erhältst eine Versandbestätigung, sobald dein Werk auf dem Weg zu dir ist.</p>"
+            "answer": "<p>In der Regel 4 - 6 Wochen. Da jedes Werk von Hand gefertigt wird, kann es je nach Komplexität und Auslastung etwas länger dauern. Du erhältst eine Versandbestätigung, sobald dein Werk auf dem Weg zu dir ist.</p>"
           }
         },
         "q2": {
@@ -219,12 +233,14 @@
       "settings": {
         "eyebrow": "Ihr fragt, wir antworten",
         "heading": "FAQ",
+        "subheading": "",
         "structured_data": true,
         "color_scheme": "default"
       }
     },
     "related": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "heading": "Das könnte dir auch gefallen"
       }

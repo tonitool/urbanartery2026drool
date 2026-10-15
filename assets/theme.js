@@ -113,6 +113,16 @@
       );
     }
 
+    function showVariantImage(image) {
+      var main = document.getElementById('ProductMainImage');
+      if (!main || main.getAttribute('src') === image.src) return;
+      main.srcset = image.srcset;
+      main.src = image.src;
+      main.width = image.width;
+      main.height = image.height;
+      main.alt = image.alt;
+    }
+
     function update() {
       var chosen = selected();
       var match = variants.find(function (v) {
@@ -131,6 +141,7 @@
         submit.textContent = match.available ? submit.dataset.add : submit.dataset.soldOut;
       }
       if (match.price_html) priceEls.forEach(function (el) { el.innerHTML = match.price_html; });
+      if (match.image) showVariantImage(match.image);
 
       if (window.history.replaceState) {
         var url = new URL(window.location.href);

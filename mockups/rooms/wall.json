@@ -1,0 +1,12 @@
+{
+  "wall": "wand-leer-a-2x.jpg",
+  "measured_width": 1584,
+  "px_per_cm": 1.6,
+  "floor_y": 594,
+  "pieces": [
+    {"size": "S", "art": "biene-2.png", "title": "Honigwabe", "center_x": 205, "bottom_cm": 120},
+    {"size": "M", "art": "kolibri-1.png", "title": "Hibiskus-Kolibri", "center_x": 345, "bottom_cm": 105},
+    {"size": "XL", "art": "loewe-2.png", "title": "Löwenherz", "center_x": 615, "bottom_cm": 70},
+    {"size": "L", "art": "muse-1.png", "title": "Kopfhörer-Muse", "center_x": 1148, "bottom_cm": 112}
+  ]
+}

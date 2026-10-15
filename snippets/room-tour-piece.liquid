@@ -1,0 +1,76 @@
+{%- comment -%}
+  One numbered point in the room tour. Takes piece_block (a "piece" block), piece_number and
+  make_label. The card shows the motif large, its size and format, a "make yours" button to the
+  configurator and, when a product is picked, a link to that size of the product.
+{%- endcomment -%}
+{%- liquid
+  assign piece = piece_block.settings.product
+  assign size = piece_block.settings.size
+  assign is_landscape = false
+  if piece_block.settings.format == 'Querformat'
+    assign is_landscape = true
+  endif
+  case size
+    when 'S'
+      assign dims = '20 × 30'
+    when 'M'
+      assign dims = '40 × 60'
+    when 'L'
+      assign dims = '80 × 120'
+    else
+      assign dims = '120 × 180'
+  endcase
+  if is_landscape
+    assign dims = dims | split: ' × ' | reverse | join: ' × '
+  endif
+  assign size_variant = nil
+  if piece != blank
+    for variant in piece.variants
+      assign variant_size = variant.option1 | split: ' ' | first
+      if variant_size == size
+        assign size_variant = variant
+        break
+      endif
+    endfor
+  endif
+  assign card_image = piece_block.settings.image | default: piece.featured_image
+  assign card_title = piece_block.settings.title | default: piece.title
+  assign card_id = 'RoomPiece-' | append: piece_block.id
+  assign side = 'right'
+  if piece_block.settings.x > 55
+    assign side = 'left'
+  endif
+-%}
+{%- capture configurator_url -%}{% render 'configurator-url' %}{%- endcapture -%}
+<div class="room-tour__point" data-side="{{ side }}" style="--x: {{ piece_block.settings.x }}%; --y: {{ piece_block.settings.y }}%;" {{ piece_block.shopify_attributes }}>
+  <button class="room-tour__pin" type="button" aria-expanded="false" aria-controls="{{ card_id }}" data-room-pin>
+    <span aria-hidden="true">{{ piece_number }}</span>
+    <span class="visually-hidden">{{ card_title | escape }}</span>
+  </button>
+  <div class="room-tour__card" id="{{ card_id }}" role="group" aria-label="{{ card_title | escape }}" data-room-card>
+    <div class="room-tour__card-inner">
+      <button class="room-tour__close" type="button" aria-label="{{ 'room_tour.close' | t }}" data-room-close>×</button>
+      {%- if card_image -%}
+        <div class="room-tour__media{% if is_landscape %} room-tour__media--landscape{% endif %}">
+          {{ card_image | image_url: width: 640 | image_tag: widths: '320,480,640', sizes: '300px', class: 'room-tour__art', alt: card_title, loading: 'lazy' }}
+        </div>
+      {%- endif -%}
+      <div class="room-tour__card-body">
+        <p class="room-tour__size"><b>{{ size }}</b> {{ dims }} cm · {{ piece_block.settings.format }}</p>
+        <p class="room-tour__title">{{ card_title | escape }}</p>
+        {%- if size_variant -%}
+          {%- assign variant_price = size_variant.price | money -%}
+          <p class="room-tour__price">{{ 'room_tour.from' | t: price: variant_price }}</p>
+        {%- endif -%}
+        <div class="room-tour__card-actions">
+          <a class="btn room-tour__make" href="{{ piece_block.settings.link | default: configurator_url }}">{{ make_label | default: 'Make yours' | escape }}</a>
+          {%- if size_variant -%}
+            <a class="room-tour__link" href="{{ size_variant.url }}">{{ 'room_tour.view' | t }} <span aria-hidden="true">→</span></a>
+          {%- elsif piece != blank -%}
+            <a class="room-tour__link" href="{{ piece.url }}">{{ 'room_tour.view' | t }} <span aria-hidden="true">→</span></a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
