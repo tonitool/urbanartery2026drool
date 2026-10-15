@@ -74,7 +74,7 @@
   border-radius: 999px;
   background: rgb(12 12 12 / 0.72);
   backdrop-filter: blur(4px);
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -107,7 +107,7 @@
   background: rgb(12 12 12 / 0.6);
   color: #fff;
   font-family: var(--font-body);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
   backdrop-filter: blur(4px);
@@ -199,14 +199,14 @@
 }
 
 .room-tour__card-body { display: grid; gap: 4px; padding: 14px 16px 16px; }
-.room-tour__size { margin: 0; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: #555; }
+.room-tour__size { margin: 0; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; color: #555; }
 .room-tour__size b { display: inline-block; margin-right: 4px; padding: 1px 6px; background: var(--rt-ink); color: #fff; letter-spacing: 0.04em; }
 .room-tour__title { margin: 2px 0 0; font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.1; text-transform: uppercase; }
-.room-tour__price { margin: 0; font-size: 0.85rem; }
+.room-tour__price { margin: 0; font-size: 0.91rem; }
 .room-tour__card-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 10px; }
 .room-tour__make { flex: 1 1 auto; justify-content: center; border-radius: 999px; background: var(--rt-pink); color: #fff; text-align: center; }
 .room-tour__make:hover { background: #ff1a8c; }
-.room-tour__link { color: var(--rt-ink); font-size: 0.8rem; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.room-tour__link { color: var(--rt-ink); font-size: 0.9rem; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 .room-tour__link:hover { color: var(--rt-pink); }
 
 /* ---------- copy, counter, tabs, actions ---------- */
@@ -231,7 +231,7 @@
 .room-tour__text { max-width: 36rem; margin: 0; color: rgb(246 243 238 / 0.78); line-height: 1.55; }
 
 .room-tour__tabs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
-.room-tour__count { margin-right: 10px; font-size: 0.8rem; letter-spacing: 0.12em; color: rgb(246 243 238 / 0.6); }
+.room-tour__count { margin-right: 10px; font-size: 0.9rem; letter-spacing: 0.12em; color: rgb(246 243 238 / 0.6); }
 .room-tour__count b { color: var(--rt-paper); font-size: 1.1rem; }
 .room-tour__tab {
   display: inline-flex;
@@ -243,11 +243,11 @@
   background: transparent;
   color: rgb(246 243 238 / 0.75);
   font: inherit;
-  font-size: 0.74rem;
+  font-size: 0.84rem;
   cursor: pointer;
   transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
 }
-.room-tour__tab-num { opacity: 0.55; font-size: 0.66rem; }
+.room-tour__tab-num { opacity: 0.55; font-size: 0.78rem; }
 .room-tour__tab:hover { border-color: var(--rt-paper); color: var(--rt-paper); }
 .room-tour__tab[aria-selected="true"] { background: var(--rt-paper); color: var(--rt-ink); border-color: var(--rt-paper); }
 .room-tour__tab:focus-visible { outline: 2px solid var(--rt-pink); outline-offset: 3px; }
@@ -255,7 +255,7 @@
 .room-tour__foot { padding-block: clamp(16px, 2.5vw, 28px) clamp(40px, 5vw, 72px); }
 .room-tour__actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 20px; text-align: center; }
 .room-tour__cta { border-radius: 999px; }
-.room-tour__note { margin: 0; color: rgb(246 243 238 / 0.7); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.room-tour__note { margin: 0; color: rgb(246 243 238 / 0.7); font-size: 0.88rem; letter-spacing: 0.12em; text-transform: uppercase; }
 
 /* ---------- small screens ---------- */
 
@@ -264,8 +264,8 @@
   .room-tour__viewport { overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain; }
   .room-tour__viewport::-webkit-scrollbar { display: none; }
   .room-tour__canvas { width: calc(68svh * var(--room-ratio, 1.78)); height: 68svh; }
-  .room-tour__door-label { font-size: 0.66rem; }
-  .room-tour__pin { width: 28px; height: 28px; font-size: 0.74rem; }
+  .room-tour__door-label { font-size: 0.78rem; }
+  .room-tour__pin { width: 28px; height: 28px; font-size: 0.84rem; }
   .room-tour__tab { display: none; }
   /* No transform here: it would make the fixed sheet below position itself inside the point. */
   .room-tour__point { transform: none; margin: -14px 0 0 -14px; }

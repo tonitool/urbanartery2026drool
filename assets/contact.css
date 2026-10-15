@@ -64,7 +64,7 @@
 .ua-channel__title {
   margin: 0 0 4px;
   font-family: var(--font-heading);
-  font-size: 0.86rem;
+  font-size: 0.92rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -74,9 +74,9 @@
   transition: color 180ms ease;
 }
 .ua-channel__link:hover { color: var(--c-pink); }
-.ua-channel__text { margin: 4px 0 0; color: var(--color-muted); font-size: 0.85rem; }
+.ua-channel__text { margin: 4px 0 0; color: var(--color-muted); font-size: 0.91rem; }
 
-.ua-contact__note { margin: 0 0 28px; color: var(--color-muted); font-size: 0.85rem; }
+.ua-contact__note { margin: 0 0 28px; color: var(--color-muted); font-size: 0.91rem; }
 
 .ua-contact__cta {
   position: relative;
@@ -89,7 +89,7 @@
   transition: transform 300ms var(--c-ease);
 }
 .ua-contact__cta-heading { font-family: var(--font-heading); font-size: 1.2rem; text-transform: uppercase; }
-.ua-contact__cta-text { color: rgb(242 240 236 / 0.7); font-size: 0.8rem; line-height: 1.5; }
+.ua-contact__cta-text { color: rgb(242 240 236 / 0.7); font-size: 0.9rem; line-height: 1.5; }
 .ua-contact__cta-arrow { position: absolute; right: 20px; top: 50%; width: 18px; height: 18px; color: var(--c-pink); transform: translateY(-50%); transition: transform 300ms var(--c-ease); }
 .ua-contact__cta:hover { transform: translateY(-3px); }
 .ua-contact__cta:hover .ua-contact__cta-arrow { transform: translate(5px, -50%); }
@@ -113,7 +113,7 @@
   width: 100%;
   margin-bottom: 8px;
   padding: 0;
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -124,7 +124,7 @@
   display: inline-block;
   padding: 8px 13px;
   background: #fff;
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   transition: background-color 180ms ease, color 180ms ease;
 }
 .ua-chip:hover span { background: rgb(12 12 12 / 0.08); }
@@ -147,7 +147,7 @@
 .ua-input::placeholder { color: rgb(12 12 12 / 0.45); }
 .ua-input:focus { outline: none; box-shadow: inset 0 0 0 2px var(--c-pink); }
 
-.ua-form__privacy { color: var(--color-muted); font-size: 0.75rem; }
+.ua-form__privacy { color: var(--color-muted); font-size: 0.85rem; }
 .ua-form__privacy p { margin: 0; }
 .ua-form__privacy a { color: inherit; text-decoration: underline; }
 .ua-form__privacy a:hover { color: var(--c-pink); }
@@ -168,7 +168,7 @@
 .ua-form__submit:hover { background: #ff1a8c; }
 .ua-form__submit:focus-visible { outline: 2px solid var(--c-ink); outline-offset: 3px; }
 
-.ua-form__status { margin: 0; padding: 14px 16px; background: #fff; border-left: 3px solid var(--c-ink); font-size: 0.85rem; }
+.ua-form__status { margin: 0; padding: 14px 16px; background: #fff; border-left: 3px solid var(--c-ink); font-size: 0.91rem; }
 .ua-form__status--error { border-left-color: var(--c-pink); }
 
 @media (max-width: 899px) {

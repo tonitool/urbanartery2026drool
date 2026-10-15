@@ -1,6 +1,7 @@
 {
   "current": {
     "configurator_product": "masterprodukt-individuelle-streetart",
-    "favicon": "shopify://shop_images/ua-favicon.png"
+    "favicon": "shopify://shop_images/ua-favicon.png",
+    "font_size_base": 17
   }
 }
