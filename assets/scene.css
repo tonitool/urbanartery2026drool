@@ -188,11 +188,11 @@
 }
 
 /* ---------- Desktop: the whole photo at once ---------- */
-/* Where the photo fits the screen there is nothing to pan: show it complete at full width,
-   keep the size labels visible and drop the drag hint. Phones still pan. */
+/* A photo no wider than about 2.6:1 fits a desktop screen: show it complete at full width and
+   drop the drag hint. Wider panoramas keep panning. Labels stay visible on desktop either way. */
 @media (min-width: 990px) {
-  .scene__viewport { height: auto; overflow: hidden; cursor: default; }
-  .scene__canvas { width: 100%; height: auto; aspect-ratio: var(--scene-ratio); }
-  .scene__hint { display: none; }
+  .scene--fits .scene__viewport { height: auto; overflow: hidden; cursor: default; }
+  .scene--fits .scene__canvas { width: 100%; height: auto; aspect-ratio: var(--scene-ratio); }
+  .scene--fits .scene__hint { display: none; }
   .scene__label { opacity: 1; translate: -50% 0; pointer-events: auto; }
 }

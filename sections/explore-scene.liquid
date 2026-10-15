@@ -12,7 +12,7 @@
     assign scene_ratio = scene_image.aspect_ratio
   endif
 -%}
-<explore-scene class="scene scene--{{ section.settings.height }} full-width"
+<explore-scene class="scene scene--{{ section.settings.height }}{% if section.settings.fit_desktop %} scene--fits{% endif %} full-width"
   style="--scene-ratio: {{ scene_ratio }}; --scene-point: {{ section.settings.point_color }};">
   {%- if section.settings.heading != blank -%}
     <div class="scene__header"><h2 class="scene__heading">{{ section.settings.heading | escape }}</h2></div>
@@ -57,6 +57,7 @@
     { "type": "select", "id": "height", "label": "Height", "default": "large", "options": [
       { "value": "screen", "label": "Full screen" }, { "value": "large", "label": "Large" }
     ]},
+    { "type": "checkbox", "id": "fit_desktop", "label": "Show the whole photo on desktop", "default": false, "info": "Off: the photo fills the section height and visitors drag sideways through it." },
     { "type": "color", "id": "point_color", "label": "Point colour", "default": "#FFFFFF" }
   ],
   "blocks": [

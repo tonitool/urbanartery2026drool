@@ -15,7 +15,7 @@ import cv2
 import numpy as np
 
 HERE = Path(__file__).resolve().parent
-OUT = HERE.parent.parent / "media" / "ua-wall-sizes.jpg"
+MEDIA = HERE.parent.parent / "media"
 SPEC = HERE / "wall.json"
 JPEG_QUALITY = 88
 SIZES_CM = {"S": (20, 30), "M": (40, 60), "L": (80, 120), "XL": (120, 180)}
@@ -56,7 +56,7 @@ def hang(wall: np.ndarray, art: np.ndarray, piece: dict, scale: dict) -> tuple[n
     edge = max(2, round(ppc * 1.2))  # canvas depth on the right, slightly darker
     wall[y:y + h, x + w:x + w + edge] = (face[:, -1:].astype(np.float32) * 0.78).astype(np.uint8)
     wall[y:y + h, x:x + w] = face
-    point = {"size": piece["size"], "x": round((x + w / 2) / wall.shape[1] * 100, 1), "y": round(y / wall.shape[0] * 100 - 1.5, 1)}
+    point = {"size": piece["size"], "format": piece.get("format", "Hochformat"), "x": round((x + w / 2) / wall.shape[1] * 100, 1), "y": round(y / wall.shape[0] * 100 - 1.5, 1)}
     return wall, point
 
 
@@ -74,8 +74,12 @@ def main() -> None:
             raise SystemExit(f"missing artwork {piece['art']}")
         wall, point = hang(wall, art, piece, scale)
         points.append({**point, "title": piece["title"]})
-    cv2.imwrite(str(OUT), wall, [cv2.IMWRITE_JPEG_QUALITY, JPEG_QUALITY])
-    print(OUT)
+    out = MEDIA / spec.get("out", "ua-wall-sizes.jpg")
+    if spec.get("out_width") and spec["out_width"] < wall.shape[1]:
+        h = round(wall.shape[0] * spec["out_width"] / wall.shape[1])
+        wall = cv2.resize(wall, (spec["out_width"], h), interpolation=cv2.INTER_AREA)
+    cv2.imwrite(str(out), wall, [cv2.IMWRITE_JPEG_QUALITY, JPEG_QUALITY, cv2.IMWRITE_JPEG_PROGRESSIVE, 1])
+    print(out)
     print(json.dumps(points, ensure_ascii=False))
 
 

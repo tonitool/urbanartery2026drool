@@ -1,12 +1,18 @@
 {
-  "wall": "wand-leer-a-2x.jpg",
-  "measured_width": 1584,
-  "px_per_cm": 1.6,
-  "floor_y": 594,
+  "wall": "langwand-a.png",
+  "measured_width": 6336,
+  "px_per_cm": 5.2,
+  "floor_y": 2283,
+  "out": "ua-wall-sizes-lang.jpg",
+  "out_width": 4800,
   "pieces": [
-    {"size": "S", "art": "biene-2.png", "title": "Honigwabe", "center_x": 205, "bottom_cm": 120},
-    {"size": "M", "art": "kolibri-1.png", "title": "Hibiskus-Kolibri", "center_x": 345, "bottom_cm": 105},
-    {"size": "XL", "art": "loewe-2.png", "title": "Löwenherz", "center_x": 615, "bottom_cm": 70},
-    {"size": "L", "art": "muse-1.png", "title": "Kopfhörer-Muse", "center_x": 1148, "bottom_cm": 112}
+    {"size": "S", "format": "Hochformat", "art": "biene-2.png", "title": "Honigwabe", "center_x": 430, "bottom_cm": 140},
+    {"size": "M", "format": "Hochformat", "art": "kolibri-1.png", "title": "Hibiskus-Kolibri", "center_x": 770, "bottom_cm": 115},
+    {"size": "XL", "format": "Hochformat", "art": "loewe-2.png", "title": "Löwenherz", "center_x": 1527, "bottom_cm": 75},
+    {"size": "L", "format": "Hochformat", "art": "muse-1.png", "title": "Kopfhörer-Muse", "center_x": 2620, "bottom_cm": 110},
+    {"size": "L", "format": "Querformat", "art": "koi-2.png", "title": "Koi-Kreis", "center_x": 3200, "bottom_cm": 120},
+    {"size": "M", "format": "Querformat", "art": "papierflieger-1.png", "title": "Abflug", "center_x": 3790, "bottom_cm": 130},
+    {"size": "XL", "format": "Querformat", "art": "astronaut-1.png", "title": "Sternenflug", "center_x": 4566, "bottom_cm": 100},
+    {"size": "S", "format": "Querformat", "art": "koi-1.png", "title": "Koi-Strudel", "center_x": 5790, "bottom_cm": 160}
   ]
 }
