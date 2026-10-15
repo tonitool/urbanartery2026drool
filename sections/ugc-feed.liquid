@@ -49,7 +49,7 @@
       {%- assign id_list = ids | split: ',' -%}
       {%- if id_list.size == 0 -%}{%- continue -%}{%- endif -%}
 
-      {%- if forloop.index == 2 and section.settings.tape_text != blank -%}
+      {%- if forloop.index == 2 and section.settings.show_tape and section.settings.tape_text != blank -%}
         <div class="ugc-tape" aria-hidden="true">
           <div class="ugc-tape__track">
             {%- for i in (1..12) -%}<span>{{ section.settings.tape_text }}</span>{%- endfor -%}
@@ -101,6 +101,7 @@
     { "type": "text", "id": "heading", "label": "Heading", "default": "So wohnt" },
     { "type": "text", "id": "heading_outline", "label": "Heading, outlined part", "default": "Street-Art" },
     { "type": "text", "id": "count_label", "label": "Counter label", "default": "Wände, ein Gefühl" },
+    { "type": "checkbox", "id": "show_tape", "label": "Show tape between the rows", "default": true },
     { "type": "text", "id": "tape_text", "label": "Tape strip text", "default": "Aus deinem Foto wird Street-Art · Handgefertigt · Nur für dich ·" },
     { "type": "range", "id": "image_height", "label": "Image height", "min": 140, "max": 360, "step": 10, "unit": "px", "default": 220 },
     { "type": "range", "id": "duration", "label": "Loop duration", "min": 20, "max": 120, "step": 5, "unit": "s", "default": 50 },
