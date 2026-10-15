@@ -4,6 +4,7 @@
     assign has_heading = true
   endif
 -%}
+{%- if section.settings.numbered -%}{{ 'trust-steps.css' | asset_url | stylesheet_tag }}{%- endif -%}
 
 <section class="trust{% if has_heading %} trust--section section{% endif %}{% if section.settings.numbered %} trust--numbered{% endif %} {% if section.settings.color_scheme == 'subtle' %}section--subtle{% elsif section.settings.color_scheme == 'dark' %}section--dark{% endif %}">
   {%- if has_heading -%}
@@ -15,9 +16,13 @@
       {%- for block in section.blocks -%}
         <li class="trust__item" {{ block.shopify_attributes }}>
           {%- if section.settings.numbered -%}
-            <span class="trust__step" aria-hidden="true">{{ forloop.index }}</span>
+            <div class="trust__head">
+              <span class="trust__step" aria-hidden="true">{{ forloop.index }}</span>
+              <span class="trust__badge">{% render 'icon', name: block.settings.icon %}</span>
+            </div>
+          {%- else -%}
+            {% render 'icon', name: block.settings.icon %}
           {%- endif -%}
-          {% render 'icon', name: block.settings.icon %}
           <p class="trust__title">{{ block.settings.title }}</p>
           <p class="trust__text">{{ block.settings.text }}</p>
         </li>
@@ -27,8 +32,8 @@
     {%- if section.settings.button_label != blank -%}
       <div class="section-footer">
         {%- capture configurator_url -%}{% render 'configurator-url' %}{%- endcapture -%}
-        <a class="btn {% if section.settings.color_scheme == 'dark' %}btn--light{% endif %}" href="{{ section.settings.button_link | default: configurator_url }}">
-          {{ section.settings.button_label }}
+        <a class="btn{% if section.settings.color_scheme == 'dark' %} btn--light{% endif %}{% if section.settings.numbered %} trust__cta{% endif %}" href="{{ section.settings.button_link | default: configurator_url }}">
+          {{ section.settings.button_label }}{% if section.settings.numbered %} <span aria-hidden="true">→</span>{% endif %}
         </a>
       </div>
     {%- endif -%}
