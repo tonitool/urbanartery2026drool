@@ -76,6 +76,64 @@
         "color_scheme": "default"
       }
     },
+    "shop-the-wall": {
+      "type": "explore-scene",
+      "blocks": {
+        "size-1": {
+          "type": "point",
+          "settings": {
+            "product": "",
+            "label": "S · 20 × 30 cm",
+            "link": "",
+            "x": 13,
+            "y": 51
+          }
+        },
+        "size-2": {
+          "type": "point",
+          "settings": {
+            "product": "",
+            "label": "M · 40 × 60 cm",
+            "link": "",
+            "x": 22,
+            "y": 48
+          }
+        },
+        "size-3": {
+          "type": "point",
+          "settings": {
+            "product": "",
+            "label": "XL · 120 × 180 cm",
+            "link": "",
+            "x": 39,
+            "y": 27
+          }
+        },
+        "size-4": {
+          "type": "point",
+          "settings": {
+            "product": "",
+            "label": "L · 80 × 120 cm",
+            "link": "",
+            "x": 72,
+            "y": 32
+          }
+        }
+      },
+      "block_order": [
+        "size-1",
+        "size-2",
+        "size-3",
+        "size-4"
+      ],
+      "settings": {
+        "heading": "So wirken die Größen",
+        "image": "shopify://shop_images/ua-wall-sizes.jpg",
+        "image_alt": "Vier Street-Art-Leinwände in S, M, L und XL an einer Wohnzimmerwand",
+        "height": "large",
+        "point_color": "#ffffff"
+      }
+    },
     "before-after": {
       "type": "before-after",
       "blocks": {
@@ -117,54 +175,441 @@
         "color_scheme": "subtle"
       }
     },
-    "shop-the-wall": {
-      "type": "explore-scene",
+    "room-tour": {
+      "type": "room-tour",
       "blocks": {
-        "size-1": {
-          "type": "point",
+        "room-hof": {
+          "type": "room",
           "settings": {
-            "label": "S · 20 × 30 cm",
-            "x": 13,
-            "y": 56
+            "name": "Hof",
+            "image": "shopify://shop_images/ua-haus-hof.jpg"
           }
         },
-        "size-2": {
-          "type": "point",
+        "hof-art-1": {
+          "type": "piece",
           "settings": {
-            "label": "M · 40 × 60 cm",
-            "x": 22,
-            "y": 56
+            "product": "stencil-goldmaehne",
+            "title": "Goldmähne",
+            "image": "shopify://shop_images/ua-art-loewe-1.jpg",
+            "link": "",
+            "size": "XL",
+            "format": "Hochformat",
+            "x": 36,
+            "y": 49
           }
         },
-        "size-3": {
-          "type": "point",
+        "hof-art-2": {
+          "type": "piece",
           "settings": {
-            "label": "XL · 120 × 180 cm",
-            "x": 39,
-            "y": 50
+            "product": "stencil-koi-kreis",
+            "title": "Koi-Kreis",
+            "image": "shopify://shop_images/ua-art-koi-2.jpg",
+            "link": "",
+            "size": "L",
+            "format": "Querformat",
+            "x": 46,
+            "y": 35
           }
         },
-        "size-4": {
-          "type": "point",
+        "hof-art-3": {
+          "type": "piece",
           "settings": {
-            "label": "L · 80 × 120 cm",
+            "product": "stencil-kaugummi-queen",
+            "title": "Kaugummi-Queen",
+            "image": "shopify://shop_images/ua-art-bubblegum-1.jpg",
+            "link": "",
+            "size": "M",
+            "format": "Hochformat",
+            "x": 50,
+            "y": 28
+          }
+        },
+        "hof-door-1": {
+          "type": "door",
+          "settings": {
+            "label": "Rein ins Loft",
+            "target": 2,
+            "direction": "left",
+            "x": 15,
+            "y": 59
+          }
+        },
+        "hof-door-2": {
+          "type": "door",
+          "settings": {
+            "label": "Hoch ins Atelier",
+            "target": 5,
+            "direction": "up",
+            "x": 66,
+            "y": 12
+          }
+        },
+        "room-loft": {
+          "type": "room",
+          "settings": {
+            "name": "Loft",
+            "image": "shopify://shop_images/ua-haus-loft.jpg"
+          }
+        },
+        "loft-art-1": {
+          "type": "piece",
+          "settings": {
+            "product": "stencil-abflug",
+            "title": "Abflug",
+            "image": "shopify://shop_images/ua-art-papierflieger-1.jpg",
+            "link": "",
+            "size": "L",
+            "format": "Querformat",
+            "x": 37,
+            "y": 41
+          }
+        },
+        "loft-art-2": {
+          "type": "piece",
+          "settings": {
+            "product": "stencil-kopfkino",
+            "title": "Kopfkino",
+            "image": "shopify://shop_images/ua-art-muse-2.jpg",
+            "link": "",
+            "size": "L",
+            "format": "Hochformat",
             "x": 72,
             "y": 48
+          }
+        },
+        "loft-art-3": {
+          "type": "piece",
+          "settings": {
+            "product": "stencil-kolibri-bluete",
+            "title": "Kolibri-Blüte",
+            "image": "shopify://shop_images/ua-art-kolibri-2.jpg",
+            "link": "",
+            "size": "S",
+            "format": "Hochformat",
+            "x": 52,
+            "y": 26
+          }
+        },
+        "loft-door-1": {
+          "type": "door",
+          "settings": {
+            "label": "Schlafzimmer",
+            "target": 3,
+            "direction": "right",
+            "x": 44,
+            "y": 39
+          }
+        },
+        "loft-door-2": {
+          "type": "door",
+          "settings": {
+            "label": "Rauf aufs Dach",
+            "target": 6,
+            "direction": "up",
+            "x": 84,
+            "y": 73
+          }
+        },
+        "loft-door-3": {
+          "type": "door",
+          "settings": {
+            "label": "Zurück zum Hof",
+            "target": 1,
+            "direction": "left",
+            "x": 20,
+            "y": 56
+          }
+        },
+        "room-schlafzimmer": {
+          "type": "room",
+          "settings": {
+            "name": "Schlafzimmer",
+            "image": "shopify://shop_images/ua-haus-schlafzimmer.jpg"
+          }
+        },
+        "schlafzimmer-art-1": {
+          "type": "piece",
+          "settings": {
+            "product": "stencil-schwerelos",
+            "title": "Schwerelos",
+            "image": "shopify://shop_images/ua-art-astronaut-2.jpg",
+            "link": "",
+            "size": "L",
+            "format": "Querformat",
+            "x": 62,
+            "y": 45
+          }
+        },
+        "schlafzimmer-art-2": {
+          "type": "piece",
+          "settings": {
+            "product": "stencil-mondwache",
+            "title": "Mondwache",
+            "image": "shopify://shop_images/ua-art-mondkatze-2.jpg",
+            "link": "",
+            "size": "M",
+            "format": "Hochformat",
+            "x": 28,
+            "y": 49
+          }
+        },
+        "schlafzimmer-art-3": {
+          "type": "piece",
+          "settings": {
+            "product": "stencil-nachteule",
+            "title": "Nachteule",
+            "image": "shopify://shop_images/ua-art-eule-2.jpg",
+            "link": "",
+            "size": "S",
+            "format": "Hochformat",
+            "x": 50,
+            "y": 33
+          }
+        },
+        "schlafzimmer-art-4": {
+          "type": "piece",
+          "settings": {
+            "product": "stencil-sturzflug",
+            "title": "Sturzflug",
+            "image": "shopify://shop_images/ua-art-vogel-1.jpg",
+            "link": "",
+            "size": "S",
+            "format": "Hochformat",
+            "x": 68,
+            "y": 48
+          }
+        },
+        "schlafzimmer-door-1": {
+          "type": "door",
+          "settings": {
+            "label": "Ins Bad",
+            "target": 4,
+            "direction": "right",
+            "x": 73,
+            "y": 56
+          }
+        },
+        "schlafzimmer-door-2": {
+          "type": "door",
+          "settings": {
+            "label": "Zurück ins Loft",
+            "target": 2,
+            "direction": "up",
+            "x": 86,
+            "y": 37
+          }
+        },
+        "room-bad": {
+          "type": "room",
+          "settings": {
+            "name": "Bad",
+            "image": "shopify://shop_images/ua-haus-bad.jpg"
+          }
+        },
+        "bad-art-1": {
+          "type": "piece",
+          "settings": {
+            "product": "stencil-honigflug",
+            "title": "Honigflug",
+            "image": "shopify://shop_images/ua-art-biene-1.jpg",
+            "link": "",
+            "size": "M",
+            "format": "Hochformat",
+            "x": 43,
+            "y": 36
+          }
+        },
+        "bad-art-2": {
+          "type": "piece",
+          "settings": {
+            "product": "stencil-hibiskus-kolibri",
+            "title": "Hibiskus-Kolibri",
+            "image": "shopify://shop_images/ua-art-kolibri-1.jpg",
+            "link": "",
+            "size": "S",
+            "format": "Hochformat",
+            "x": 79,
+            "y": 52
+          }
+        },
+        "bad-door-1": {
+          "type": "door",
+          "settings": {
+            "label": "Zurück ins Schlafzimmer",
+            "target": 3,
+            "direction": "left",
+            "x": 59,
+            "y": 35
+          }
+        },
+        "room-atelier": {
+          "type": "room",
+          "settings": {
+            "name": "Atelier",
+            "image": "shopify://shop_images/ua-haus-atelier.jpg"
+          }
+        },
+        "atelier-art-1": {
+          "type": "piece",
+          "settings": {
+            "product": "stencil-koi-strudel",
+            "title": "Koi-Strudel",
+            "image": "shopify://shop_images/ua-art-koi-1.jpg",
+            "link": "",
+            "size": "L",
+            "format": "Querformat",
+            "x": 25,
+            "y": 35
+          }
+        },
+        "atelier-art-2": {
+          "type": "piece",
+          "settings": {
+            "product": "stencil-zuendfunke",
+            "title": "Zündfunke",
+            "image": "shopify://shop_images/ua-art-streichholz-2.jpg",
+            "link": "",
+            "size": "L",
+            "format": "Hochformat",
+            "x": 67,
+            "y": 55
+          }
+        },
+        "atelier-art-3": {
+          "type": "piece",
+          "settings": {
+            "product": "stencil-wiesengriff",
+            "title": "Wiesengriff",
+            "image": "shopify://shop_images/ua-art-gras-2.jpg",
+            "link": "",
+            "size": "S",
+            "format": "Hochformat",
+            "x": 72,
+            "y": 51
+          }
+        },
+        "atelier-door-1": {
+          "type": "door",
+          "settings": {
+            "label": "Runter zum Hof",
+            "target": 1,
+            "direction": "down",
+            "x": 87,
+            "y": 52
+          }
+        },
+        "atelier-door-2": {
+          "type": "door",
+          "settings": {
+            "label": "Ins Loft",
+            "target": 2,
+            "direction": "left",
+            "x": 52,
+            "y": 34
+          }
+        },
+        "room-dach": {
+          "type": "room",
+          "settings": {
+            "name": "Dach-Café",
+            "image": "shopify://shop_images/ua-haus-dach.jpg"
+          }
+        },
+        "dach-art-1": {
+          "type": "piece",
+          "settings": {
+            "product": "stencil-sternenflug",
+            "title": "Sternenflug",
+            "image": "shopify://shop_images/ua-art-astronaut-1.jpg",
+            "link": "",
+            "size": "XL",
+            "format": "Querformat",
+            "x": 39,
+            "y": 49
+          }
+        },
+        "dach-art-2": {
+          "type": "piece",
+          "settings": {
+            "product": "stencil-boombox-86",
+            "title": "Boombox 86",
+            "image": "shopify://shop_images/ua-art-boombox-2.jpg",
+            "link": "",
+            "size": "M",
+            "format": "Hochformat",
+            "x": 47,
+            "y": 38
+          }
+        },
+        "dach-art-3": {
+          "type": "piece",
+          "settings": {
+            "product": "stencil-honigwabe",
+            "title": "Honigwabe",
+            "image": "shopify://shop_images/ua-art-biene-2.jpg",
+            "link": "",
+            "size": "S",
+            "format": "Hochformat",
+            "x": 51,
+            "y": 27
+          }
+        },
+        "dach-door-1": {
+          "type": "door",
+          "settings": {
+            "label": "Runter ins Loft",
+            "target": 2,
+            "direction": "down",
+            "x": 58,
+            "y": 25
           }
         }
       },
       "block_order": [
-        "size-1",
-        "size-2",
-        "size-3",
-        "size-4"
+        "room-hof",
+        "hof-art-1",
+        "hof-art-2",
+        "hof-art-3",
+        "hof-door-1",
+        "hof-door-2",
+        "room-loft",
+        "loft-art-1",
+        "loft-art-2",
+        "loft-art-3",
+        "loft-door-1",
+        "loft-door-2",
+        "loft-door-3",
+        "room-schlafzimmer",
+        "schlafzimmer-art-1",
+        "schlafzimmer-art-2",
+        "schlafzimmer-art-3",
+        "schlafzimmer-art-4",
+        "schlafzimmer-door-1",
+        "schlafzimmer-door-2",
+        "room-bad",
+        "bad-art-1",
+        "bad-art-2",
+        "bad-door-1",
+        "room-atelier",
+        "atelier-art-1",
+        "atelier-art-2",
+        "atelier-art-3",
+        "atelier-door-1",
+        "atelier-door-2",
+        "room-dach",
+        "dach-art-1",
+        "dach-art-2",
+        "dach-art-3",
+        "dach-door-1"
       ],
       "settings": {
-        "heading": "So wirken die Größen",
-        "image": "shopify://shop_images/ua-wall-sizes.jpg",
-        "image_alt": "Vier Street-Art-Leinwände in S, M, L und XL an einer Wohnzimmerwand",
-        "height": "large",
-        "point_color": "#ffffff"
+        "heading": "Komm rein ins Urban Artery Haus.",
+        "text": "Folge den Pfeilen durch Hof, Loft, Schlafzimmer, Bad, Atelier und Dach. Jede Nummer an der Wand ist ein Motiv in echter Größe, von S bis XL, im Hoch- oder Querformat. Tippe drauf und mach es zu deinem.",
+        "make_label": "Make yours",
+        "button_label": "",
+        "button_link": "",
+        "note": "",
+        "background": "#0c0c0c"
       }
     },
     "customer-works": {
@@ -332,9 +777,9 @@
         "heading": "So wohnt",
         "heading_outline": "Street-Art",
         "count_label": "Wände, ein Gefühl",
-        "tape_text": "Aus deinem Foto wird Street-Art · Handgefertigt · Nur für dich ·",
-        "image_height": 220,
-        "duration": 50,
+        "tape_text": "Aus deinem Foto wird Street-Art · Handgefertigt · Nur für dich",
+        "image_height": 320,
+        "duration": 90,
         "copies": 4,
         "invite_label": "Dein Foto hier?",
         "invite_link": "",
@@ -387,6 +832,7 @@
         "f3",
         "f4"
       ],
+      "disabled": true,
       "settings": {
         "heading": "Kundenbeispiele",
         "figure_height": 45,
@@ -406,22 +852,6 @@
         "button_label": "Alle Motive",
         "button_link": "/collections/neue-motive",
         "color_scheme": "default"
-      }
-    },
-    "design-statement": {
-      "type": "statement",
-      "settings": {
-        "image": "shopify://shop_images/ua-auftragsarbeiten.jpg",
-        "overlay": 45,
-        "eyebrow": "Urban Artery Design Service",
-        "text": "Du hast eine Vision? Wir machen sie zur Realität.",
-        "effect": "typewriter",
-        "alignment": "center",
-        "text_size": "m",
-        "text_color": "#ffffff",
-        "marquee_speed": 30,
-        "button_label": "Kontaktiere uns",
-        "button_link": "/pages/kontakt"
       }
     },
     "how-it-works": {
@@ -583,6 +1013,22 @@
         "color_scheme": "default"
       }
     },
+    "design-statement": {
+      "type": "statement",
+      "settings": {
+        "image": "shopify://shop_images/ua-auftragsarbeiten.jpg",
+        "overlay": 45,
+        "eyebrow": "Urban Artery Design Service",
+        "text": "Du hast eine Vision? Wir machen sie zur Realität.",
+        "effect": "typewriter",
+        "alignment": "center",
+        "text_size": "m",
+        "text_color": "#ffffff",
+        "marquee_speed": 30,
+        "button_label": "Kontaktiere uns",
+        "button_link": "/pages/kontakt"
+      }
+    },
     "community": {
       "type": "community",
       "blocks": {
@@ -712,441 +1158,23 @@
         "button_link": "/pages/kontakt",
         "color_scheme": "dark"
       }
-    },
-    "room-tour": {
-      "type": "room-tour",
-      "blocks": {
-        "room-hof": {
-          "type": "room",
-          "settings": {
-            "name": "Hof",
-            "image": "shopify://shop_images/ua-haus-hof.jpg"
-          }
-        },
-        "hof-art-1": {
-          "type": "piece",
-          "settings": {
-            "title": "Goldmähne",
-            "image": "shopify://shop_images/ua-art-loewe-1.jpg",
-            "size": "XL",
-            "format": "Hochformat",
-            "x": 36,
-            "y": 49,
-            "product": "stencil-goldmaehne"
-          }
-        },
-        "hof-art-2": {
-          "type": "piece",
-          "settings": {
-            "title": "Koi-Kreis",
-            "image": "shopify://shop_images/ua-art-koi-2.jpg",
-            "size": "L",
-            "format": "Querformat",
-            "x": 46,
-            "y": 35,
-            "product": "stencil-koi-kreis"
-          }
-        },
-        "hof-art-3": {
-          "type": "piece",
-          "settings": {
-            "title": "Kaugummi-Queen",
-            "image": "shopify://shop_images/ua-art-bubblegum-1.jpg",
-            "size": "M",
-            "format": "Hochformat",
-            "x": 50,
-            "y": 28,
-            "product": "stencil-kaugummi-queen"
-          }
-        },
-        "hof-door-1": {
-          "type": "door",
-          "settings": {
-            "label": "Rein ins Loft",
-            "target": 2,
-            "direction": "left",
-            "x": 15,
-            "y": 59
-          }
-        },
-        "hof-door-2": {
-          "type": "door",
-          "settings": {
-            "label": "Hoch ins Atelier",
-            "target": 5,
-            "direction": "up",
-            "x": 66,
-            "y": 12
-          }
-        },
-        "room-loft": {
-          "type": "room",
-          "settings": {
-            "name": "Loft",
-            "image": "shopify://shop_images/ua-haus-loft.jpg"
-          }
-        },
-        "loft-art-1": {
-          "type": "piece",
-          "settings": {
-            "title": "Abflug",
-            "image": "shopify://shop_images/ua-art-papierflieger-1.jpg",
-            "size": "L",
-            "format": "Querformat",
-            "x": 37,
-            "y": 41,
-            "product": "stencil-abflug"
-          }
-        },
-        "loft-art-2": {
-          "type": "piece",
-          "settings": {
-            "title": "Kopfkino",
-            "image": "shopify://shop_images/ua-art-muse-2.jpg",
-            "size": "L",
-            "format": "Hochformat",
-            "x": 72,
-            "y": 48,
-            "product": "stencil-kopfkino"
-          }
-        },
-        "loft-art-3": {
-          "type": "piece",
-          "settings": {
-            "title": "Kolibri-Blüte",
-            "image": "shopify://shop_images/ua-art-kolibri-2.jpg",
-            "size": "S",
-            "format": "Hochformat",
-            "x": 52,
-            "y": 26,
-            "product": "stencil-kolibri-bluete"
-          }
-        },
-        "loft-door-1": {
-          "type": "door",
-          "settings": {
-            "label": "Schlafzimmer",
-            "target": 3,
-            "direction": "right",
-            "x": 44,
-            "y": 39
-          }
-        },
-        "loft-door-2": {
-          "type": "door",
-          "settings": {
-            "label": "Rauf aufs Dach",
-            "target": 6,
-            "direction": "up",
-            "x": 84,
-            "y": 73
-          }
-        },
-        "loft-door-3": {
-          "type": "door",
-          "settings": {
-            "label": "Zurück zum Hof",
-            "target": 1,
-            "direction": "left",
-            "x": 20,
-            "y": 56
-          }
-        },
-        "room-schlafzimmer": {
-          "type": "room",
-          "settings": {
-            "name": "Schlafzimmer",
-            "image": "shopify://shop_images/ua-haus-schlafzimmer.jpg"
-          }
-        },
-        "schlafzimmer-art-1": {
-          "type": "piece",
-          "settings": {
-            "title": "Schwerelos",
-            "image": "shopify://shop_images/ua-art-astronaut-2.jpg",
-            "size": "L",
-            "format": "Querformat",
-            "x": 62,
-            "y": 45,
-            "product": "stencil-schwerelos"
-          }
-        },
-        "schlafzimmer-art-2": {
-          "type": "piece",
-          "settings": {
-            "title": "Mondwache",
-            "image": "shopify://shop_images/ua-art-mondkatze-2.jpg",
-            "size": "M",
-            "format": "Hochformat",
-            "x": 28,
-            "y": 49,
-            "product": "stencil-mondwache"
-          }
-        },
-        "schlafzimmer-art-3": {
-          "type": "piece",
-          "settings": {
-            "title": "Nachteule",
-            "image": "shopify://shop_images/ua-art-eule-2.jpg",
-            "size": "S",
-            "format": "Hochformat",
-            "x": 50,
-            "y": 33,
-            "product": "stencil-nachteule"
-          }
-        },
-        "schlafzimmer-art-4": {
-          "type": "piece",
-          "settings": {
-            "title": "Sturzflug",
-            "image": "shopify://shop_images/ua-art-vogel-1.jpg",
-            "size": "S",
-            "format": "Hochformat",
-            "x": 68,
-            "y": 48,
-            "product": "stencil-sturzflug"
-          }
-        },
-        "schlafzimmer-door-1": {
-          "type": "door",
-          "settings": {
-            "label": "Ins Bad",
-            "target": 4,
-            "direction": "right",
-            "x": 73,
-            "y": 56
-          }
-        },
-        "schlafzimmer-door-2": {
-          "type": "door",
-          "settings": {
-            "label": "Zurück ins Loft",
-            "target": 2,
-            "direction": "up",
-            "x": 86,
-            "y": 37
-          }
-        },
-        "room-bad": {
-          "type": "room",
-          "settings": {
-            "name": "Bad",
-            "image": "shopify://shop_images/ua-haus-bad.jpg"
-          }
-        },
-        "bad-art-1": {
-          "type": "piece",
-          "settings": {
-            "title": "Honigflug",
-            "image": "shopify://shop_images/ua-art-biene-1.jpg",
-            "size": "M",
-            "format": "Hochformat",
-            "x": 43,
-            "y": 36,
-            "product": "stencil-honigflug"
-          }
-        },
-        "bad-art-2": {
-          "type": "piece",
-          "settings": {
-            "title": "Hibiskus-Kolibri",
-            "image": "shopify://shop_images/ua-art-kolibri-1.jpg",
-            "size": "S",
-            "format": "Hochformat",
-            "x": 79,
-            "y": 52,
-            "product": "stencil-hibiskus-kolibri"
-          }
-        },
-        "bad-door-1": {
-          "type": "door",
-          "settings": {
-            "label": "Zurück ins Schlafzimmer",
-            "target": 3,
-            "direction": "left",
-            "x": 59,
-            "y": 35
-          }
-        },
-        "room-atelier": {
-          "type": "room",
-          "settings": {
-            "name": "Atelier",
-            "image": "shopify://shop_images/ua-haus-atelier.jpg"
-          }
-        },
-        "atelier-art-1": {
-          "type": "piece",
-          "settings": {
-            "title": "Koi-Strudel",
-            "image": "shopify://shop_images/ua-art-koi-1.jpg",
-            "size": "L",
-            "format": "Querformat",
-            "x": 25,
-            "y": 35,
-            "product": "stencil-koi-strudel"
-          }
-        },
-        "atelier-art-2": {
-          "type": "piece",
-          "settings": {
-            "title": "Zündfunke",
-            "image": "shopify://shop_images/ua-art-streichholz-2.jpg",
-            "size": "L",
-            "format": "Hochformat",
-            "x": 67,
-            "y": 55,
-            "product": "stencil-zuendfunke"
-          }
-        },
-        "atelier-art-3": {
-          "type": "piece",
-          "settings": {
-            "title": "Wiesengriff",
-            "image": "shopify://shop_images/ua-art-gras-2.jpg",
-            "size": "S",
-            "format": "Hochformat",
-            "x": 72,
-            "y": 51,
-            "product": "stencil-wiesengriff"
-          }
-        },
-        "atelier-door-1": {
-          "type": "door",
-          "settings": {
-            "label": "Runter zum Hof",
-            "target": 1,
-            "direction": "down",
-            "x": 87,
-            "y": 52
-          }
-        },
-        "atelier-door-2": {
-          "type": "door",
-          "settings": {
-            "label": "Ins Loft",
-            "target": 2,
-            "direction": "left",
-            "x": 52,
-            "y": 34
-          }
-        },
-        "room-dach": {
-          "type": "room",
-          "settings": {
-            "name": "Dach-Café",
-            "image": "shopify://shop_images/ua-haus-dach.jpg"
-          }
-        },
-        "dach-art-1": {
-          "type": "piece",
-          "settings": {
-            "title": "Sternenflug",
-            "image": "shopify://shop_images/ua-art-astronaut-1.jpg",
-            "size": "XL",
-            "format": "Querformat",
-            "x": 39,
-            "y": 49,
-            "product": "stencil-sternenflug"
-          }
-        },
-        "dach-art-2": {
-          "type": "piece",
-          "settings": {
-            "title": "Boombox 86",
-            "image": "shopify://shop_images/ua-art-boombox-2.jpg",
-            "size": "M",
-            "format": "Hochformat",
-            "x": 47,
-            "y": 38,
-            "product": "stencil-boombox-86"
-          }
-        },
-        "dach-art-3": {
-          "type": "piece",
-          "settings": {
-            "title": "Honigwabe",
-            "image": "shopify://shop_images/ua-art-biene-2.jpg",
-            "size": "S",
-            "format": "Hochformat",
-            "x": 51,
-            "y": 27,
-            "product": "stencil-honigwabe"
-          }
-        },
-        "dach-door-1": {
-          "type": "door",
-          "settings": {
-            "label": "Runter ins Loft",
-            "target": 2,
-            "direction": "down",
-            "x": 58,
-            "y": 25
-          }
-        }
-      },
-      "block_order": [
-        "room-hof",
-        "hof-art-1",
-        "hof-art-2",
-        "hof-art-3",
-        "hof-door-1",
-        "hof-door-2",
-        "room-loft",
-        "loft-art-1",
-        "loft-art-2",
-        "loft-art-3",
-        "loft-door-1",
-        "loft-door-2",
-        "loft-door-3",
-        "room-schlafzimmer",
-        "schlafzimmer-art-1",
-        "schlafzimmer-art-2",
-        "schlafzimmer-art-3",
-        "schlafzimmer-art-4",
-        "schlafzimmer-door-1",
-        "schlafzimmer-door-2",
-        "room-bad",
-        "bad-art-1",
-        "bad-art-2",
-        "bad-door-1",
-        "room-atelier",
-        "atelier-art-1",
-        "atelier-art-2",
-        "atelier-art-3",
-        "atelier-door-1",
-        "atelier-door-2",
-        "room-dach",
-        "dach-art-1",
-        "dach-art-2",
-        "dach-art-3",
-        "dach-door-1"
-      ],
-      "settings": {
-        "background": "#0C0C0C",
-        "make_label": "Make yours",
-        "text": "Folge den Pfeilen durch Hof, Loft, Schlafzimmer, Bad, Atelier und Dach. Jede Nummer an der Wand ist ein Motiv in echter Größe, von S bis XL, im Hoch- oder Querformat. Tippe drauf und mach es zu deinem.",
-        "heading": "Komm rein ins Urban Artery Haus.",
-        "button_label": "",
-        "note": ""
-      }
     }
   },
   "order": [
     "hero",
     "press",
     "popular",
+    "shop-the-wall",
     "before-after",
     "room-tour",
-    "shop-the-wall",
     "customer-works",
     "editions-lineup",
     "new",
-    "design-statement",
     "how-it-works",
     "reviews",
     "behind-the-scenes",
     "more",
+    "design-statement",
     "community",
     "intro",
     "tiles",

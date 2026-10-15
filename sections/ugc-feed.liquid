@@ -22,7 +22,7 @@
 
 <section class="ugc-feed" aria-labelledby="UgcFeedHeading-{{ section.id }}"
          style="--ugc-height: {{ section.settings.image_height }}px; --ugc-duration: {{ section.settings.duration }}s; --ugc-copies: {{ copies }};">
-  <div class="container container--wide ugc-feed__header">
+  <div class="container ugc-feed__header">
     <div class="ugc-feed__heading">
       {%- if section.settings.eyebrow != blank -%}
         <p class="ugc-feed__eyebrow">{{ section.settings.eyebrow }}</p>
@@ -72,7 +72,7 @@
                    {% if product != blank %}data-quick-view="{{ product.url }}" aria-haspopup="dialog"{% endif %}>
                   {{ block.settings.image | image_url: width: 640 | image_tag:
                        widths: '320, 480, 640',
-                       sizes: '(min-width: 750px) 240px, 170px',
+                       sizes: '(min-width: 750px) 360px, 220px',
                        loading: 'lazy',
                        alt: block.settings.image.alt | default: title }}
                   <span class="ugc-tile__caption">

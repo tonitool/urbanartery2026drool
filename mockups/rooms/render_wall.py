@@ -56,7 +56,7 @@ def hang(wall: np.ndarray, art: np.ndarray, piece: dict, scale: dict) -> tuple[n
     edge = max(2, round(ppc * 1.2))  # canvas depth on the right, slightly darker
     wall[y:y + h, x + w:x + w + edge] = (face[:, -1:].astype(np.float32) * 0.78).astype(np.uint8)
     wall[y:y + h, x:x + w] = face
-    point = {"size": piece["size"], "x": round((x + w / 2) / wall.shape[1] * 100, 1), "y": round((y + h / 2) / wall.shape[0] * 100, 1)}
+    point = {"size": piece["size"], "x": round((x + w / 2) / wall.shape[1] * 100, 1), "y": round(y / wall.shape[0] * 100 - 1.5, 1)}
     return wall, point
 
 

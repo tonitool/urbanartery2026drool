@@ -1,12 +1,11 @@
-/* UGC feed: a black street-poster wall. Two photo strips pasted on a slight
-   diagonal drift in opposite directions; a pink tape strip runs between them. */
+/* UGC feed: a black street-poster wall. Two calm, level photo strips drift slowly in opposite
+   directions (paused on hover); a slim pink tape runs between them. */
 .ugc-feed {
   --ugc-bg: #0c0c0c;
   --ugc-ink: #f2f0ec;
   --ugc-dim: rgb(242 240 236 / 0.55);
   --ugc-pink: var(--color-accent, #e60073);
-  --ugc-gap: 12px;
-  --ugc-tilt: -2.5deg;
+  --ugc-gap: 16px;
   --ugc-ease: cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
@@ -86,8 +85,6 @@
 .ugc-feed__stage {
   display: grid;
   gap: var(--ugc-gap);
-  margin-inline: -6vw;
-  transform: rotate(var(--ugc-tilt));
 }
 
 .ugc-row { overflow: hidden; }
@@ -148,35 +145,32 @@
 .ugc-tile__title { font-family: var(--font-heading); font-size: 0.86rem; line-height: 1.1; text-transform: uppercase; }
 .ugc-tile__place { font-size: 0.62rem; letter-spacing: 0.04em; opacity: 0.9; }
 
-/* ---------- tape strip ---------- */
+/* ---------- pink tape between the rows ---------- */
 .ugc-tape {
-  position: relative;
-  z-index: 1;
   overflow: hidden;
-  margin-block: 2px;
-  padding-block: 9px;
+  padding-block: 8px;
   background: var(--ugc-pink);
   color: #0c0c0c;
-  transform: rotate(1.2deg);
-  box-shadow: 0 6px 18px rgb(0 0 0 / 0.45);
 }
 .ugc-tape__track {
   display: flex;
   width: max-content;
-  animation: ugc-tape 30s linear infinite;
+  animation: ugc-tape 60s linear infinite;
 }
 .ugc-tape__track span {
   padding-right: 1.4em;
   font-family: var(--font-heading);
-  font-size: clamp(1rem, 0.8rem + 0.8vw, 1.5rem);
+  font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.2rem);
   line-height: 1;
   text-transform: uppercase;
   white-space: nowrap;
 }
+.ugc-tape__track span::after { content: "✦"; margin-left: 1.4em; color: #fff; }
 @keyframes ugc-tape { to { transform: translateX(-50%); } }
 
 .ugc-feed__note {
-  margin: clamp(32px, 4vw, 52px) auto 0;
+  margin: clamp(28px, 3.5vw, 44px) auto 0;
+  text-align: center;
   color: var(--ugc-dim);
   font-size: 0.64rem;
   letter-spacing: 0.04em;
@@ -184,8 +178,8 @@
 
 /* ---------- small screens ---------- */
 @media (max-width: 749px) {
-  .ugc-feed { --ugc-gap: 8px; --ugc-tilt: -3deg; }
-  .ugc-tile__link { height: calc(var(--ugc-height, 220px) * 0.72); }
+  .ugc-feed { --ugc-gap: 10px; }
+  .ugc-tile__link { height: calc(var(--ugc-height, 220px) * 0.62); }
   .ugc-feed__aside { justify-items: start; text-align: left; }
   .ugc-tile__caption { opacity: 1; transform: rotate(-2deg); }
 }
