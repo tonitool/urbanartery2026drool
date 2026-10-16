@@ -64,26 +64,25 @@ def zoom_box(alpha: np.ndarray) -> tuple[int, int, int, int]:
     return max(0, x0 - pad), top, min(w, x1 + pad), bottom
 
 
-def fade_edges(art: np.ndarray, colour: np.ndarray, band: int = 40) -> np.ndarray:
-    """Blend the outer band of the motif into its border colour so the padding has no seam."""
-    h, w = art.shape[:2]
-    x = np.minimum(np.arange(w), np.arange(w)[::-1]) / band
-    y = np.minimum(np.arange(h), np.arange(h)[::-1]) / band
-    weight = np.clip(np.minimum.outer(y, x), 0, 1)[..., None]
-    return (art * weight + colour * (1 - weight)).astype(np.uint8)
-
-
 def fit_to_aspect(art: np.ndarray, aspect: float) -> np.ndarray:
-    """Show the whole motif: pad it with its own border colour up to width/height = aspect."""
+    """Show the whole motif: extend it to width/height = aspect by continuing its own edge colours
+    (edge pixels stretched outwards, then softened), so the paper tone has no visible seam."""
     h, w = art.shape[:2]
-    border = np.concatenate([art[0], art[-1], art[:, 0], art[:, -1]])
-    colour = [int(c) for c in np.median(border, axis=0)]
-    art = fade_edges(art, np.array(colour, np.float32))
     if w / h < aspect:
         pad = int(h * aspect) - w
-        return cv2.copyMakeBorder(art, 0, 0, pad // 2, pad - pad // 2, cv2.BORDER_CONSTANT, value=colour)
-    pad = int(w / aspect) - h
-    return cv2.copyMakeBorder(art, pad // 2, pad - pad // 2, 0, 0, cv2.BORDER_CONSTANT, value=colour)
+        left, right, top, bottom = pad // 2, pad - pad // 2, 0, 0
+    else:
+        pad = int(w / aspect) - h
+        left, right, top, bottom = 0, 0, pad // 2, pad - pad // 2
+    out = cv2.copyMakeBorder(art, top, bottom, left, right, cv2.BORDER_REPLICATE)
+    k = max(31, (max(out.shape[:2]) // 12) | 1)
+    soft = cv2.GaussianBlur(out, (k, k), 0)
+    mask = np.zeros(out.shape[:2], np.float32)
+    mask[top:top + h, left:left + w] = 1
+    band = max(9, (min(h, w) // 10) | 1)
+    mask = cv2.GaussianBlur(mask, (band * 2 + 1, band * 2 + 1), 0)[..., None]
+    mask[top + band:top + h - band, left + band:left + w - band] = 1
+    return (out * mask + soft * (1 - mask)).astype(np.uint8)
 
 
 def render(name: str, spec: dict) -> Path:

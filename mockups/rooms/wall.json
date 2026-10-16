@@ -3,7 +3,7 @@
  "measured_width": 9536,
  "px_per_cm": 5.2,
  "floor_y": 2283,
- "out": "ua-wall-sizes-lang2.jpg",
+ "out": "ua-wall-sizes-lang3.jpg",
  "out_width": 6400,
  "pieces": [
   {
@@ -36,9 +36,9 @@
   {
    "size": "L",
    "format": "Querformat",
-   "art": "../../../../motif-upload/ua-m-koenig-bulli.jpg",
-   "title": "König Bulli",
-   "product": "stencil-koenig-bulli",
+   "art": "../../../../motif-upload/ua-m-loewe-bernstein.jpg",
+   "title": "Löwe Bernstein",
+   "product": "stencil-loewe-bernstein",
    "center_x": 4180,
    "bottom_cm": 110
   },
@@ -54,27 +54,27 @@
   {
    "size": "M",
    "format": "Querformat",
-   "art": "../../../../motif-upload/ua-m-wear-the-crown.jpg",
-   "title": "Wear the Crown",
-   "product": "stencil-wear-the-crown",
+   "art": "../../../../motif-upload/ua-m-dream-louder-rot.jpg",
+   "title": "Dream Louder · Rot",
+   "product": "stencil-dream-louder-rot",
    "center_x": 5888,
    "bottom_cm": 120
   },
   {
    "size": "XL",
    "format": "Querformat",
-   "art": "../../../../motif-upload/ua-m-born-fearless.jpg",
-   "title": "Born Fearless",
-   "product": "stencil-born-fearless",
+   "art": "../../../../motif-upload/ua-m-rizz.jpg",
+   "title": "Rizz",
+   "product": "stencil-rizz",
    "center_x": 6615,
    "bottom_cm": 95
   },
   {
    "size": "S",
    "format": "Querformat",
-   "art": "../../../../motif-upload/ua-m-feuerstadt.jpg",
-   "title": "Feuerstadt",
-   "product": "stencil-feuerstadt",
+   "art": "../../../../motif-upload/ua-m-do-it-scared.jpg",
+   "title": "Do It Scared",
+   "product": "stencil-do-it-scared",
    "center_x": 7600,
    "bottom_cm": 115
   }
