@@ -803,7 +803,7 @@ h1, h2 { text-transform: var(--heading-transform); }
 .product { display: grid; grid-template-columns: 1.15fr 1fr; gap: 44px; padding-block: 40px; }
 @media (max-width: 899px) { .product { grid-template-columns: 1fr; gap: 26px; } }
 
-.product__gallery { display: grid; gap: 10px; min-width: 0; }
+.product__gallery { display: grid; gap: 10px; min-width: 0; align-self: start; align-content: start; }
 /* The frame takes the image's own shape (portrait or landscape) and never outgrows its column. */
 .product__main-image { min-width: 0; background: var(--color-subtle); }
 .product__main-image img { display: block; width: 100%; height: auto; max-height: 82vh; object-fit: contain; }

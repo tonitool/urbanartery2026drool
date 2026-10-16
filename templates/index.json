@@ -82,41 +82,65 @@
         "size-1": {
           "type": "point",
           "settings": {
-            "product": "",
-            "label": "S · 20 × 30 cm",
-            "link": "",
-            "x": 13,
-            "y": 51
+            "label": "S · 20 × 30 cm · Hochformat",
+            "x": 7,
+            "y": 50
           }
         },
         "size-2": {
           "type": "point",
           "settings": {
-            "product": "",
-            "label": "M · 40 × 60 cm",
-            "link": "",
-            "x": 22,
-            "y": 48
+            "label": "M · 40 × 60 cm · Hochformat",
+            "x": 12,
+            "y": 50
           }
         },
         "size-3": {
           "type": "point",
           "settings": {
-            "product": "",
-            "label": "XL · 120 × 180 cm",
-            "link": "",
-            "x": 39,
-            "y": 27
+            "label": "XL · 120 × 180 cm · Hochformat",
+            "x": 24,
+            "y": 34
           }
         },
         "size-4": {
           "type": "point",
           "settings": {
-            "product": "",
-            "label": "L · 80 × 120 cm",
-            "link": "",
+            "label": "L · 80 × 120 cm · Hochformat",
+            "x": 41,
+            "y": 39
+          }
+        },
+        "size-5": {
+          "type": "point",
+          "settings": {
+            "label": "L · 120 × 80 cm · Querformat",
+            "x": 50,
+            "y": 45
+          }
+        },
+        "size-6": {
+          "type": "point",
+          "settings": {
+            "label": "M · 60 × 40 cm · Querformat",
+            "x": 60,
+            "y": 50
+          }
+        },
+        "size-7": {
+          "type": "point",
+          "settings": {
+            "label": "XL · 180 × 120 cm · Querformat",
             "x": 72,
-            "y": 32
+            "y": 41
+          }
+        },
+        "size-8": {
+          "type": "point",
+          "settings": {
+            "label": "S · 30 × 20 cm · Querformat",
+            "x": 91,
+            "y": 49
           }
         }
       },
@@ -124,14 +148,19 @@
         "size-1",
         "size-2",
         "size-3",
-        "size-4"
+        "size-4",
+        "size-5",
+        "size-6",
+        "size-7",
+        "size-8"
       ],
       "settings": {
         "heading": "So wirken die Größen",
-        "image": "shopify://shop_images/ua-wall-sizes.jpg",
-        "image_alt": "Vier Street-Art-Leinwände in S, M, L und XL an einer Wohnzimmerwand",
+        "image": "shopify://shop_images/ua-wall-sizes-lang.jpg",
+        "image_alt": "Acht Street-Art-Leinwände in S, M, L und XL, hoch und quer, an einer langen Wohnzimmerwand",
         "height": "large",
-        "point_color": "#ffffff"
+        "point_color": "#ffffff",
+        "fit_desktop": false
       }
     },
     "before-after": {
@@ -777,7 +806,7 @@
         "heading": "So wohnt",
         "heading_outline": "Street-Art",
         "count_label": "Wände, ein Gefühl",
-        "tape_text": "Aus deinem Foto wird Street-Art · Handgefertigt · Nur für dich",
+        "tape_text": "",
         "image_height": 320,
         "duration": 90,
         "copies": 4,
