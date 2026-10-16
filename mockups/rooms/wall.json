@@ -3,7 +3,7 @@
  "measured_width": 9536,
  "px_per_cm": 5.2,
  "floor_y": 2283,
- "out": "ua-wall-sizes-lang3.jpg",
+ "out": "ua-wall-sizes-lang4.jpg",
  "out_width": 6400,
  "pieces": [
   {
@@ -36,9 +36,9 @@
   {
    "size": "L",
    "format": "Querformat",
-   "art": "../../../../motif-upload/ua-m-loewe-bernstein.jpg",
-   "title": "Löwe Bernstein",
-   "product": "stencil-loewe-bernstein",
+   "art": "koi-2.png",
+   "title": "Koi-Kreis",
+   "product": "stencil-koi-kreis",
    "center_x": 4180,
    "bottom_cm": 110
   },
