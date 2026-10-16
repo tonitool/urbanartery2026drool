@@ -14,6 +14,8 @@ from pathlib import Path
 import cv2
 import numpy as np
 
+from render_rooms import fit_to_aspect
+
 HERE = Path(__file__).resolve().parent
 MEDIA = HERE.parent.parent / "media"
 SPEC = HERE / "wall.json"
@@ -52,7 +54,8 @@ def hang(wall: np.ndarray, art: np.ndarray, piece: dict, scale: dict) -> tuple[n
     bottom = round(scale["floor_y"] - piece["bottom_cm"] * ppc)
     x, y = cx - w // 2, bottom - h
     wall = add_shadow(wall, x, y, w, h, ppc)
-    face = cv2.resize(crop_to_aspect(art, w / h), (w, h), interpolation=cv2.INTER_AREA)
+    shaped = fit_to_aspect(art, w / h) if piece.get("format") == "Querformat" else crop_to_aspect(art, w / h)
+    face = cv2.resize(shaped, (w, h), interpolation=cv2.INTER_AREA)
     edge = max(2, round(ppc * 1.2))  # canvas depth on the right, slightly darker
     wall[y:y + h, x + w:x + w + edge] = (face[:, -1:].astype(np.float32) * 0.78).astype(np.uint8)
     wall[y:y + h, x:x + w] = face
@@ -60,20 +63,37 @@ def hang(wall: np.ndarray, art: np.ndarray, piece: dict, scale: dict) -> tuple[n
     return wall, point
 
 
+def widen(wall: np.ndarray, gaps: list) -> np.ndarray:
+    """Insert empty wall at clean seams: a narrow furniture-free strip is stretched to the gap
+    width and given back its grain, so the room gets longer without new furniture."""
+    rng = np.random.default_rng(7)
+    out, last = [], 0
+    for seam, half, add in sorted(gaps):
+        strip = wall[:, seam - half:seam + half]
+        wide = cv2.resize(strip, (add, wall.shape[0]), interpolation=cv2.INTER_LINEAR).astype(np.int16)
+        wide += rng.normal(0, 2.2, wide.shape).astype(np.int16)
+        out += [wall[:, last:seam], np.clip(wide, 0, 255).astype(np.uint8)]
+        last = seam
+    out.append(wall[:, last:])
+    return np.concatenate(out, axis=1)
+
+
 def main() -> None:
     spec = json.loads(SPEC.read_text())
     wall = cv2.imread(str(HERE / "raw" / spec["wall"]), cv2.IMREAD_COLOR)
     if wall is None:
         raise SystemExit("missing wall image")
+    if spec.get("gaps"):
+        wall = widen(wall, spec["gaps"])
     factor = wall.shape[1] / spec["measured_width"]  # measurements were taken on the 1x render
     scale = {"px_per_cm": spec["px_per_cm"] * factor, "floor_y": spec["floor_y"] * factor, "width_factor": factor}
     points = []
     for piece in spec["pieces"]:
-        art = cv2.imread(str(HERE / "art" / piece["art"]), cv2.IMREAD_COLOR)
+        art = cv2.imread(str((HERE / "art" / piece["art"]).resolve()), cv2.IMREAD_COLOR)
         if art is None:
             raise SystemExit(f"missing artwork {piece['art']}")
         wall, point = hang(wall, art, piece, scale)
-        points.append({**point, "title": piece["title"]})
+        points.append({**point, "title": piece["title"], "product": piece.get("product", "")})
     out = MEDIA / spec.get("out", "ua-wall-sizes.jpg")
     if spec.get("out_width") and spec["out_width"] < wall.shape[1]:
         h = round(wall.shape[0] * spec["out_width"] / wall.shape[1])

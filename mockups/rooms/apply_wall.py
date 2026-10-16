@@ -17,7 +17,7 @@ for i, p in enumerate(points, 1):
     w, h = DIMS[p["size"]]
     if p["format"] == "Querformat":
         w, h = h, w
-    blocks[f"size-{i}"] = {"type": "point", "settings": {"label": f"{p['size']} · {w} × {h} cm · {p['format']}", "x": round(p["x"]), "y": round(p["y"])}}
+    blocks[f"size-{i}"] = {"type": "point", "settings": {"label": f"{p['size']} · {w} × {h} cm · {p['format']}", "x": round(p["x"]), "y": round(p["y"]), **({"product": p["product"]} if p.get("product") else {})}}
     order.append(f"size-{i}")
 section = home["sections"]["shop-the-wall"]
 section["blocks"], section["block_order"] = blocks, order

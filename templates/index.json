@@ -83,64 +83,72 @@
           "type": "point",
           "settings": {
             "label": "S · 20 × 30 cm · Hochformat",
-            "x": 7,
-            "y": 50
+            "x": 6,
+            "y": 52,
+            "product": "stencil-make-noise-orange"
           }
         },
         "size-2": {
           "type": "point",
           "settings": {
             "label": "M · 40 × 60 cm · Hochformat",
-            "x": 12,
-            "y": 50
+            "x": 18,
+            "y": 52,
+            "product": "stencil-elster-pink"
           }
         },
         "size-3": {
           "type": "point",
           "settings": {
             "label": "XL · 120 × 180 cm · Hochformat",
-            "x": 24,
-            "y": 34
+            "x": 29,
+            "y": 35,
+            "product": "stencil-kaugummi-kid"
           }
         },
         "size-4": {
           "type": "point",
           "settings": {
-            "label": "L · 80 × 120 cm · Hochformat",
-            "x": 41,
-            "y": 39
+            "label": "L · 120 × 80 cm · Querformat",
+            "x": 44,
+            "y": 47,
+            "product": "stencil-koenig-bulli"
           }
         },
         "size-5": {
           "type": "point",
           "settings": {
-            "label": "L · 120 × 80 cm · Querformat",
-            "x": 50,
-            "y": 45
+            "label": "L · 80 × 120 cm · Hochformat",
+            "x": 56,
+            "y": 44,
+            "product": "stencil-drachenkind"
           }
         },
         "size-6": {
           "type": "point",
           "settings": {
             "label": "M · 60 × 40 cm · Querformat",
-            "x": 60,
-            "y": 50
+            "x": 62,
+            "y": 52,
+            "product": "stencil-wear-the-crown"
           }
         },
         "size-7": {
           "type": "point",
           "settings": {
             "label": "XL · 180 × 120 cm · Querformat",
-            "x": 72,
-            "y": 41
+            "x": 69,
+            "y": 42,
+            "product": "stencil-born-fearless"
           }
         },
         "size-8": {
           "type": "point",
           "settings": {
             "label": "S · 30 × 20 cm · Querformat",
-            "x": 91,
-            "y": 49
+            "x": 80,
+            "y": 57,
+            "product": "stencil-feuerstadt"
           }
         }
       },
@@ -156,7 +164,7 @@
       ],
       "settings": {
         "heading": "So wirken die Größen",
-        "image": "shopify://shop_images/ua-wall-sizes-lang.jpg",
+        "image": "shopify://shop_images/ua-wall-sizes-lang2.jpg",
         "image_alt": "Acht Street-Art-Leinwände in S, M, L und XL, hoch und quer, an einer langen Wohnzimmerwand",
         "height": "large",
         "point_color": "#ffffff",
